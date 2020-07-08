@@ -1,0 +1,17 @@
+/*--CSS--*/
+.block {
+    text-align: center;
+    vertical-align: middle;
+}
+.circle {
+    background: white;
+    border-radius: 200px;
+    border: 1px solid black;
+    height: 100px;
+    font-weight: bold;
+    width: 100px;
+    display: table;
+    margin: 20px auto;
+    vertical-align: middle;
+    display: table-cell;
+}

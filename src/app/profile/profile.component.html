@@ -81,8 +81,105 @@
               <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
                   <ngb-tab title="Acerca de">
                     <ng-template ngbTabContent>
-                      <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-                      <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-lg-8">
+                            <h4>Puntuación</h4>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-lg-3">
+                                  <div class="progress-wrapper">
+                                    <div class="progress-info">
+                                      <div class="progress-label">
+                                        <span>Calidad</span>
+                                      </div>
+                                      <div class="progress-percentage">
+                                        <span>4/5</span>
+                                      </div>
+                                    </div>
+                                    <ngb-progressbar type="default" [value]="70"></ngb-progressbar>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3">
+                                  <div class="progress-wrapper">
+                                    <div class="progress-info">
+                                      <div class="progress-label">
+                                        <span>Influencia</span>
+                                      </div>
+                                      <div class="progress-percentage">
+                                        <span>4.3/5</span>
+                                      </div>
+                                    </div>
+                                    <ngb-progressbar type="default" [value]="75"></ngb-progressbar>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3">
+                                  <div class="progress-wrapper">
+                                    <div class="progress-info">
+                                      <div class="progress-label">
+                                        <span>Engagement</span>
+                                      </div>
+                                      <div class="progress-percentage">
+                                        <span>3/5</span>
+                                      </div>
+                                    </div>
+                                    <ngb-progressbar type="default" [value]="60"></ngb-progressbar>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3">
+                                  <div class="progress-wrapper">
+                                    <div class="progress-info">
+                                      <div class="progress-label">
+                                        <span>Afinidad</span>
+                                      </div>
+                                      <div class="progress-percentage">
+                                        <span>3.5/5</span>
+                                      </div>
+                                    </div>
+                                    <ngb-progressbar type="default" [value]="65"></ngb-progressbar>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <h4>Opiniones</h4>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-8">
+                            <h4>Estadísticas</h4>
+                            <div class="container">
+                              <div class="row ">
+                                <div class="col-lg-3 block">
+                                  <div class="circle">
+                                    <h5>190</h5>
+                                    <p>Solicitudes</p>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3 block">
+                                  <div class="circle">
+                                    <h5>96%</h5>
+                                    <p>Respondidas</p>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3 block">
+                                  <div class="circle">
+                                    <h5>12%</h5>
+                                    <p>Aprobadas</p>
+                                  </div>
+                                </div>
+                                <div class="col-lg-3 block">
+                                  <div class="circle">
+                                    <h5>2 Días</h5>
+                                    <p>Comparte en</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </ng-template>
                   </ngb-tab>
                   <ngb-tab title="Ganancias">
