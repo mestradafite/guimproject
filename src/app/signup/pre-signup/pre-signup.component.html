@@ -1,25 +1,16 @@
-<main>
-    <section class="section section-shaped section-lg">
-      <div class="shape shape-style-1 bg-gradient-default">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="container container-lg">
-        <div class="row">
-          <div class="col-md-6 mb-5 mb-md-0">
-            <button class="btn btn-primary" type="button" [routerLink]="['/brand-signup']">Soy una marca</button>   
-          </div>
-          <div class="col-md-6 mb-5 mb-lg-0">
-            <button class="btn btn-primary" type="button" [routerLink]="['/influencer-signup']">Soy influencer</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="row">
+  <div class="col-md-6 pull-left"> 
+    <a [routerLink]="['/brand-signup']" >
+      <img src="../../../assets/img/theme/team-1-800x800.jpg"  style="opacity: 40%; width: 100%;">
+      <div class="centered"><h1>SOY UNA MARCA</h1></div>
+
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a [routerLink]="['/influencer-signup']" >
+      <img src="../../../assets/img/theme/team-4-800x800.jpg" style="opacity: 40%; width: 100%;">
+      <div class="centered"><h1>SOY INFLUENCER</h1></div>
+    </a>
+  </div>
+</div>
   
