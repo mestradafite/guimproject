@@ -34,8 +34,10 @@
  
     .nav-link.active,
     .show > .nav-link {
-        color: $nav-pills-link-active-color;
-        background-color: $nav-pills-link-active-bg;
+        color: #32325d;
+        background-color: white;
+        border-radius: unset !important;
+        border-bottom: 1px solid;
     }
 
     @include media-breakpoint-down(xs) {

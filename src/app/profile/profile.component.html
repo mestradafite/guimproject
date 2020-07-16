@@ -348,7 +348,165 @@
                   </ngb-tab>
                   <ngb-tab title="Redes Sociales">
                     <ng-template ngbTabContent>
-                        <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+                      <div class="" ngbDropdown>
+                        <a class="btn btn-default dropdown-toggle " id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                          <i class="{{selectedSortOrderIcon}}" aria-hidden="true"></i> {{selectedSortOrder}}
+                        </a>
+                        <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                          <li *ngFor="let socialNetwork of socialNetworks;  let i = index"> 
+                            <a class="dropdown-item" (click)="ChangeSortOrder(socialNetwork)">
+                              <i class="{{sortOrdersIcons[i]}}" aria-hidden="true"></i> {{socialNetwork}}
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="container" *ngIf="currDiv == socialNetworks[0]">
+                        <div class="row mt-5">
+                          <div class="col-md-6">
+                            <div class="container">
+                              <div class="row" >
+                                <h5>General <i ngbTooltip="General" class="fa fa-info-circle"></i></h5>
+                              </div>
+                              <div class="row">
+                                <div class="container">
+                                  <div class="row">
+                                    <h7><i class="fa fa-users" aria-hidden="true"></i> Seguidores: </h7>
+                                    <h7 > 34.350</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-eye" aria-hidden="true"></i> Views per story: </h7>
+                                    <h7 > 850</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-heart" aria-hidden="true"></i> Likes per post: </h7>
+                                    <h7 > 2.500</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-comment" aria-hidden="true"></i> Comentarios per post: </h7>
+                                    <h7 > 300</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-link" aria-hidden="true"></i> Engagement per post: </h7>
+                                    <h7 > 14%</h7>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="container">
+                              <div class="row d-flex">
+                                <h5>Perfil</h5>
+                              </div>
+                              <div class="row mt-5 d-flex ">
+                                <h5>Crecimiento</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="container" *ngIf="currDiv == socialNetworks[1]">
+                        <div class="row mt-5">
+                          <div class="col-md-6">
+                            <div class="container">
+                              <div class="row" >
+                                <h5>General <i ngbTooltip="General" class="fa fa-info-circle"></i></h5>
+                              </div>
+                              <div class="row">
+                                <div class="container">
+                                  <div class="row">
+                                    <h7><i class="fa fa-users" aria-hidden="true"></i> Seguidores: </h7>
+                                    <h7 > 50.000</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-eye" aria-hidden="true"></i> Views per story: </h7>
+                                    <h7 > 950</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-heart" aria-hidden="true"></i> Likes per post: </h7>
+                                    <h7 > 3.500</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-comment" aria-hidden="true"></i> Comentarios per post: </h7>
+                                    <h7 > 400</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-link" aria-hidden="true"></i> Engagement per post: </h7>
+                                    <h7 > 20%</h7>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="container">
+                              <div class="row d-flex">
+                                <h5>Perfil</h5>
+                              </div>
+                              <div class="row mt-5 d-flex ">
+                                <h5>Crecimiento</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="container" *ngIf="currDiv == socialNetworks[2]">
+                        <div class="row mt-5">
+                          <div class="col-md-6">
+                            <div class="container">
+                              <div class="row" >
+                                <h5>General <i ngbTooltip="General" class="fa fa-info-circle"></i></h5>
+                              </div>
+                              <div class="row">
+                                <div class="container">
+                                  <div class="row">
+                                    <h7><i class="fa fa-users" aria-hidden="true"></i> Seguidores: </h7>
+                                    <h7 > 14.350</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-eye" aria-hidden="true"></i> Views per story: </h7>
+                                    <h7 > 1.000</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-heart" aria-hidden="true"></i> Likes per post: </h7>
+                                    <h7 > 5.500</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-comment" aria-hidden="true"></i> Comentarios per post: </h7>
+                                    <h7 > 200</h7>
+                                  </div>
+                                  <hr style="margin: 0;">
+                                  <div class="row">
+                                    <h7><i class="fa fa-link" aria-hidden="true"></i> Engagement per post: </h7>
+                                    <h7 > 10%</h7>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="container">
+                              <div class="row d-flex">
+                                <h5>Perfil</h5>
+                              </div>
+                              <div class="row mt-5 d-flex ">
+                                <h5>Crecimiento</h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </ng-template>
                   </ngb-tab>
               </ngb-tabset>
