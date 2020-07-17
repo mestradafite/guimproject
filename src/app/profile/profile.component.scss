@@ -1,4 +1,11 @@
 /*--CSS--*/
+.info-table{
+	width: 70%; 
+	border-radius: 1rem; 
+	padding: 1rem;
+	border: 0.0625rem solid rgba(0, 0, 0, 0.1);
+}
+
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
@@ -101,4 +108,10 @@ float: right;
 }
 .review-block-description{
 	font-size:13px;
+}
+
+@media only screen and (max-width: 992px) {
+	.info-table{
+		width: 100%; 
+	}
 }
