@@ -14722,27 +14722,27 @@ textarea[resize=horizontal] {
 
 @media (min-width:768px) {
     .navbar-horizontal .navbar-transparent .navbar-nav .nav-link {
-        color: rgba(255, 255, 255, .95)
+        color: rgba(0, 0, 0, .95)
     }
     .navbar-horizontal .navbar-transparent .navbar-nav .nav-link:focus,
     .navbar-horizontal .navbar-transparent .navbar-nav .nav-link:hover {
-        color: rgba(255, 255, 255, .65)
+        color: rgba(0, 0, 0, .65)
     }
     .navbar-horizontal .navbar-transparent .navbar-nav .nav-link.disabled {
-        color: rgba(255, 255, 255, .25)
+        color: rgba(0, 0, 0, .25)
     }
     .navbar-horizontal .navbar-transparent .navbar-nav .active>.nav-link,
     .navbar-horizontal .navbar-transparent .navbar-nav .nav-link.active,
     .navbar-horizontal .navbar-transparent .navbar-nav .nav-link.show,
     .navbar-horizontal .navbar-transparent .navbar-nav .show>.nav-link {
-        color: rgba(255, 255, 255, .65)
+        color: rgba(0, 0, 0, .65)
     }
     .navbar-horizontal .navbar-transparent .navbar-brand {
-        color: rgba(255, 255, 255, .95)
+        color: rgba(0, 0, 0, .95)
     }
     .navbar-horizontal .navbar-transparent .navbar-brand:focus,
     .navbar-horizontal .navbar-transparent .navbar-brand:hover {
-        color: rgba(255, 255, 255, .95)
+        color: rgba(0, 0, 0, .95)
     }
 }
 
