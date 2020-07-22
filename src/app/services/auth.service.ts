@@ -11,9 +11,6 @@ import { UserInterface } from "../models/user-interface";
 })
 export class AuthService {
 
-  private URL_DEV = "http://localhost:3000/dev";
-  private URL_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
-
   constructor(private htttp: HttpClient) {}
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
