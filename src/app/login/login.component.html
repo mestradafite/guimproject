@@ -26,7 +26,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Correo electrónico" type="email" [(ngModel)]="user.name" (focus)="focus=true" (blur)="focus=false">
+                    <input class="form-control" placeholder="Correo electrónico" type="email" [(ngModel)]="user.email" name="email" (focus)="focus=true" (blur)="focus=false">
                   </div>
                 </div>
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
@@ -34,7 +34,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Contraseña" type="password" [(ngModel)]="user.password" (focus)="focus1=true" (blur)="focus1=false">
+                    <input class="form-control" placeholder="Contraseña" type="password" [(ngModel)]="user.password" name="password" (focus)="focus1=true" (blur)="focus1=false">
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">

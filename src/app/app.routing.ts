@@ -11,18 +11,20 @@ import { LoginComponent } from './login/login.component';
 import { PreSignupComponent } from './signup/pre-signup/pre-signup.component';
 import { BrandSignupComponent } from './signup/brand-signup/brand-signup.component';
 import { InfluencerSignupComponent } from './signup/influencer-signup/influencer-signup.component';
-
+//import { Page404Component } from 'src/app/components/page404/page404.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
-    { path: 'user-profile',     component: ProfileComponent },
+    { path: 'user-profile',     component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'pre-signup',     component: PreSignupComponent },
     { path: 'brand-signup',     component: BrandSignupComponent },
     { path: 'influencer-signup',     component: InfluencerSignupComponent },
     { path: 'register',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'login',          component: LoginComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' }
+    //{ path: '**', component: Page404Component },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

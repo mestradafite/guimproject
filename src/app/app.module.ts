@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -18,6 +19,8 @@ import { LoginComponent } from './login/login.component';
 import { PreSignupComponent } from './signup/pre-signup/pre-signup.component';
 import { BrandSignupComponent } from './signup/brand-signup/brand-signup.component';
 import { InfluencerSignupComponent } from './signup/influencer-signup/influencer-signup.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -35,12 +38,13 @@ import { InfluencerSignupComponent } from './signup/influencer-signup/influencer
   imports: [
     BrowserModule,
     NgbModule,
+    HttpClientModule,
     FormsModule,
     RouterModule,
     AppRoutingModule,
     HomeModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
