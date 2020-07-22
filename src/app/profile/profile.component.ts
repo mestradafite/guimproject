@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { UserInterface } from '../models/user-interface';
 
 @Component({
     selector: 'app-profile',
@@ -9,8 +11,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 
 export class ProfileComponent implements OnInit {
+    private user: UserInterface = {
+        id: "",
+        name: "",
+        email: "",
+        password: "",
+        createdAt: "",
+        updatedAt: "",
+        userToken: ""    
+      }
 
-    constructor() { }
+    constructor(private authService: AuthService) { }
 
     socialNetworks: string[] = ["Instagram", "Youtube", "Twitter"];
     sortOrdersIcons: string[] = ["fa fa-instagram", "fa fa-youtube", "fa fa-twitter"];
@@ -18,7 +29,9 @@ export class ProfileComponent implements OnInit {
     selectedSortOrderIcon: string = this.sortOrdersIcons[0];
     currDiv: string = this.socialNetworks[0];
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.user = this.authService.getCurrentUser();
+    }
 
     ChangeSortOrder(selectedSocialNetwork: string) { 
         this.selectedSortOrder = selectedSocialNetwork;
