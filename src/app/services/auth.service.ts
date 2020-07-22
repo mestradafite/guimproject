@@ -5,10 +5,15 @@ import { map } from "rxjs/operators";
 import { isNullOrUndefined } from "util";
 
 import { UserInterface } from "../models/user-interface";
+
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
+
+  private URL_DEV = "http://localhost:3000/dev";
+  private URL_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
+
   constructor(private htttp: HttpClient) {}
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
@@ -30,7 +35,7 @@ export class AuthService {
   }
 
   loginuser(email: string, password: string): Observable<any> {
-    const url_api = "http://localhost:3000/dev/login";
+    const url_api = this.URL_PROD + "/login";
     return this.htttp
       .post<UserInterface>(
         url_api,
@@ -65,9 +70,9 @@ export class AuthService {
 
   logoutUser() {
     let accessToken = localStorage.getItem("accessToken");
-    const url_api = `http://localhost:3000/api/Users/logout?access_token=${accessToken}`;
+    //const url_api = `http://localhost:3000/api/Users/logout?access_token=${accessToken}`;
     localStorage.removeItem("accessToken");
     localStorage.removeItem("currentUser");
-    return this.htttp.post<UserInterface>(url_api, { headers: this.headers });
+    //return this.htttp.post<UserInterface>(url_api, { headers: this.headers });
   }
 }
