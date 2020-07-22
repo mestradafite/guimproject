@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   loginuser(email: string, password: string): Observable<any> {
-    const url_api = this.URL_PROD + "/login";
+    const url_api = "/dev/login";
     return this.htttp
       .post<UserInterface>(
         url_api,
