@@ -11,10 +11,15 @@ import { UserInterface } from "../models/user-interface";
 })
 export class AuthService {
 
+  private LOGIN_DEV = "http://localhost:3000/dev";
+  private LOGIN_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
+
   constructor(private htttp: HttpClient) {}
   headers: HttpHeaders = new HttpHeaders({
     "Content-Type": "application/json"
   });
+
+  
 
   registerUser(name: string, email: string, password: string) {
     const url_api = "http://localhost:3000/api/Users";
@@ -32,7 +37,7 @@ export class AuthService {
   }
 
   loginuser(email: string, password: string): Observable<any> {
-    const url_api = "/dev/login";
+    const url_api = this.LOGIN_PROD + "/login";
     return this.htttp
       .post<UserInterface>(
         url_api,
