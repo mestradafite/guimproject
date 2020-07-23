@@ -35,6 +35,10 @@ export class NavbarComponent implements OnInit {
      });
     }
 
+    isUserLogged(){
+        return this.authService.getCurrentUser();
+    }
+
     logOut(){
         this.authService.logoutUser();
         this.router.navigateByUrl('/home');

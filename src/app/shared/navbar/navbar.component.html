@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col-6 collapse-brand">
             <a [routerLink]="['/home']">
-              <img src="./assets/img/brand/blue.png">
+              <img src="../../../assets/img/brand/HooplingLogo.png">
             </a>
           </div>
           <div class="col-6 collapse-close">
@@ -35,14 +35,13 @@
       </div>
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
         <li class="nav-item">
-          <!-- USER NO LOGGED-->
-          <a class="nav-link"role="button" [routerLink]="['/home']" *ngIf="getPath()!=='/user-profile'">
+          <a class="nav-link"role="button" [routerLink]="['/home']">
             <span class="nav-link-inner--text">Home</span>
           </a>
-          <!-- USER NO LOGGED-->
-
+        </li>
+        <li class="nav-item">
           <!-- USER LOGGED-->
-          <a class="nav-link"role="button" [routerLink]="['/user-profile']" *ngIf="getPath()=='/user-profile'">
+          <a class="nav-link"role="button" [routerLink]="['/user-profile']" *ngIf="isUserLogged()">
             <span class="nav-link-inner--text">Mi perfil</span>
           </a>
           <!-- USER LOGGED-->
@@ -59,18 +58,18 @@
         </li>
       </ul>
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="getPath()=='/user-profile'">
+        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="isUserLogged()">
           <a class="btn btn-1 btn-outline-primary disabled" [routerLink]="['/login']">
             <span class="nav-link-inner--text">250 €</span>
           </a>
         </li>
-        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="getPath()!=='/user-profile'">
+        <li class="nav-item d-lg-block ml-lg-4" *ngIf="!isUserLogged()">
           <a class="btn btn-neutral btn-icon" [routerLink]="['/login']">
             <span class="nav-link-inner--text">Log in</span>
           </a>
         </li>
         
-        <li class="nav-item" ngbDropdown placement="bottom-right" *ngIf="getPath()=='/user-profile'">
+        <li class="nav-item" ngbDropdown placement="bottom-right" *ngIf="isUserLogged()">
           <a class="nav-link no-caret" ngbDropdownToggle id="dropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true" style="font-size: 30px;"></i>
           </a>
           <div class="dropdown-menu-right" aria-labelledby="dropdown1" ngbDropdownMenu>
