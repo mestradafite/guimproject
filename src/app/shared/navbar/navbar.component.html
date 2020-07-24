@@ -1,7 +1,7 @@
 <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
   <div class="container">
     <!-- USER NO LOGGED-->
-    <a class="navbar-brand mr-lg-5" [routerLink]="['/home']" *ngIf="getPath()!=='/user-profile'">
+    <a class="navbar-brand mr-lg-5" [routerLink]="['/send-product']" *ngIf="getPath()!=='/user-profile'">
       <button class="btn btn-1 btn-outline-primary" type="button">Enviar Producto</button>
     </a>
     <!-- USER NO LOGGED-->
@@ -70,13 +70,13 @@
         </li>
         
         <li class="nav-item" ngbDropdown placement="bottom-right" *ngIf="isUserLogged()">
-          <a class="nav-link no-caret" ngbDropdownToggle id="dropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true" style="font-size: 30px;"></i>
+          <a class="nav-link no-caret" style="cursor: pointer;" ngbDropdownToggle id="dropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true" style="font-size: 30px;"></i>
           </a>
           <div class="dropdown-menu-right" aria-labelledby="dropdown1" ngbDropdownMenu>
-            <a class="dropdown-item" href="javascript:void(0)">Editar Perfil</a>
-            <a class="dropdown-item" href="javascript:void(0)">Ajustes</a>
+            <a class="dropdown-item" style="cursor: pointer;">Editar Perfil <i class="fa fa-pencil-square-o ml-2" aria-hidden="true"></i></a>
+            <a class="dropdown-item" style="cursor: pointer;">Ajustes <i class="fa fa-sliders ml-2" aria-hidden="true"></i></a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a>
+            <a class="dropdown-item" style="cursor: pointer;"  (click)="logOut()">Cerrar Sesión <i class="fa fa-sign-out ml-2" aria-hidden="true"></i></a>
           </div>
         </li>
 

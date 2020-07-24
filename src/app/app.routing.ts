@@ -11,8 +11,10 @@ import { LoginComponent } from './login/login.component';
 import { PreSignupComponent } from './signup/pre-signup/pre-signup.component';
 import { BrandSignupComponent } from './signup/brand-signup/brand-signup.component';
 import { InfluencerSignupComponent } from './signup/influencer-signup/influencer-signup.component';
+import { SendProductComponent } from './products/send-product/send-product.component'
 //import { Page404Component } from 'src/app/components/page404/page404.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthGuardProducts } from './guards/auth.guard_products';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
@@ -23,6 +25,7 @@ const routes: Routes =[
     { path: 'register',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'login',          component: LoginComponent },
+    { path: 'send-product',          component: SendProductComponent, canActivate: [AuthGuardProducts] },
     //{ path: '**', component: Page404Component },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

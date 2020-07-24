@@ -21,6 +21,8 @@ import { BrandSignupComponent } from './signup/brand-signup/brand-signup.compone
 import { InfluencerSignupComponent } from './signup/influencer-signup/influencer-signup.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { SendProductComponent } from './products/send-product/send-product.component';
+import { NewProductComponent } from './products/new-product/new-product.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { AuthGuard } from './guards/auth.guard';
     LoginComponent,
     PreSignupComponent,
     BrandSignupComponent,
-    InfluencerSignupComponent
+    InfluencerSignupComponent,
+    SendProductComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,
