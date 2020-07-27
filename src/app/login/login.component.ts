@@ -59,6 +59,8 @@ export class LoginComponent implements OnInit {
     name: "",
     email: "",
     password: "",
+    influencer: false,
+    brand: false,
     createdAt: "",
     updatedAt: "",
     userToken: ""    
@@ -68,7 +70,8 @@ export class LoginComponent implements OnInit {
     this.alertVisible = false;
     this.loginSucceed = false;
     if (this.authService.getCurrentUser()) {
-      this.router.navigateByUrl('/user-profile');
+      if(this.authService.getCurrentUser().influencer) this.router.navigateByUrl('/user-profile');
+      else if(this.authService.getCurrentUser().brand) this.router.navigateByUrl('/brand-profile');
     } 
   }
 
@@ -82,10 +85,13 @@ export class LoginComponent implements OnInit {
       return this.authService.loginuser(this.user.email, this.user.password)
       .subscribe(data => {
         console.log("Login Ok! ");
+        console.log(data);
         this.loginSucceed = true;
         this.user = data;
         this.authService.setUser(this.user);
-        this.router.navigateByUrl('/user-profile');
+        
+        if(this.user.influencer) this.router.navigateByUrl('/user-profile');
+        else if(this.user.brand) this.router.navigateByUrl('/brand-profile');
       },
       error => {
         console.log(error);

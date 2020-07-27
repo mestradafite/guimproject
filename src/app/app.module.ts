@@ -23,6 +23,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { SendProductComponent } from './products/send-product/send-product.component';
 import { NewProductComponent } from './products/new-product/new-product.component';
+import { BrandProfileComponent } from './brand-profile/brand-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NewProductComponent } from './products/new-product/new-product.componen
     BrandSignupComponent,
     InfluencerSignupComponent,
     SendProductComponent,
-    NewProductComponent
+    NewProductComponent,
+    BrandProfileComponent
   ],
   imports: [
     BrowserModule,
