@@ -12,22 +12,64 @@
                 <div class="stepwizard">
                     <div class="stepwizard-row">
                         <div class="stepwizard-step">
-                            <button type="button" class="btn btn-primary btn-circle">1</button>
+                            <button type="button" id="step1Button" class="btn btn-primary btn-circle">1</button>
                             <p>Imágenes</p>
                         </div>
                         <div class="stepwizard-step">
-                            <button type="button" class="btn btn-default btn-circle" disabled="disabled">2</button>
+                            <button type="button" id="step2Button" class="btn btn-default btn-circle" disabled="disabled">2</button>
                             <p>Información</p>
                         </div>
                         <div class="stepwizard-step">
-                            <button type="button" class="btn btn-default btn-circle" disabled="disabled">3</button>
+                            <button type="button" id="step3Button" class="btn btn-default btn-circle" disabled="disabled">3</button>
                             <p>Resumen</p>
                         </div> 
                     </div>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center mt-5">
-                <h3>Añade una imágen principal</h3>
+            <div id="step1">
+                <div class="row d-flex justify-content-center mt-5">
+                    <h3>Añade una imágen principal</h3>
+                </div>
+                <div class="row d-flex justify-content-center mt-5">
+                    <input type="file" (change)="onFileSelected($event)" >
+                </div>
+                <div class="row d-flex justify-content-center mt-5">
+                    <h4>Añade más imágenes del producto (recomendado)</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="../../../assets/img/icons/common/white-image.png" width="100%"  alt="">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="../../../assets/img/icons/common/white-image.png" width="100%"  alt="">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="../../../assets/img/icons/common/white-image.png" width="100%"  alt="">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="../../../assets/img/icons/common/white-image.png" width="100%"  alt="">
+                    </div>
+                </div>
+                <div class="row float-right">
+                    <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="button">
+                        <span class="btn-inner--text" (click)="nextStep(2)">Siguiente</span>
+                    </button>
+                </div>
+            </div>
+            <div id="step2">
+                <div class="row d-flex justify-content-center mt-5">
+                    <h3>Completa la información</h3>
+                </div>
+                <div class="row float-right">
+                    <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="button">
+                        <span class="btn-inner--text" (click)="nextStep(3)">Siguiente</span>
+                    </button>
+                </div>
+            </div>
+            <div id="step3">
+                <div class="row d-flex justify-content-center mt-5">
+                    <h3>Resumen del producto</h3>
+                </div>
             </div>
         </div>
     </section>
