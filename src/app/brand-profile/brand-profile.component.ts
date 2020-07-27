@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { UserInterface } from '../models/user-interface';
 
 @Component({
   selector: 'app-brand-profile',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./brand-profile.component.css']
 })
 export class BrandProfileComponent implements OnInit {
+  private user: UserInterface = {
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    createdAt: "",
+    updatedAt: "",
+    userToken: ""    
+  }
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.user = this.authService.getCurrentUser();
   }
 
 }

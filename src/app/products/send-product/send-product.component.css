@@ -22,3 +22,13 @@
     border-color: #32325d;
     background-color: #32325d
 }
+
+.border-products{
+    border-right: 0.0625rem solid rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 992px) {
+    .border-products{
+        border-right: 0.0625rem hidden rgba(0, 0, 0, 0.1);
+    }
+  }

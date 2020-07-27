@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./send-product.component.css']
 })
 export class SendProductComponent implements OnInit {
+  products: string[] = ["", "", "", "", ""];
 
   constructor(private authService: AuthService) { }
 

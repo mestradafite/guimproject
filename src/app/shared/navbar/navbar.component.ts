@@ -39,6 +39,22 @@ export class NavbarComponent implements OnInit {
         return this.authService.getCurrentUser();
     }
 
+    isBrand(){
+        if(this.authService.getCurrentUser()){
+            if (this.authService.getCurrentUser().brand) return true;
+            else if(this.authService.getCurrentUser().influencer) return false;
+        }else{
+            return true;
+        }
+    }
+
+    isInfluencer(){
+        if(this.authService.getCurrentUser()){
+            if (this.authService.getCurrentUser().influencer) return true;
+            else if(this.authService.getCurrentUser().brand) return false;
+        }
+    }
+
     logOut(){
         this.authService.logoutUser();
         this.router.navigateByUrl('/home');

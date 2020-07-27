@@ -11,7 +11,8 @@ import { LoginComponent } from './login/login.component';
 import { PreSignupComponent } from './signup/pre-signup/pre-signup.component';
 import { BrandSignupComponent } from './signup/brand-signup/brand-signup.component';
 import { InfluencerSignupComponent } from './signup/influencer-signup/influencer-signup.component';
-import { SendProductComponent } from './products/send-product/send-product.component'
+import { SendProductComponent } from './products/send-product/send-product.component';
+import { NewProductComponent } from './products/new-product/new-product.component';
 import { BrandProfileComponent } from './brand-profile/brand-profile.component';
 //import { Page404Component } from 'src/app/components/page404/page404.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -26,6 +27,7 @@ const routes: Routes =[
     { path: 'register',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'login',          component: LoginComponent },
+    { path: 'new-product',          component: NewProductComponent },
     { path: 'send-product',          component: SendProductComponent, canActivate: [AuthGuard] },
     //{ path: '**', component: Page404Component },
     { path: '', redirectTo: 'home', pathMatch: 'full' },

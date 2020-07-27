@@ -1,16 +1,13 @@
 <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
   <div class="container">
-    <!-- USER NO LOGGED-->
-    <a class="navbar-brand mr-lg-5" [routerLink]="['/send-product']" *ngIf="getPath()!=='/user-profile'">
+
+    <a class="navbar-brand mr-lg-5" [routerLink]="['/send-product']" *ngIf="isBrand()">
       <button class="btn btn-1 btn-outline-primary" type="button">Enviar Producto</button>
     </a>
-    <!-- USER NO LOGGED-->
 
-    <!-- USER LOGGED-->
-    <a class="navbar-brand mr-lg-5" *ngIf="getPath()=='/user-profile'">
+    <a class="navbar-brand mr-lg-5" *ngIf="isInfluencer()">
       <button class="btn btn-1 btn-primary" type="button">Solicitudes</button>
     </a>
-    <!-- USER LOGGED-->
 
     <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
           [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
@@ -41,7 +38,10 @@
         </li>
         <li class="nav-item">
           <!-- USER LOGGED-->
-          <a class="nav-link"role="button" [routerLink]="['/user-profile']" *ngIf="isUserLogged()">
+          <a class="nav-link"role="button" [routerLink]="['/user-profile']" *ngIf="isInfluencer()">
+            <span class="nav-link-inner--text">Mi perfil</span>
+          </a>
+          <a class="nav-link"role="button" [routerLink]="['/brand-profile']" *ngIf="isUserLogged() && isBrand()">
             <span class="nav-link-inner--text">Mi perfil</span>
           </a>
           <!-- USER LOGGED-->
