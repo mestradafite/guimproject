@@ -45,9 +45,7 @@ export class NewProductComponent implements OnInit {
   }
 
   insertProduct(){
-    console.log(this.product);
-    
-    /*if(this.authService.getCurrentUser()){
+    if(this.authService.getCurrentUser()){
       return this.productsService.insertproduct(this.authService.getCurrentUser().id, this.product.urlimages, this.product.name, this.product.category, 
                                                 this.product.tags, this.product.url, this.product.sizes, 
                                                 this.product.price, this.product.description)
@@ -58,7 +56,7 @@ export class NewProductComponent implements OnInit {
       error => {
         console.log(error);
       });
-    }*/
+    }
   }
 
   nextStep(stepNum: number){
