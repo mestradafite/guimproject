@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
+import { ProductsService } from '../../services/products.service';
+import { ProductInterface } from "../../models/product-interface";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-product',
@@ -13,7 +17,23 @@ export class NewProductComponent implements OnInit {
   step3;
   actualStep;
 
-  constructor(private http: HttpClient) { }
+  constructor(private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { }
+
+  categories: string[] = ["Shirt", "Sunglasses", "Pantalones"];
+  selectedSortOrder: string = "Selecciona una categoria";
+
+  private product: ProductInterface = {
+    id: "",
+    userid: "",
+    urlimages: "",
+    name: "",
+    category: "",
+    tags: "",
+    url: "",
+    sizes: "",
+    price: "",
+    description: ""   
+  }
 
   ngOnInit(): void {
     this.step1 = document.getElementById('step1');
@@ -22,6 +42,23 @@ export class NewProductComponent implements OnInit {
     this.step2.classList.add("hidden");
     this.step3.classList.add("hidden");
     this.actualStep = this.step1;
+  }
+
+  insertProduct(){
+    console.log(this.product);
+    
+    /*if(this.authService.getCurrentUser()){
+      return this.productsService.insertproduct(this.authService.getCurrentUser().id, this.product.urlimages, this.product.name, this.product.category, 
+                                                this.product.tags, this.product.url, this.product.sizes, 
+                                                this.product.price, this.product.description)
+      .subscribe(data => {
+        console.log("Product Submited!");
+        this.router.navigateByUrl('/send-product');
+      },
+      error => {
+        console.log(error);
+      });
+    }*/
   }
 
   nextStep(stepNum: number){
@@ -38,6 +75,12 @@ export class NewProductComponent implements OnInit {
     this.actualStep = nextStep;
     nextStep.classList.remove('hidden');
   }
+
+  ChangeSortOrder(selectedCategory: string) { 
+    this.selectedSortOrder = selectedCategory;
+    this.product.category = this.selectedSortOrder;
+    
+}
 
   onFileSelected(event){
     this.selectedFile = <File>event.target.files[0];

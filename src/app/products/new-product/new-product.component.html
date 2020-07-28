@@ -1,6 +1,7 @@
 <main>
     <section class="section section-lg">
         <div class="container">
+            <form role="form" (ngSubmit)="insertProduct()" [ngClass]="{'focused':focus===true}">                    
             <div class="row row-grid align-items-center">
                 <div class="col-md-6 order-md-1">
                     <div class="pr-md-5">
@@ -60,7 +61,47 @@
                 <div class="row d-flex justify-content-center mt-5">
                     <h3>Completa la información</h3>
                 </div>
-                <div class="row float-right">
+                <div class="row d-flex justify-content-center mt-5">
+                    <div class="col-md-6 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            <div class="row">
+                                <h6>Nombre del producto</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 d-flex justify-content-center mt-3">
+                                    <input type="text" placeholder="Nombre del producto" [(ngModel)]="product.name" name="name" class="form-control form-control-alternative" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            <div class="row">
+                                <h6>Categoría</h6>
+                            </div>
+                            <div class="row">
+                                <div class="mt-3" ngbDropdown>
+                                    <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                                        {{selectedSortOrder}}
+                                    </a>
+                                    <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                                        <li *ngFor="let category of categories;  let i = index"> 
+                                            <a class="dropdown-item" (click)="ChangeSortOrder(category)">
+                                                {{category}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center mt-5">
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+                <div class="row float-right mt-5">
                     <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="button">
                         <span class="btn-inner--text" (click)="nextStep(3)">Siguiente</span>
                     </button>
@@ -69,8 +110,12 @@
             <div id="step3">
                 <div class="row d-flex justify-content-center mt-5">
                     <h3>Resumen del producto</h3>
+                    <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="submit">
+                        <span class="btn-inner--text">Listo</span>
+                    </button>
                 </div>
             </div>
+            </form>
         </div>
     </section>
 </main>
