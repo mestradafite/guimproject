@@ -32,7 +32,11 @@
                     <h3>Añade una imágen principal</h3>
                 </div>
                 <div class="row d-flex justify-content-center mt-5">
-                    <input type="file" (change)="onFileSelected($event)" >
+                    <input type="file" name="file" id="file" class="inputfile" (change)="onFileSelected($event)" >
+                    <label class="row d-flex justify-content-center" for="file">
+                        <img for="file" src="../../../assets/img/icons/common/add.png" alt="" *ngIf="!imgURL">
+                        <img for="file" [src]="imgURL" alt="" width="50%" *ngIf="imgURL">
+                    </label>
                 </div>
                 <div class="row d-flex justify-content-center mt-5">
                     <h4>Añade más imágenes del producto (recomendado)</h4>
@@ -97,8 +101,78 @@
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center mt-5">
-                    <div class="col-md-6">
-
+                    <div class="col-md-6 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            <div class="row">
+                                <h6>Etiquetas</h6>
+                            </div>
+                            <div class="row">
+                                <span>(Añade etiquetas que definan tu producto para que llegue a los influencers adecuados)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center mt-5">
+                    <div class="col-md-6 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            <div class="row">
+                                <h6>Página web del producto</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 d-flex justify-content-center mt-3">
+                                    <input type="text" placeholder="www.website.com/product" [(ngModel)]="product.url" name="url" class="form-control form-control-alternative" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center mt-5">
+                    <div class="col-md-6 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            <div class="row">
+                                <h6>Tallas</h6>
+                            </div>
+                            <div class="row">
+                                <span>(Si tu producto dispone de tallas, selecciona las que estén disponibles)</span>
+                            </div>
+                            <div class="row" >
+                                <div *ngFor="let size of sizes; index as i" class="custom-control custom-checkbox mt-2 mr-4">
+                                    <input class="custom-control-input" id="{{size}}" [(ngModel)]="sizesEnabled[i]" name="sizes" type="checkbox">
+                                    <label class="custom-control-label" for="{{size}}">
+                                        <span>{{size}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            <div class="row">
+                                <h6>Price</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center mt-5">
+                    <div class="col-md-12 d-flex justify-content-center mt-4">
+                        <div class="container">
+                            <div class="row">
+                                <h6>Descripción del producto</h6>
+                            </div>
+                            <div class="row">
+                                <textarea [(ngModel)]="product.description" name="description"  cols="200" rows="5"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row float-right mt-5">

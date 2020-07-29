@@ -16,10 +16,14 @@ export class NewProductComponent implements OnInit {
   step2;
   step3;
   actualStep;
+  public imgURL: any;
 
   constructor(private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { }
 
+  private PRODUCTO_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
   categories: string[] = ["Shirt", "Sunglasses", "Pantalones"];
+  sizes: string[] = ["XS", "S", "M", "L", "XL", "XXL"];
+  sizesEnabled: boolean[] = [];
   selectedSortOrder: string = "Selecciona una categoria";
 
   private product: ProductInterface = {
@@ -42,20 +46,71 @@ export class NewProductComponent implements OnInit {
     this.step2.classList.add("hidden");
     this.step3.classList.add("hidden");
     this.actualStep = this.step1;
+    for (let i = 0; i < this.sizes.length; i++) {
+      this.sizesEnabled[i] = false;
+    }
   }
 
   insertProduct(){
+    this.getProductSizes();    
     if(this.authService.getCurrentUser()){
-      return this.productsService.insertproduct(this.authService.getCurrentUser().id, this.product.urlimages, this.product.name, this.product.category, 
-                                                this.product.tags, this.product.url, this.product.sizes, 
-                                                this.product.price, this.product.description)
-      .subscribe(data => {
-        console.log("Product Submited!");
-        this.router.navigateByUrl('/send-product');
+      this.uploadImage();
+    }
+  }
+
+  uploadImage(){
+    this.getURLImage(this.selectedFile); 
+  }
+
+  getURLImage(file: File) {
+    var imageURL = "";
+    var self = this;
+    
+    fetch(this.PRODUCTO_PROD+"/uploadimage", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
       },
-      error => {
-        console.log(error);
-      });
+      body: JSON.stringify({
+        type: file.type
+      })
+    })
+    .then(function(response){
+      return response.json();
+    })
+    .then(function(json){
+      imageURL = json.imageURL;
+      return fetch(json.uploadURL, {
+        method: "PUT",
+        body: file
+      })
+    })
+    .then(function(){
+      self.product.urlimages = imageURL;
+      console.log(self.product.urlimages);
+      
+      self.uploadProduct();
+    });
+  }
+
+  uploadProduct(){
+    this.productsService.insertproduct(this.authService.getCurrentUser().id, this.product.urlimages, this.product.name, this.product.category, 
+                                              this.product.tags, this.product.url, this.product.sizes, 
+                                              this.product.price, this.product.description)
+    .subscribe(data => {
+      console.log("Product Submited!");
+      this.router.navigateByUrl('/send-product');
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  getProductSizes(){
+    for (let i = 0; i < this.sizes.length; i++) {
+      if(this.sizesEnabled[i]){
+        this.product.sizes = this.product.sizes  + this.sizes[i] + ", ";
+      } 
     }
   }
 
@@ -82,6 +137,20 @@ export class NewProductComponent implements OnInit {
 
   onFileSelected(event){
     this.selectedFile = <File>event.target.files[0];
+
+    var mimeType = this.selectedFile.type;
+    if (mimeType.match(/image\/*/) == null) {
+      //this.message = "Only images are supported.";
+      console.log("Only images are supported.");
+      
+      return;
+    }
+    var reader = new FileReader();
+      reader.readAsDataURL(this.selectedFile); 
+      reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
+    
   }
 
   onUpload(){

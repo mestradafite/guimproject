@@ -11,8 +11,8 @@ import { ProductInterface } from "../models/product-interface";
 })
 export class ProductsService {
 
-  private LOGIN_DEV = "http://localhost:3000/dev";
-  private LOGIN_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
+  private PRODUCTO_DEV = "http://localhost:3000/dev";
+  private PRODUCTO_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
 
   constructor(private htttp: HttpClient) {}
   headers: HttpHeaders = new HttpHeaders({
@@ -20,7 +20,7 @@ export class ProductsService {
   });
 
   insertproduct(userid: string, urlimages: string, name: string, category: string, tags: string, url:string, sizes:string, price: string, description:string): Observable<any> {
-    const url_api = this.LOGIN_PROD + "/insertproduct";
+    const url_api = this.PRODUCTO_PROD + "/insertproduct";
     return this.htttp
       .post<ProductInterface>(
         url_api,
@@ -31,7 +31,7 @@ export class ProductsService {
   }
 
   getUserProducts(userid: string): Observable<any> {
-    const url_api = this.LOGIN_PROD + "/getproductsbyuserid";
+    const url_api = this.PRODUCTO_PROD + "/getproductsbyuserid";
     return this.htttp
       .post<ProductInterface>(
         url_api,
@@ -40,5 +40,4 @@ export class ProductsService {
       )
       .pipe(map(data => data));
   }
-
 }
