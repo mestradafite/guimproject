@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/auth.service';
 import { ProductsService } from '../../services/products.service';
 import { ProductInterface } from "../../models/product-interface";
@@ -12,19 +13,28 @@ import { Router } from '@angular/router';
 })
 export class NewProductComponent implements OnInit {
   selectedFile: File = null;
+  closeResult: string;
   step1;
   step2;
   step3;
   actualStep;
   public imgURL: any;
 
-  constructor(private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { }
+  constructor(private modalService: NgbModal, private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { }
+  @ViewChild('noImage') 
+  private content: TemplateRef<any>;
+  @ViewChild('submitProduct') 
+  private contentSubmitProduct: TemplateRef<any>;
 
   private PRODUCTO_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
   categories: string[] = ["Shirt", "Sunglasses", "Pantalones"];
   sizes: string[] = ["XS", "S", "M", "L", "XL", "XXL"];
   sizesEnabled: boolean[] = [];
   selectedSortOrder: string = "Selecciona una categoria";
+
+  selectedSortOrderTags: string = "Selecciona varias etiquetas"
+  tags: string[] = ["chic", "vintage", "casual"];
+  selectedTags: string[] = [];
 
   private product: ProductInterface = {
     id: "",
@@ -35,7 +45,6 @@ export class NewProductComponent implements OnInit {
     tags: "",
     url: "",
     sizes: "",
-    price: "",
     description: ""   
   }
 
@@ -45,14 +54,14 @@ export class NewProductComponent implements OnInit {
     this.step3 = document.getElementById('step3');
     this.step2.classList.add("hidden");
     this.step3.classList.add("hidden");
+    
     this.actualStep = this.step1;
     for (let i = 0; i < this.sizes.length; i++) {
       this.sizesEnabled[i] = false;
     }
   }
 
-  insertProduct(){
-    this.getProductSizes();    
+  insertProduct(){    
     if(this.authService.getCurrentUser()){
       this.uploadImage();
     }
@@ -95,8 +104,7 @@ export class NewProductComponent implements OnInit {
 
   uploadProduct(){
     this.productsService.insertproduct(this.authService.getCurrentUser().id, this.product.urlimages, this.product.name, this.product.category, 
-                                              this.product.tags, this.product.url, this.product.sizes, 
-                                              this.product.price, this.product.description)
+                                              this.product.tags, this.product.url, this.product.sizes, this.product.description)
     .subscribe(data => {
       console.log("Product Submited!");
       this.router.navigateByUrl('/send-product');
@@ -109,40 +117,70 @@ export class NewProductComponent implements OnInit {
   getProductSizes(){
     for (let i = 0; i < this.sizes.length; i++) {
       if(this.sizesEnabled[i]){
-        this.product.sizes = this.product.sizes  + this.sizes[i] + ", ";
+        this.product.sizes = this.product.sizes  + this.sizes[i] + "/";
       } 
     }
   }
 
   nextStep(stepNum: number){
+    if(stepNum === 2){
+      if(this.imgURL===undefined) {
+        this.open(this.content, 'Notification', '');
+      }else{
+        this.changeStep(stepNum);
+      } 
+    }
+    if(stepNum === 3){
+      if(!this.checkInfoProduct()) {
+        this.open(this.contentSubmitProduct, 'Notification', '');
+      }else{
+        this.getProductSizes();
+        this.changeStep(stepNum);
+      } 
+    }
+  }
+  
+  changeStep(stepNum: number){
     let prevStepButton = document.getElementById('step'+(stepNum-1) + 'Button');
     prevStepButton.classList.remove('btn-primary');
     prevStepButton.classList.add('btn-default');
-
+  
     let nextStepButton = document.getElementById('step'+stepNum + 'Button');
     nextStepButton.classList.remove('btn-default');
     nextStepButton.classList.add('btn-primary');
-
+  
     let nextStep = document.getElementById('step'+stepNum);
     this.actualStep.parentNode.removeChild(this.actualStep);
     this.actualStep = nextStep;
     nextStep.classList.remove('hidden');
   }
 
+  checkInfoProduct(){
+    if (this.authService.getCurrentUser().id === "" ||
+        this.product.name === ""        || 
+        this.product.category === ""    ||
+        this.product.tags === ""        ||
+        this.product.url === ""         ||
+        this.product.sizes === ""       ||
+        this.product.description === ""){
+      return false;
+    }
+    return true;
+  }
+
   ChangeSortOrder(selectedCategory: string) { 
     this.selectedSortOrder = selectedCategory;
     this.product.category = this.selectedSortOrder;
     
-}
+  }
 
   onFileSelected(event){
     this.selectedFile = <File>event.target.files[0];
 
     var mimeType = this.selectedFile.type;
     if (mimeType.match(/image\/*/) == null) {
-      //this.message = "Only images are supported.";
       console.log("Only images are supported.");
-      
+      this.open(this.content, 'Notification', '');
       return;
     }
     var reader = new FileReader();
@@ -153,13 +191,55 @@ export class NewProductComponent implements OnInit {
     
   }
 
-  onUpload(){
-    //Subir imagen
-    /*const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name)
-      .subscribe(res => {
-        console.log(res);
-      });
-    this.http.post('', fd);*/
+  addTag(selectedTag: string){
+    this.selectedTags.push(selectedTag);
+    this.tags = this.tags.filter(item => item != selectedTag);
+    this.setProductTags();
   }
+
+  removeTag(selectedTag: string){
+    this.selectedTags = this.selectedTags.filter(item => item != selectedTag);
+    this.tags.push(selectedTag);
+    this.setProductTags();
+  }
+
+  setProductTags(){
+    var tagsString = "";
+    for (let i = 0; i < this.selectedTags.length; i++) {
+      tagsString = tagsString + this.selectedTags[i] + ",";
+    }
+    this.product.tags = tagsString;
+  }
+
+  open(content, type, modalDimension) {
+    if (modalDimension === 'sm' && type === 'modal_mini') {
+        this.modalService.open(content, { windowClass: 'modal-mini', size: 'sm', centered: true }).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    } else if (modalDimension === '' && type === 'Notification') {
+      this.modalService.open(content, { windowClass: 'modal-danger', centered: true }).result.then((result) => {
+          this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    } else {
+        this.modalService.open(content,{ centered: true }).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
+}
+
+private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+    } else {
+        return  `with: ${reason}`;
+    }
+}
 }

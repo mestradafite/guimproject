@@ -46,6 +46,7 @@
 
 .hidden{
     visibility: hidden;
+    position: fixed;
 }
 
 .inputfile {
@@ -60,5 +61,9 @@
 .inputfile + label {
     color: #32325d;
     display: inline-block;
+    cursor: pointer;
+}
+
+.badge:hover{
     cursor: pointer;
 }

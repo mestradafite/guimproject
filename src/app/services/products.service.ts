@@ -19,12 +19,12 @@ export class ProductsService {
     "Content-Type": "application/json"
   });
 
-  insertproduct(userid: string, urlimages: string, name: string, category: string, tags: string, url:string, sizes:string, price: string, description:string): Observable<any> {
+  insertproduct(userid: string, urlimages: string, name: string, category: string, tags: string, url:string, sizes:string, description:string): Observable<any> {
     const url_api = this.PRODUCTO_PROD + "/insertproduct";
     return this.htttp
       .post<ProductInterface>(
         url_api,
-        { userid, urlimages, name, category, tags, url, sizes, price, description },
+        { userid, urlimages, name, category, tags, url, sizes, description },
         { headers: this.headers }
       )
       .pipe(map(data => data));

@@ -8,6 +8,5 @@ export interface ProductInterface {
     tags?: string,
     url?: string,
     sizes?: string,
-    price?: string,
     description?: string,
   }
