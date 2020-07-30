@@ -1,5 +1,15 @@
 <main>
     <section class="section section-lg">
+        <div *ngIf="alertErrorVisible">
+            <ngb-alert [type]="alerts[3].type"  [dismissible]="true"  (close)="alertErrorVisible = false" >
+                <ng-container *ngIf="alerts[3].icon">
+                <div class="alert-inner--icon">
+                    <i class="{{alerts[3].icon}}"></i>
+                </div>
+                </ng-container>
+                <span class="alert-inner--text">  <strong>{{alerts[3].strong}} </strong>{{ alerts[3].message }}</span>
+            </ngb-alert>
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-4">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/auth.service';
@@ -6,12 +6,25 @@ import { ProductsService } from '../../services/products.service';
 import { ProductInterface } from "../../models/product-interface";
 import { Router } from '@angular/router';
 
+export interface IAlert {
+  id: number;
+  type: string;
+  strong?: string;
+  message: string;
+  icon?: string;
+}
+
 @Component({
   selector: 'app-new-product',
   templateUrl: './new-product.component.html',
   styleUrls: ['./new-product.component.css']
 })
 export class NewProductComponent implements OnInit {
+  @Input()
+  public alerts: Array<IAlert> = [];
+  private backup: Array<IAlert>;
+  private alertErrorVisible: boolean;
+
   selectedFile: File = null;
   closeResult: string;
   step1;
@@ -20,7 +33,34 @@ export class NewProductComponent implements OnInit {
   actualStep;
   public imgURL: any;
 
-  constructor(private modalService: NgbModal, private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { }
+  constructor(private modalService: NgbModal, private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { 
+    this.alerts.push({
+      id: 1,
+      type: 'success',
+      strong: 'Correcto!',
+      message: 'Usuario conectado, redirigiendo...',
+      icon: 'ni ni-like-2'
+  }, {
+      id: 2,
+      strong: 'Info!',
+      type: 'info',
+      message: 'This is an info alert—check it out!',
+      icon: 'ni ni-bell-55'
+  }, {
+      id: 3,
+      type: 'warning',
+      strong: 'Warning!',
+      message: 'This is a warning alert—check it out!',
+      icon: 'ni ni-bell-55'
+  }, {
+      id: 4,
+      type: 'danger',
+      strong: 'Error!',
+      message: 'Ha habido un problema durante la creación del producto, lamentamos las molestias...',
+      icon: 'ni ni-support-16'
+  });
+  this.backup = this.alerts.map((alert: IAlert) => Object.assign({}, alert));
+  }
   @ViewChild('noImage') 
   private content: TemplateRef<any>;
   @ViewChild('submitProduct') 
@@ -110,6 +150,7 @@ export class NewProductComponent implements OnInit {
       this.router.navigateByUrl('/send-product');
     },
     error => {
+      this.alertErrorVisible = true;
       console.log(error);
     });
   }
@@ -134,7 +175,6 @@ export class NewProductComponent implements OnInit {
       if(!this.checkInfoProduct()) {
         this.open(this.contentSubmitProduct, 'Notification', '');
       }else{
-        this.getProductSizes();
         this.changeStep(stepNum);
       } 
     }
@@ -156,6 +196,7 @@ export class NewProductComponent implements OnInit {
   }
 
   checkInfoProduct(){
+    this.getProductSizes();
     if (this.authService.getCurrentUser().id === "" ||
         this.product.name === ""        || 
         this.product.category === ""    ||
@@ -164,8 +205,9 @@ export class NewProductComponent implements OnInit {
         this.product.sizes === ""       ||
         this.product.description === ""){
       return false;
+    }else{
+      return true;
     }
-    return true;
   }
 
   ChangeSortOrder(selectedCategory: string) { 
