@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +25,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { SendProductComponent } from './products/send-product/send-product.component';
 import { NewProductComponent } from './products/new-product/new-product.component';
 import { BrandProfileComponent } from './brand-profile/brand-profile.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -43,12 +45,14 @@ import { BrandProfileComponent } from './brand-profile/brand-profile.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    NgxSpinnerModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

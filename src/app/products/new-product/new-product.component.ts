@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { ProductsService } from '../../services/products.service';
 import { ProductInterface } from "../../models/product-interface";
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 export interface IAlert {
   id: number;
@@ -33,7 +34,7 @@ export class NewProductComponent implements OnInit {
   actualStep;
   public imgURL: any;
 
-  constructor(private modalService: NgbModal, private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { 
+  constructor(private spinner: NgxSpinnerService, private modalService: NgbModal, private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { 
     this.alerts.push({
       id: 1,
       type: 'success',
@@ -102,6 +103,12 @@ export class NewProductComponent implements OnInit {
   }
 
   insertProduct(){    
+    /** spinner starts on init */
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+    }, 6000 * 5);
     if(this.authService.getCurrentUser()){
       this.uploadImage();
     }
@@ -148,6 +155,7 @@ export class NewProductComponent implements OnInit {
     .subscribe(data => {
       console.log("Product Submited!");
       this.router.navigateByUrl('/send-product');
+      this.spinner.hide();
     },
     error => {
       this.alertErrorVisible = true;
