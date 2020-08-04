@@ -16,6 +16,7 @@ import { NewProductComponent } from './products/new-product/new-product.componen
 import { BrandProfileComponent } from './brand-profile/brand-profile.component';
 //import { Page404Component } from 'src/app/components/page404/page404.component';
 import { AuthGuard } from './guards/auth.guard';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
@@ -29,6 +30,7 @@ const routes: Routes =[
     { path: 'login',          component: LoginComponent },
     { path: 'new-product',          component: NewProductComponent },
     { path: 'send-product',          component: SendProductComponent, canActivate: [AuthGuard] },
+    { path: 'settings',          component: SettingsComponent, canActivate: [AuthGuard] },
     //{ path: '**', component: Page404Component },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

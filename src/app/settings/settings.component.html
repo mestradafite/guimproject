@@ -1,0 +1,168 @@
+<main>
+    <section class="section-profile-cover section-shaped my-0">
+        <div class="shape shape-primary alpha-4" style="background-image: url('../../assets/img/brand/Bannerprofile.jpg');">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>  
+        <section class="section mt-5">
+            <div class="container">
+                <div class="row mt-5 bluediv">
+                    <h1 class="ml-5" style="color: white;">Ajustes</h1>
+                </div>
+                <div class="row whitediv">
+                    <div class="container ml-5">
+                        <div class="row mt-5">
+                            <h3 style="color: #e83a80;">Solicitudes</h3>
+                        </div>
+                        <div class="row mt-2">
+                            <h5>Límite del buzón</h5>
+                        </div>
+                        <div class="row">
+                            <h6>Tamaño máximo del buzón de solicitudes: </h6>
+                            <div class="mt-3 ml-3 dropdown" ngbDropdown>
+                                <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                                    {{limits[0]}}
+                                </a>
+                                <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                                    <li *ngFor="let limit of limits;  let i = index"> 
+                                        <a class="dropdown-item" (click)="ChangeSortOrder(category)">
+                                            {{limit}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <h5>Precio</h5>
+                        </div>
+                        <div class="row">
+                            <h6>La cantidad que pagarán las amrcas para enviarte una solicitud. Si declinas su oferta, cobrarás esta cantidad automáticamente. 
+                                Si la aceptas, se añadirá el dinero a tu cuenta una vez hayas compartido el producto.</h6>
+                        </div>
+                        <div class="row mt-2">
+                            <h5>Idiomas</h5>
+                        </div>
+                        <div class="row">
+                            <h6>¿En qué idiomas puedes responder a las solicitudes?</h6>
+                            <div class="mt-3 ml-3 dropdown" ngbDropdown>
+                                <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                                    {{languages[0]}}
+                                </a>
+                                <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                                    <li *ngFor="let language of languages;  let i = index"> 
+                                        <a class="dropdown-item" (click)="ChangeSortOrder(category)">
+                                            {{language}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <h3 style="color: #e83a80;">Intereses</h3>
+                        </div>
+                        <div class="row">
+                            <h6>Si hay algún tipo de producto o estilo que no estás interesado/a en recibir, puedes deseleccionarlo.</h6>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-3">
+                                <div class="container">
+                                    <div class="row">
+                                        <h3>Categorías</h3>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="dropdown-without-mg" ngbDropdown>
+                                            <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                                                {{categories[0]}}
+                                            </a>
+                                            <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                                                <li *ngFor="let category of categories;  let i = index"> 
+                                                    <a class="dropdown-item" (click)="ChangeSortOrder(category)">
+                                                        {{category}}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="container">
+                                    <div class="row">
+                                        <h3>Etiquetas</h3>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="dropdown-without-mg" ngbDropdown>
+                                            <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                                                {{tags[0]}}
+                                            </a>
+                                            <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                                                <li *ngFor="let tag of tags;  let i = index"> 
+                                                    <a class="dropdown-item" (click)="ChangeSortOrder(category)">
+                                                        {{tag}}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <h3 style="color: #e83a80;">Método de pago</h3>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-3">
+                                <button class="btn btn-icon btn-3 btn-outline-info" type="button">
+                                    <img src="../../assets/img/brand/paypal-logo.png" width="50%" alt="">
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-icon btn-3 btn-outline-info" type="button">
+                                    <span class="btn-inner--text">Cuenta bancaria<i class="fa fa-university ml-2" aria-hidden="true"></i></span>
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-icon btn-3 btn-outline-info" type="button">
+                                    <span class="btn-inner--text">Tarjeta<i class="fa fa-credit-card-alt ml-2" aria-hidden="true"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row mt-5">
+                            <h3 style="color: #e83a80;">Disponibilidad</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="row"> 
+                                    <h5>Modo vacaciones</h5>
+                                </div>
+                                <div class="row">
+                                    <h6>No recibirás solicitudes</h6>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <label class="custom-toggle mt-3">
+                                    <input type="checkbox">
+                                    <span class="custom-toggle-slider rounded-circle"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row float-right mt-5 mb-5 mr-5">
+                            <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="button">
+                                <span class="btn-inner--text">Guardar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>      
+    </section>
+</main>

@@ -26,6 +26,7 @@ import { SendProductComponent } from './products/send-product/send-product.compo
 import { NewProductComponent } from './products/new-product/new-product.component';
 import { BrandProfileComponent } from './brand-profile/brand-profile.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     InfluencerSignupComponent,
     SendProductComponent,
     NewProductComponent,
-    BrandProfileComponent
+    BrandProfileComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

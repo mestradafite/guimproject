@@ -1,0 +1,41 @@
+.bluediv{
+    background-color: #32325d;
+}
+
+.whitediv{
+    background-color: white;
+}
+
+.section-profile-cover{
+    height: auto;
+}
+
+.dropdown{
+    margin-top: -5px !important;
+    color: #32325d;
+    background-color: white;
+}
+
+.dropdown-without-mg{
+    color: #32325d;
+    background-color: white;
+}
+
+.btn-default{
+    background-color: white;
+}
+
+.btn-default:not(:disabled):not(.disabled):active, .btn-default:not(:disabled):not(.disabled).active, .show > .btn-default.dropdown-toggle{
+    background-color: white;
+    color: #32325d;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+.dropdown-item:active,
+.dropdown-item:hover{
+    background-color: #32325d;
+    color: white !important;
+}
