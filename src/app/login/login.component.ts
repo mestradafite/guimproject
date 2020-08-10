@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { UserInterface } from '../models/user-interface';
+import { UserSettingsInterface } from '../models/user-settings-interface';
 import { Router } from '@angular/router';
 
 export interface IAlert {
@@ -66,6 +67,17 @@ export class LoginComponent implements OnInit {
     userToken: ""    
   }
 
+  private userSettings: UserSettingsInterface = {
+    userid: "",
+    boxlimit: "",
+    price: "",
+    locale: "",
+    categories: "",
+    tags: "",
+    account: "",
+    vacationMode: ""   
+  }
+
   ngOnInit() {
     this.alertVisible = false;
     this.loginSucceed = false;
@@ -89,9 +101,18 @@ export class LoginComponent implements OnInit {
         this.loginSucceed = true;
         this.user = data;
         this.authService.setUser(this.user);
-        
         if(this.user.influencer) this.router.navigateByUrl('/user-profile');
         else if(this.user.brand) this.router.navigateByUrl('/brand-profile');
+
+        this.authService.getUserSettings(this.user.id)
+          .subscribe(data => {
+            this.userSettings = data;
+            this.authService.setUserSettings(this.userSettings);
+          },
+          error => {
+            console.log(error);
+            this.alertVisible = true;
+          });
       },
       error => {
         console.log(error);

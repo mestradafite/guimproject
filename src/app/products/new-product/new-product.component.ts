@@ -68,13 +68,13 @@ export class NewProductComponent implements OnInit {
   private contentSubmitProduct: TemplateRef<any>;
 
   private PRODUCTO_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
-  categories: string[] = ["Shirt", "Sunglasses", "Pantalones"];
+  categories: string[] = [];
   sizes: string[] = ["XS", "S", "M", "L", "XL", "XXL"];
   sizesEnabled: boolean[] = [];
   selectedSortOrder: string = "Selecciona una categoria";
 
   selectedSortOrderTags: string = "Selecciona varias etiquetas"
-  tags: string[] = ["chic", "vintage", "casual"];
+  tags: string[] = [];
   selectedTags: string[] = [];
 
   private product: ProductInterface = {
@@ -90,6 +90,8 @@ export class NewProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getCategories();
+    this.getTags();
     this.step1 = document.getElementById('step1');
     this.step2 = document.getElementById('step2');
     this.step3 = document.getElementById('step3');
@@ -169,6 +171,33 @@ export class NewProductComponent implements OnInit {
         this.product.sizes = this.product.sizes  + this.sizes[i] + "/";
       } 
     }
+  }
+
+  getCategories(){
+    return this.productsService.getCategories()
+    .subscribe(data => {
+      console.log("Getting categories...");
+      console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        this.categories.push(data[i].name); 
+      }
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  getTags(){
+    return this.productsService.getTags()
+    .subscribe(data => {
+      console.log("Getting tags...");
+      for (let i = 0; i < data.length; i++) {
+        this.tags.push(data[i].name); 
+      }
+    },
+    error => {
+      console.log(error);
+    });
   }
 
   nextStep(stepNum: number){

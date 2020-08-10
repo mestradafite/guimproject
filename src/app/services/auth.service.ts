@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { isNullOrUndefined } from "util";
 
 import { UserInterface } from "../models/user-interface";
+import { UserSettingsInterface } from "../models/user-settings-interface";
 
 @Injectable({
   providedIn: "root"
@@ -47,9 +48,25 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
+  getUserSettings(userid: string): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/getusersettings";
+    return this.htttp
+      .post<UserInterface>(
+        url_api,
+        { userid },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
   setUser(user: UserInterface): void {
     let user_string = JSON.stringify(user);
     localStorage.setItem("currentUser", user_string);
+  }
+
+  setUserSettings(userSettings: UserSettingsInterface): void {
+    let user_settings_string = JSON.stringify(userSettings);
+    localStorage.setItem("currentUserSettings", user_settings_string);
   }
 
   setToken(token): void {
@@ -70,11 +87,22 @@ export class AuthService {
     }
   }
 
+  getCurrentUserSettings(): UserSettingsInterface {
+    let user_string = localStorage.getItem("currentUserSettings");
+    if (!isNullOrUndefined(user_string)) {
+      let userSettings: UserSettingsInterface = JSON.parse(user_string);
+      return userSettings;
+    } else {
+      return null;
+    }
+  }
+
   logoutUser() {
     let accessToken = localStorage.getItem("accessToken");
     //const url_api = `http://localhost:3000/api/Users/logout?access_token=${accessToken}`;
     localStorage.removeItem("accessToken");
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentUserSettings");
     //return this.htttp.post<UserInterface>(url_api, { headers: this.headers });
   }
 }

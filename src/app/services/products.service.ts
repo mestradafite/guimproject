@@ -40,4 +40,24 @@ export class ProductsService {
       )
       .pipe(map(data => data));
   }
+
+  getCategories(): Observable<any> {
+    const url_api = this.PRODUCTO_PROD + "/getcategories";
+    return this.htttp
+      .get(
+        url_api,
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
+  getTags(): Observable<any> {
+    const url_api = this.PRODUCTO_PROD + "/gettags";
+    return this.htttp
+      .get(
+        url_api,
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
 }

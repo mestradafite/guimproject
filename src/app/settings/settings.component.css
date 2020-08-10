@@ -39,3 +39,7 @@
     background-color: #32325d;
     color: white !important;
 }
+
+.badge:hover{
+    cursor: pointer;
+}

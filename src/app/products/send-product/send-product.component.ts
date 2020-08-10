@@ -20,7 +20,7 @@ export class SendProductComponent implements OnInit {
     this.getProducts();
   }
 
-  getProducts(){
+  getProducts(){ 
     if(this.authService.getCurrentUser()){
       return this.productService.getUserProducts(this.authService.getCurrentUser().id)
       .subscribe(data => {

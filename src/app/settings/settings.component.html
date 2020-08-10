@@ -82,7 +82,7 @@
                                             </a>
                                             <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
                                                 <li *ngFor="let category of categories;  let i = index"> 
-                                                    <a class="dropdown-item" (click)="ChangeSortOrder(category)">
+                                                    <a class="dropdown-item" (click)="addCategory(category)">
                                                         {{category}}
                                                     </a>
                                                 </li>
@@ -103,11 +103,21 @@
                                             </a>
                                             <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
                                                 <li *ngFor="let tag of tags;  let i = index"> 
-                                                    <a class="dropdown-item" (click)="ChangeSortOrder(category)">
+                                                    <a class="dropdown-item" (click)="addTag(tag)">
                                                         {{tag}}
                                                     </a>
                                                 </li>
                                             </ul>
+                                        </div>
+                                        <div class="justify-content-center">
+                                            <div class="container">
+                                                <span class="badge badge-pill badge-danger text-uppercase mr-2"  *ngFor="let selectedCategory of selectedCategories" (click)="removeCategory(selectedCategory)">{{selectedCategory}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="justify-content-center">
+                                            <div class="container">
+                                                <span class="badge badge-pill badge-info text-uppercase mr-2"  *ngFor="let selectedTag of selectedTags" (click)="removeTag(selectedTag)">{{selectedTag}}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
