@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { AuthService } from '../services/auth.service';
 import { UserSettingsInterface } from '../models/user-settings-interface';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-settings',
@@ -9,8 +10,10 @@ import { UserSettingsInterface } from '../models/user-settings-interface';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-  private limits: string[] = ["Sin Límite"];
+  private limits: string[] = ["Sin Límite", "3", "10"];
+  private selectedLimit: string = this.limits[0];
   private languages: string[] = ["ESP", "CAT", "ENG"];
+  private selectedLanguage: string = this.languages[0];
   private categories:string[] = [];
   private tags: string[] = [];
   selectedTags: string[] = [];
@@ -25,11 +28,11 @@ export class SettingsComponent implements OnInit {
     categories: "",
     tags: "",
     account: "",
-    vacationMode: ""   
+    vacationMode: false   
   }
 
 
-  constructor(private productService: ProductsService, private authService: AuthService) { }
+  constructor(private spinner: NgxSpinnerService, private productService: ProductsService, private authService: AuthService) { }
 
 
   ngOnInit(): void {
@@ -38,10 +41,31 @@ export class SettingsComponent implements OnInit {
     this.getTags();
   }
 
+  updateSettings(){
+    this.spinner.show();    
+    this.authService.setCurrentUserSettings(this.authService.getCurrentUser().id, this.userSettings.boxlimit, 
+                                            this.userSettings.price, this.userSettings.locale, this.userSettings.categories, 
+                                            this.userSettings.tags, this.userSettings.account, this.userSettings.vacationMode)
+    .subscribe(data => {
+      console.log("Settings Submited!");
+      this.authService.setUserSettings(this.userSettings);
+      this.getUserSettings();
+      this.spinner.hide();
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
   getUserSettings(){
     this.userSettings = this.authService.getCurrentUserSettings();
-    console.log(this.userSettings[0]);
-    
+    if(this.userSettings.boxlimit!== "" &&  this.userSettings.boxlimit!== undefined){
+      this.selectedLimit = this.userSettings.boxlimit;
+    }
+
+    if(this.userSettings.locale!== "" && this.userSettings.locale!== undefined){
+      this.selectedLanguage = this.userSettings.locale;
+    }
   }
 
   getCategories(){
@@ -72,6 +96,20 @@ export class SettingsComponent implements OnInit {
     error => {
       console.log(error);
     });
+  }
+
+  changeLimit(selectedLimit: string) { 
+    this.selectedLimit = selectedLimit;
+    if(selectedLimit === this.limits[0]){
+      this.userSettings.boxlimit = "";
+    }else{
+      this.userSettings.boxlimit = this.selectedLimit;
+    }
+  }
+
+  changeLocale(selectedLanguage: string){
+    this.selectedLanguage = selectedLanguage;
+    this.userSettings.locale = this.selectedLanguage;
   }
 
   addTag(selectedTag: string){

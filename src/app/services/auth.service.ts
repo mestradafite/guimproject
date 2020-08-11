@@ -48,33 +48,26 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  getUserSettings(userid: string): Observable<any> {
-    const url_api = this.LOGIN_PROD + "/getusersettings";
-    return this.htttp
-      .post<UserInterface>(
-        url_api,
-        { userid },
-        { headers: this.headers }
-      )
-      .pipe(map(data => data));
-  }
-
   setUser(user: UserInterface): void {
     let user_string = JSON.stringify(user);
     localStorage.setItem("currentUser", user_string);
   }
 
-  setUserSettings(userSettings: UserSettingsInterface): void {
-    let user_settings_string = JSON.stringify(userSettings);
-    localStorage.setItem("currentUserSettings", user_settings_string);
-  }
-
   setToken(token): void {
     localStorage.setItem("accessToken", token);
   }
-
+  
   getToken() {
     return localStorage.getItem("accessToken");
+  }
+
+  setUserSettings(userSettings: UserSettingsInterface): void {
+    let user_settings_string = localStorage.getItem("currentUserSettings");
+    if (!isNullOrUndefined(user_settings_string)) {
+      localStorage.removeItem("currentUserSettings");
+    }
+    user_settings_string = JSON.stringify(userSettings);
+    localStorage.setItem("currentUserSettings", user_settings_string);
   }
 
   getCurrentUser(): UserInterface {
@@ -87,6 +80,17 @@ export class AuthService {
     }
   }
 
+  setCurrentUserSettings(userid: string, boxlimit: string, price: string, locale: string, categories: string, tags: string, account: string, vacationMode: boolean): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/updateusersettings";
+    return this.htttp
+      .put<UserSettingsInterface>(
+        url_api,
+        { userid, boxlimit, price, locale, categories, tags, account, vacationMode },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
   getCurrentUserSettings(): UserSettingsInterface {
     let user_string = localStorage.getItem("currentUserSettings");
     if (!isNullOrUndefined(user_string)) {
@@ -96,6 +100,18 @@ export class AuthService {
       return null;
     }
   }
+  
+  getUserSettings(userid: string): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/getusersettings";
+    return this.htttp
+      .post<UserInterface>(
+        url_api,
+        { userid },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
 
   logoutUser() {
     let accessToken = localStorage.getItem("accessToken");

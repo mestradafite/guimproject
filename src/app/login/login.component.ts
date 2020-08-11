@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
     categories: "",
     tags: "",
     account: "",
-    vacationMode: ""   
+    vacationMode: false   
   }
 
   ngOnInit() {
@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
 
         this.authService.getUserSettings(this.user.id)
           .subscribe(data => {
-            this.userSettings = data;
+            this.userSettings = data[0];
             this.authService.setUserSettings(this.userSettings);
           },
           error => {

@@ -7,5 +7,5 @@ export interface UserSettingsInterface {
     categories?: string,
     tags?: string,
     account?: string,
-    vacationMode?: string;
+    vacationMode?: boolean;
   }

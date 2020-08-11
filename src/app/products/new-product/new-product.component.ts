@@ -250,7 +250,6 @@ export class NewProductComponent implements OnInit {
   ChangeSortOrder(selectedCategory: string) { 
     this.selectedSortOrder = selectedCategory;
     this.product.category = this.selectedSortOrder;
-    
   }
 
   onFileSelected(event){
