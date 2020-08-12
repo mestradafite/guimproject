@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalContent } from '../creditmodal/modal';
 
 @Component({
     selector: 'app-navbar',
@@ -15,7 +17,7 @@ export class NavbarComponent implements OnInit {
     private showCredit: boolean;
     private userCredit: number;
 
-    constructor(public location: Location, private router: Router, private authService: AuthService) {
+    constructor(public location: Location, private router: Router, private authService: AuthService, private modalService: NgbModal) {
     }
 
     ngOnInit() {
@@ -37,6 +39,11 @@ export class NavbarComponent implements OnInit {
      });
      
      this.getUserCredits();
+    }
+
+    open() {
+        const modalRef = this.modalService.open(NgbdModalContent);
+        modalRef.componentInstance.name = 'World';
     }
 
     isUserLogged(){
@@ -65,7 +72,7 @@ export class NavbarComponent implements OnInit {
     }
 
     getUserCredits(){
-        this.userCredit = 0; // getuser credit
+        this.userCredit = 40; // getuser credit
         if(this.userCredit>0) this.showCredit = true;
         else this.showCredit = false;
         

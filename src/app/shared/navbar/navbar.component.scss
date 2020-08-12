@@ -19,12 +19,19 @@
 .btn-primary{
     background-color: #5e72e4;
     border-color: #5e72e4;
+    color: white !important;
+}
+
+.btn-primary:active{
+    background-color: #5e72e4 !important;
+    border-color: #5e72e4 !important;
+    color: white !important;
 }
 
 .btn-primary-nocredit{
     background-color: #e83a80;
     border-color: #e83a80;
-    color: white;
+    color: white !important;
 }
 
 .btn-primary-principal{
