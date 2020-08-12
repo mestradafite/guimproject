@@ -9,3 +9,74 @@
 .nav-link:active{
     color: #e83a80 !important;
 }
+
+.dropdown-item:active,
+.dropdown-item:hover{
+    background-color: #32325d;
+    color: white !important;
+}
+
+.btn-primary{
+    background-color: #5e72e4;
+    border-color: #5e72e4;
+}
+
+.btn-primary-nocredit{
+    background-color: #e83a80;
+    border-color: #e83a80;
+    color: white;
+}
+
+.btn-primary-principal{
+    background-color: #e83a80;
+    border-color: #e83a80;
+    color: white;
+}
+
+.aplus{
+    cursor: pointer;
+}
+
+.aplusnocredit{
+    cursor: pointer;
+    color: #e83a80 !important;
+}
+  
+.notification:hover {
+    cursor: pointer;
+}
+
+.notification .badge {
+font-size: 15px;
+position: absolute;
+right: 15px;
+padding: 5px 10px;
+border-radius: 50%;
+background: cadetblue;
+color: white;
+bottom: 10px;
+}
+
+.color{
+    color: #5e72e4;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    border: 0px;
+    background-color: cyan;
+  }
+
+
+@media only screen and (max-width: 992px) {
+	.hideMbl{
+        visibility: hidden;
+        position: absolute;
+    }
+}
