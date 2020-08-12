@@ -71,7 +71,7 @@ export class NewProductComponent implements OnInit {
   categories: string[] = [];
   sizes: string[] = ["XS", "S", "M", "L", "XL", "XXL"];
   sizesEnabled: boolean[] = [];
-  selectedSortOrder: string = "Selecciona una categoria";
+  selectedSortOrder: string = "Selecciona una categoria"; 
 
   selectedSortOrderTags: string = "Selecciona varias etiquetas"
   tags: string[] = [];

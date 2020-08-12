@@ -61,25 +61,29 @@
         </li>
       </ul>
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <a class="aplusnocredit" *ngIf="!showCredit && isUserLogged() && isBrand()">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </a>
-        <a class="aplus" *ngIf="showCredit && isUserLogged() && isBrand()">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </a>
-        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="!showCredit && isUserLogged() && isBrand()">
+        <li class="nav-item d-lg-block ml-lg-4" *ngIf="!showCredit && isUserLogged() && isBrand()">
+          <a class="aplusnocredit" >
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="nav-item d-lg-block ml-lg-4" *ngIf="showCredit && isUserLogged() && isBrand()">
+          <a class="aplus">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="nav-item d-lg-block ml-lg-4" *ngIf="!showCredit && isUserLogged() && isBrand()">
           <a class="btn btn-1 btn-primary-nocredit" [routerLink]="['/home']" style="font-size: 15px;">
             <span class="nav-link-inner--text">{{userCredit}} <i class="fa fa-diamond" aria-hidden="true"></i>
             </span>
           </a>
         </li>
-        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="showCredit && isUserLogged() && isBrand()">
+        <li class="nav-item d-lg-block ml-lg-4" *ngIf="showCredit && isUserLogged() && isBrand()">
           <a class="btn btn-1 btn-primary" [routerLink]="['/home']" style="font-size: 15px;">
             <span class="nav-link-inner--text">{{userCredit}} <i class="fa fa-diamond" aria-hidden="true"></i>
             </span>
           </a>
         </li> 
-        <li class="nav-item d-none d-lg-block ml-lg-4" *ngIf="isUserLogged() && isInfluencer()">
+        <li class="nav-item d-lg-block ml-lg-4" *ngIf="isUserLogged() && isInfluencer()">
           <a class="btn btn-1 btn-outline-primary disabled" [routerLink]="['/login']">
             <span class="nav-link-inner--text">250 €</span>
           </a>
