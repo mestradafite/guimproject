@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { UserInterface } from '../models/user-interface';
 import { UserSettingsInterface } from '../models/user-settings-interface';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 export interface IAlert {
   id: number;
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   focus;
   focus1;
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private spinner: NgxSpinnerService) {
     this.alerts.push({
         id: 1,
         type: 'success',
@@ -88,6 +89,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
+    this.spinner.show();
     if(this.user.email === "" && this.user.password === "" ){
       // User o contraseña vacios
       console.log("Undefined");
@@ -103,18 +105,21 @@ export class LoginComponent implements OnInit {
         this.authService.setUser(this.user);
         if(this.user.influencer) this.router.navigateByUrl('/user-profile');
         else if(this.user.brand) this.router.navigateByUrl('/brand-profile');
-
+        
         this.authService.getUserSettings(this.user.id)
-          .subscribe(data => {
+        .subscribe(data => {
+            this.spinner.hide();
             this.userSettings = data[0];
             this.authService.setUserSettings(this.userSettings);
           },
           error => {
+            this.spinner.hide();
             console.log(error);
             this.alertVisible = true;
           });
       },
       error => {
+        this.spinner.hide();
         console.log(error);
         this.alertVisible = true;
       });

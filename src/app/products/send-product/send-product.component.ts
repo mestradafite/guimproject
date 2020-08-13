@@ -5,7 +5,7 @@ import { ProductInterface } from "../../models/product-interface";
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
-  selector: 'app-send-product',
+  selector: 'app-send-product', 
   templateUrl: './send-product.component.html',
   styleUrls: ['./send-product.component.css']
 })

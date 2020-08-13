@@ -34,9 +34,9 @@
         </div>
       </div>
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-        <li class="nav-item">
+        <li class="nav-item" [routerLinkActive]="['active']" >
           <!-- USER LOGGED-->
-          <a class="nav-link"role="button" [routerLink]="['/user-profile']" *ngIf="isInfluencer()">
+          <a class="nav-link" role="button" [routerLink]="['/user-profile']" *ngIf="isInfluencer()">
             <span class="nav-link-inner--text">Mi perfil</span>
           </a>
           <a class="nav-link"role="button" [routerLink]="['/brand-profile']" *ngIf="isUserLogged() && isBrand()">

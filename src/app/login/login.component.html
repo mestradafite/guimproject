@@ -1,4 +1,12 @@
 <main>
+  <ngx-spinner
+        bdColor="rgba(51,51,51,0.8)"
+        size="large"
+        color="#fff"
+        type="ball-scale-multiple"
+    >
+    <p style="font-size: 20px; color: white">Cargando...</p>
+    </ngx-spinner>
   <section class="section section-shaped section-lg">
     <div *ngIf="isAlertVisible()">
       <ngb-alert [type]="alerts[3].type"  [dismissible]="true"  (close)="alertVisible = false" >
