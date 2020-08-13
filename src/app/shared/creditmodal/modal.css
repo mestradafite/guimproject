@@ -1,0 +1,44 @@
+.modal-content{
+    text-align: center;
+    width: 180%;
+    right: 40%;
+}
+
+.modal-title{
+    color: #e83a80;
+}
+
+.modal-header{
+    display: contents;
+}
+
+.showOnMobile{
+    visibility: hidden;
+}
+
+.btn-primary-principal{
+    cursor: unset !important;
+    background-color: #5e72e4 !important;
+    border-color: #5e72e4 !important;
+    color: white !important;
+}
+
+@media only screen and (max-width: 920px) {
+	.modal-content{
+        width: 120%;
+        right: 10%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+	.showOnMobile{
+        visibility: visible;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+	.modal-content{
+        width: 100%;
+        right: 0%;
+    }
+}

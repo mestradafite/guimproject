@@ -27,6 +27,7 @@ import { NewProductComponent } from './products/new-product/new-product.componen
 import { BrandProfileComponent } from './brand-profile/brand-profile.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { SettingsComponent } from './settings/settings.component';
+import { NgbdModalContent } from './shared/creditmodal/modal';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { SettingsComponent } from './settings/settings.component';
     SendProductComponent,
     NewProductComponent,
     BrandProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,
