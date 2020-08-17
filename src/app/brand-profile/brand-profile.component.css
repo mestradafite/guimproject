@@ -1,0 +1,10 @@
+.heading{
+    font-size: 2rem !important;
+    color: black;
+}
+
+@media only screen and (max-width: 992px) {
+	.mrt{
+        margin-top: 8em;
+    }
+}

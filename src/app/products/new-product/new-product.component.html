@@ -101,7 +101,7 @@
                     <input type="file" name="file" id="file" class="inputfile" (change)="onFileSelected($event)" >
                     <label class="row d-flex justify-content-center" for="file">
                         <img for="file" src="../../../assets/img/icons/common/add.png" alt="" *ngIf="!imgURL">
-                        <img for="file" [src]="imgURL" alt="" width="50%" *ngIf="imgURL">
+                        <img for="file" [src]="imgURL" alt="" width="50%" height="100%" *ngIf="imgURL">
                     </label>
                 </div>
                 <div class="row d-flex justify-content-center mt-5">

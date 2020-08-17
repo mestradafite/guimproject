@@ -79,13 +79,17 @@
     background-color: white;
 }
 
+.btn-primary{
+    color: white;
+}
+
 .btn-default{
     background-color: white;
+    color: #32325d;
 }
 
 .btn-default:not(:disabled):not(.disabled):active, .btn-default:not(:disabled):not(.disabled).active, .show > .btn-default.dropdown-toggle{
     background-color: white;
-    color: #32325d;
 }
 
 .dropdown-item{

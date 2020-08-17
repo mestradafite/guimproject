@@ -110,8 +110,21 @@ float: right;
 	font-size:13px;
 }
 
+.heading{
+    font-size: 2rem !important;
+    color: black;
+}
+
+.mrt{
+    top: -15px;
+}
+
 @media only screen and (max-width: 992px) {
 	.info-table{
 		width: 100%; 
 	}
+
+	.mrt{
+        margin-top: 2em;
+    }
 }
