@@ -12,6 +12,10 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class SendProductComponent implements OnInit {
 
   private products: ProductInterface[] = [];
+  private tags: any = [];
+  private sizes: any[] = [];
+  private disabledSizes: any[] = []
+  private allSizes: string[] = ["XS", "S", "M", "L", "XL", "XXL"]
 
   constructor(private spinner: NgxSpinnerService, private authService: AuthService, private productService: ProductsService ) { }
 
@@ -26,12 +30,35 @@ export class SendProductComponent implements OnInit {
       .subscribe(data => {
         console.log("Getting user products...");
         this.products = data;
+        this.getTags();
+        this.getSizes();
         this.spinner.hide();
       },
       error => {
         console.log(error);
       });
     }
+  }
+
+  getTags(){
+    for (let i = 0; i < this.products.length; i++) {
+      this.tags[i] = this.products[i].tags.split(",");
+    }
+  }
+
+  getSizes(){
+    for (let i = 0; i < this.products.length; i++) {
+      // delete last '/'
+      this.products[i].sizes = this.products[i].sizes.slice(0, -1);
+      this.allSizes = ["XS", "S", "M", "L", "XL", "XXL"];
+      this.sizes[i] = this.products[i].sizes.split("/");
+      for (const element of this.sizes[i]) {
+        if(element){
+          this.allSizes = this.allSizes.filter(obj => obj !== element);
+        }
+      }
+      this.disabledSizes[i] = this.allSizes;
+    }    
   }
 
 }
