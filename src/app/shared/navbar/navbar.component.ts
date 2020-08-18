@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
          this.lastPoppedUrl = ev.url;
      });
      
-     this.getUserCredits();
+     if(this.isUserLogged()) this.getUserCredits();
     }
 
     open() {
@@ -72,10 +72,9 @@ export class NavbarComponent implements OnInit {
     }
 
     getUserCredits(){
-        this.userCredit = 40; // getuser credit
+        this.userCredit = Number(this.authService.getCurrentUser().credits); // getuser credit
         if(this.userCredit>0) this.showCredit = true;
         else this.showCredit = false;
-        
     }
 
     isHome() {

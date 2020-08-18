@@ -1,0 +1,28 @@
+.dropdown{
+    color: #8898aa;
+    background-color: white !important;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+.dropdown-item:active,
+.dropdown-item:hover{
+    background-color: #8898aa;
+    color: white !important;
+}
+
+.btn-default{
+    background-color: white;
+    border: hidden;
+    text-transform: none;
+    box-shadow: none;
+    font-weight: unset;
+    padding-left: 1%;
+}
+
+.btn-default:not(:disabled):not(.disabled):active, .btn-default:not(:disabled):not(.disabled).active, .show > .btn-default.dropdown-toggle{
+    background-color: white;
+    color: #8898aa;
+}

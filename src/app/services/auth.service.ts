@@ -20,29 +20,23 @@ export class AuthService {
     "Content-Type": "application/json"
   });
 
-  
-
-  registerUser(name: string, email: string, password: string) {
-    const url_api = "http://localhost:3000/api/Users";
-    return this.htttp
-      .post<UserInterface>(
-        url_api,
-        {
-          name: name,
-          email: email,
-          password: password
-        },
-        { headers: this.headers }
-      )
-      .pipe(map(data => data));
-  }
-
   loginuser(email: string, password: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/login";
     return this.htttp
       .post<UserInterface>(
         url_api,
         { email, password },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
+  registerUser(name: string, email: string, password: string, sex: string, credits: string, influencer: boolean, brand: boolean): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/register";
+    return this.htttp
+      .post<UserInterface>(
+        url_api,
+        { name, email, password, sex, credits, influencer, brand },
         { headers: this.headers }
       )
       .pipe(map(data => data));

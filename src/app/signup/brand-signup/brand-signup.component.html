@@ -1,6 +1,44 @@
 <main>
+  <ngx-spinner
+        bdColor="rgba(51,51,51,0.8)"
+        size="large"
+        color="#fff"
+        type="ball-scale-multiple"
+    >
+    <p style="font-size: 20px; color: white">Registrando marca...</p>
+    </ngx-spinner>
     <section class="section section-shaped section-lg">
-      <div class="shape shape-style-1" style="background-image: url('../../assets/img/brand/Bannerprofile.jpg');">
+      <div *ngIf="alertVisible">
+        <ngb-alert [type]="alerts[3].type"  [dismissible]="true"  (close)="alertVisible = false" >
+          <ng-container *ngIf="alerts[3].icon">
+            <div class="alert-inner--icon">
+                <i class="{{alerts[3].icon}}"></i>
+            </div>
+          </ng-container>
+          <span class="alert-inner--text">  <strong>{{alerts[3].strong}} </strong>{{ alerts[3].message }}</span>
+        </ngb-alert>
+      </div>
+      <div *ngIf="policyVisible">
+        <ngb-alert [type]="alerts[2].type"  [dismissible]="true"  (close)="policyVisible = false" >
+          <ng-container *ngIf="alerts[2].icon">
+            <div class="alert-inner--icon">
+                <i class="{{alerts[2].icon}}"></i>
+            </div>
+          </ng-container>
+          <span class="alert-inner--text">  <strong>{{alerts[2].strong}} </strong>{{ alerts[2].message }}</span>
+        </ngb-alert>
+      </div>
+      <div *ngIf="registerSucceed">
+        <ngb-alert [type]="alerts[0].type"  [dismissible]="true"  (close)="registerSucceed = false" >
+          <ng-container *ngIf="alerts[0].icon">
+            <div class="alert-inner--icon">
+                <i class="{{alerts[0].icon}}"></i>
+            </div>
+          </ng-container>
+          <span class="alert-inner--text">  <strong>{{alerts[0].strong}} </strong>{{ alerts[0].message }}</span>
+        </ngb-alert>
+      </div>
+      <div class="shape shape-style-1 bg-gradient-default">
         <span></span>
         <span></span>
         <span></span>
@@ -14,19 +52,19 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="card bg-secondary shadow border-0">
-              <div class="card-header bg-white pb-5">
+              <div class="card-header bg-white pb-2">
                 <div class="text-muted text-center mt-5">
                   <img src="../../assets/img/brand/HooplingLogo.png" width="70%" alt="">
                 </div>              
               </div>
               <div class="card-body px-lg-5 py-lg-5">
-                <form role="form">
+                <form role="form" (ngSubmit)="register()">
                     <div class="form-group" [ngClass]="{'focused':focus===true}">
                         <div class="input-group input-group-alternative mb-3">
                             <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                            <span class="input-group-text"><i class="ni ni-badge"></i></span>
                             </div>
-                            <input class="form-control" placeholder="Nombre de la marca" type="text" (focus)="focus=true" (blur)="focus=false">
+                            <input class="form-control" placeholder="Nombre de la Marca" [(ngModel)]="user.name" name="name" type="text" (focus)="focus=true" (blur)="focus=false">
                         </div>
                     </div>
                     <div class="form-group" [ngClass]="{'focused':focus1===true}">
@@ -34,7 +72,7 @@
                             <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                             </div>
-                            <input class="form-control" placeholder="Correo electrónico" type="email" (focus)="focus1=true" (blur)="focus1=false">
+                            <input class="form-control" placeholder="Correo electrónico" [(ngModel)]="user.email" name="email" type="email" (focus)="focus1=true" (blur)="focus1=false">
                         </div>
                     </div>
                     <div class="form-group" [ngClass]="{'focused':focus2===true}">
@@ -42,17 +80,17 @@
                             <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                             </div>
-                            <input class="form-control" placeholder="Contraseña" type="password" (focus)="focus2=true" (blur)="focus2=false">
+                            <input class="form-control" placeholder="Contraseña" [(ngModel)]="user.password" name="password" type="password" (focus)="focus2=true" (blur)="focus2=false">
                         </div>
                     </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
-                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox" [(ngModel)]="policy" name="policy">
                     <label class="custom-control-label" for=" customCheckLogin">
                       <span>Estoy de acuerdo con la <a href="" target="_blank">Política de Privacidad</a></span>
                     </label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn btn-primary my-4">Registrarse como Marca</button>
+                    <button type="submit" class="btn btn-primary my-4">Registrarse como Marca</button>
                   </div>
                 </form>
                 <div class="text-center text-muted mb-4">

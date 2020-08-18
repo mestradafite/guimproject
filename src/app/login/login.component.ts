@@ -61,8 +61,10 @@ export class LoginComponent implements OnInit {
     name: "",
     email: "",
     password: "",
+    sex: "",
     influencer: false,
     brand: false,
+    credits: "",
     createdAt: "",
     updatedAt: "",
     userToken: ""    
