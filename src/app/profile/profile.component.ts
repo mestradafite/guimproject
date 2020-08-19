@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { UserInterface } from '../models/user-interface';
+import { AgeFromDateString, AgeFromDate } from 'age-calculator'
 
 @Component({
     selector: 'app-profile',
@@ -11,6 +12,7 @@ import { UserInterface } from '../models/user-interface';
 
 
 export class ProfileComponent implements OnInit {
+    private userAge = "";
     private user: UserInterface = {
         id: "",
         username: "",
@@ -19,6 +21,12 @@ export class ProfileComponent implements OnInit {
         createdAt: "",
         updatedAt: "",
         userToken: ""    
+    }
+
+    private birthday: any = {
+        year: "",
+        month: "",
+        day: ""
     }
 
     constructor(private authService: AuthService) { }
@@ -31,7 +39,16 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.authService.getCurrentUser();
+        this.getUserAge();
     } 
+
+    getUserAge(){
+        if(this.user.birthDay){
+            this.birthday = this.user.birthDay;
+            let ageFromString = new AgeFromDateString(this.birthday.year + "-" + this.birthday.month + "-" + this.birthday.day).age;
+            this.userAge = String(ageFromString);
+        }
+    }
 
     ChangeSortOrder(selectedSocialNetwork: string) { 
         this.selectedSortOrder = selectedSocialNetwork;

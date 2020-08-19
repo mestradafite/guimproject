@@ -85,20 +85,39 @@
                                 </div>
                             </div>
                             <div class="row mt-5">
-                                <h5>País</h5>
-                            </div>
-                            <div class="row">
-                                <div class="dropdown" ngbDropdown>
-                                    <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
-                                        {{selectedCountry}}
-                                    </a>
-                                    <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
-                                        <li *ngFor="let country of countries;  let i = index"> 
-                                            <a class="dropdown-item" (click)="changeCountry(country)">
-                                                {{country}}
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <h5>País</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="dropdown" ngbDropdown>
+                                            <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                                                {{selectedCountry}}
                                             </a>
-                                        </li>
-                                    </ul>
+                                            <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                                                <li *ngFor="let country of countries;  let i = index"> 
+                                                    <a class="dropdown-item" (click)="changeCountry(country)">
+                                                        {{country}}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 ml-5">
+                                    <div class="row">
+                                        <h5>Fecha de Nacimiento</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group" [ngClass]="{'focused':focus2===true}">
+                                            <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            <input class="form-control datepicker" placeholder="Seleccionar fecha" name="dp" [(ngModel)]="user.birthDay" ngbDatepicker #d="ngbDatepicker" [minDate]="{year: 1970, month:1, day: 1}" (click)="d.toggle()" (focus)="focus2=true" (blur)="focus2=false" type="text" (select)="onDateSelection($event)" autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row float-right mt-5">
