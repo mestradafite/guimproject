@@ -28,7 +28,7 @@ export class BrandSignupComponent implements OnInit {
 
   private user: UserInterface = {
     id: "",
-    name: "",
+    username: "",
     email: "",
     password: "",
     sex: "",
@@ -74,14 +74,14 @@ export class BrandSignupComponent implements OnInit {
     var self = this;
     if(this.policy){
       this.policyVisible = false;
-      if(this.user.name === "" || this.user.email === "" || this.user.password === "" ){
+      if(this.user.username === "" || this.user.email === "" || this.user.password === "" ){
         // User o contraseña vacios
         this.alertVisible = true;        
       }else{
         this.spinner.show();
         this.alertVisible = false;
         
-        return this.authService.registerUser(this.user.name, this.user.email, this.user.password, "", "0", false, true)
+        return this.authService.registerUser(this.user.username, this.user.email, this.user.password, "", "0", false, true)
         .subscribe(data => {
           console.log("Register Ok! ");
           this.registerSucceed = true;

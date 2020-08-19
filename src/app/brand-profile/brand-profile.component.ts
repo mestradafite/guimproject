@@ -10,7 +10,7 @@ import { UserInterface } from '../models/user-interface';
 export class BrandProfileComponent implements OnInit {
   private user: UserInterface = {
     id: "",
-    name: "",
+    username: "",
     email: "",
     password: "",
     createdAt: "",

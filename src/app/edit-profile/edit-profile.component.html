@@ -1,0 +1,115 @@
+<main>
+    <ngx-spinner
+        bdColor="rgba(51,51,51,0.8)"
+        size="large"
+        color="#fff"
+        type="ball-scale-multiple"
+    >
+    <p style="font-size: 20px; color: white">Actualizando la información...</p>
+    </ngx-spinner>
+    <section class="section-profile-cover section-shaped my-0">
+        <div class="shape shape-primary alpha-4" style="background-image: url('../../assets/img/brand/Bannerprofile.jpg');">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>  
+        <section class="section mt-5">
+            <div *ngIf="alertErrorVisible">
+                <ngb-alert [type]="alerts[3].type"  [dismissible]="true"  (close)="alertErrorVisible = false" >
+                    <ng-container *ngIf="alerts[3].icon">
+                    <div class="alert-inner--icon">
+                        <i class="{{alerts[3].icon}}"></i>
+                    </div>
+                    </ng-container>
+                    <span class="alert-inner--text">  <strong>{{alerts[3].strong}} </strong>{{ alerts[3].message }}</span>
+                </ngb-alert>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <ng-template #noImage let-c="close" let-d="dismiss">
+                            <div class="modal-content bg-gradient-danger">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="modal-title-notification">Atención!</h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="py-3 text-center">
+                                <i class="ni ni-bell-55 ni-3x"></i>
+                                <h4 class="heading mt-4">Parece ser que hay un problema con la imágen...</h4>
+                                <p>Revisa que se haya subido la imágen correctamente, los formatos aceptados son: .png .jpg .jpeg</p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-white" data-dismiss="modal" (click)="c('Close click')">Volver a intentar</button>
+                            </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+                <form role="form" (ngSubmit)="updateUser()"  [ngClass]="{'focused':focus===true}">       
+                    <div class="card card-profile shadow mt-5">
+                        <div class="px-5">
+                            <div class="row mt-5">
+                                <h1>Editar perfil</h1>
+                            </div>
+                            <div class="row mt-2">
+                                <input type="file" name="file" id="file" class="inputfile" (change)="onFileSelected($event)" >
+                                <label class="row ml-1" for="file">
+                                    <img for="file" src="../../assets/img/brand/user.svg" width="15%" alt="" *ngIf="!imgURL" class="rounded-circle">
+                                    <img for="file" [src]="imgURL" alt="" width="50%" height="100%" *ngIf="imgURL">
+                                </label>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <h5>Nombre</h5>
+                                    </div>
+                                    <div class="row">
+                                        <input type="text" placeholder="Nombre" [(ngModel)]="user.username" name="username" class="form-control form-control-alternative" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3 ml-5">
+                                    <div class="row">
+                                        <h5>Apellidos</h5>
+                                    </div>
+                                    <div class="row">
+                                        <input type="text" placeholder="Apellidos" class="form-control form-control-alternative" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <h5>País</h5>
+                            </div>
+                            <div class="row">
+                                <div class="dropdown" ngbDropdown>
+                                    <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                                        {{selectedCountry}}
+                                    </a>
+                                    <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                                        <li *ngFor="let country of countries;  let i = index"> 
+                                            <a class="dropdown-item" (click)="changeCountry(country)">
+                                                {{country}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row float-right mt-5">
+                                <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="submit">
+                                    <span class="btn-inner--text">Guardar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>             
+                </form>
+            </div>
+        </section>      
+    </section>
+</main>

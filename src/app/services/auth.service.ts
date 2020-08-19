@@ -31,18 +31,19 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  registerUser(name: string, email: string, password: string, sex: string, credits: string, influencer: boolean, brand: boolean): Observable<any> {
+  registerUser(username: string, email: string, password: string, sex: string, credits: string, influencer: boolean, brand: boolean): Observable<any> {
     const url_api = this.LOGIN_PROD + "/register";
     return this.htttp
       .post<UserInterface>(
         url_api,
-        { name, email, password, sex, credits, influencer, brand },
+        { username, email, password, sex, credits, influencer, brand },
         { headers: this.headers }
       )
       .pipe(map(data => data));
   }
 
   setUser(user: UserInterface): void {
+    localStorage.removeItem("currentUser");
     let user_string = JSON.stringify(user);
     localStorage.setItem("currentUser", user_string);
   }
@@ -80,6 +81,17 @@ export class AuthService {
       .put<UserSettingsInterface>(
         url_api,
         { userid, boxlimit, price, locale, categories, tags, account, vacationMode },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
+  updateUser(userid: string, username: string, imageUrl: string, country: string, birthDay: string, userLocation: string, description: string, website: string): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/updateuser";
+    return this.htttp
+      .put<UserSettingsInterface>(
+        url_api,
+        { userid, username, imageUrl, country, birthDay, userLocation, description, website },
         { headers: this.headers }
       )
       .pipe(map(data => data));

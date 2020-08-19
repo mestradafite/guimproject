@@ -31,7 +31,7 @@ export class InfluencerSignupComponent implements OnInit {
 
   private user: UserInterface = {
     id: "",
-    name: "",
+    username: "",
     email: "",
     password: "",
     sex: "",
@@ -77,15 +77,15 @@ export class InfluencerSignupComponent implements OnInit {
     var self = this;
     if(this.policy){
       this.policyVisible = false;
-      if(this.user.name === "" || this.surname === "" || this.user.email === "" || this.user.password === "" || this.selectedSex === "Sexo" ){
+      if(this.user.username === "" || this.surname === "" || this.user.email === "" || this.user.password === "" || this.selectedSex === "Sexo" ){
         // User o contraseña vacios
         this.alertVisible = true;        
       }else{
         this.spinner.show();
         this.alertVisible = false;
-        this.user.name = this.user.name + " " + this.surname; 
+        this.user.username = this.user.username + " " + this.surname; 
         
-        return this.authService.registerUser(this.user.name, this.user.email, this.user.password, this.selectedSex, "0", true, false)
+        return this.authService.registerUser(this.user.username, this.user.email, this.user.password, this.selectedSex, "0", true, false)
         .subscribe(data => {
           console.log("Register Ok! ");
           this.registerSucceed = true;

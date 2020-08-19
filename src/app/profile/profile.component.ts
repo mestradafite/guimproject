@@ -13,13 +13,13 @@ import { UserInterface } from '../models/user-interface';
 export class ProfileComponent implements OnInit {
     private user: UserInterface = {
         id: "",
-        name: "",
+        username: "",
         email: "",
         password: "",
         createdAt: "",
         updatedAt: "",
         userToken: ""    
-      }
+    }
 
     constructor(private authService: AuthService) { }
 
@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.authService.getCurrentUser();
-    }
+    } 
 
     ChangeSortOrder(selectedSocialNetwork: string) { 
         this.selectedSortOrder = selectedSocialNetwork;

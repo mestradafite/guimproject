@@ -28,6 +28,8 @@ import { BrandProfileComponent } from './brand-profile/brand-profile.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { SettingsComponent } from './settings/settings.component';
 import { NgbdModalContent } from './shared/creditmodal/modal';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditBrandComponent } from './edit-brand/edit-brand.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { NgbdModalContent } from './shared/creditmodal/modal';
     NewProductComponent,
     BrandProfileComponent,
     SettingsComponent,
-    NgbdModalContent
+    NgbdModalContent,
+    EditProfileComponent,
+    EditBrandComponent
   ],
   imports: [
     BrowserModule,

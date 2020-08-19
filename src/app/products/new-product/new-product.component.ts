@@ -107,10 +107,6 @@ export class NewProductComponent implements OnInit {
   insertProduct(){    
     /** spinner starts on init */
     this.spinner.show();
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-    }, 6000 * 5);
     if(this.authService.getCurrentUser()){
       this.uploadImage();
     }

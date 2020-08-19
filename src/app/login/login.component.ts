@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
 
   private user: UserInterface = {
     id: "",
-    name: "",
+    username: "",
     email: "",
     password: "",
     sex: "",

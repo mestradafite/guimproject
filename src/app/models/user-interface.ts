@@ -1,7 +1,7 @@
 
 export interface UserInterface {
     id?: string;
-    name?: string;
+    username?: string;
     email?: string;
     password?: string;
     sex?: string;
@@ -10,5 +10,11 @@ export interface UserInterface {
     brand?: boolean,
     credits?: string,
     updatedAt?: string,
+    website?: string,
+    country?: string,
+    userLocation?: string,
+    imageUrl?: string,
+    description?: string,
+    birthDay?: string,
     userToken: string;
   }
