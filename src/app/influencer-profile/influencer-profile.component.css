@@ -1,0 +1,130 @@
+/*--CSS--*/
+.info-table{
+	width: 70%; 
+	border-radius: 1rem; 
+	padding: 1rem;
+	border: 0.0625rem solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: whitesmoke !important; 
+}
+
+.block {
+    text-align: center;
+    vertical-align: middle;
+}
+.circle {
+    background: white;
+    border-radius: 200px;
+    border: 1px solid black;
+    height: 115px;
+    font-weight: bold;
+    width: 120px;
+    display: table;
+    margin: 20px auto;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+fieldset, label { margin: 0; padding: 0; }
+
+.rating { 
+    border: none;
+    float: left;
+  }
+  
+.rating > input { display: none; } 
+.rating > label:before { 
+margin: 5px;
+font-size: 2.25em;
+font-family: FontAwesome;
+display: inline-block;
+content: "\f005";
+}
+
+.rating > .half:before { 
+content: "\f089";
+position: absolute;
+}
+
+.rating > label { 
+color: #ddd; 
+float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+.btn-grey{
+    background-color:#D8D8D8;
+	color:#FFF;
+}
+.rating-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px 15px 20px 15px;
+	border-radius:3px;
+}
+.bold{
+	font-weight:700;
+}
+.padding-bottom-7{
+	padding-bottom:7px;
+}
+
+.review-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+}
+.review-block-name{
+	font-size:12px;
+	margin:10px 0;
+}
+.review-block-date{
+	font-size:12px;
+}
+.review-block-rate{
+	font-size:13px;
+	margin-bottom:15px;
+}
+.review-block-title{
+	font-size:15px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.review-block-description{
+	font-size:13px;
+}
+
+.heading{
+    font-size: 2rem !important;
+    color: black;
+}
+
+.mrt{
+    top: -15px;
+}
+
+@media only screen and (max-width: 992px) {
+	.info-table{
+		width: 100%; 
+	}
+
+	.mrt{
+        margin-top: 2em;
+    }
+}

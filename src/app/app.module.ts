@@ -30,6 +30,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { NgbdModalContent } from './shared/creditmodal/modal';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditBrandComponent } from './edit-brand/edit-brand.component';
+import { InfluencerProfileComponent } from './influencer-profile/influencer-profile.component';
+import { InfluencersComponent } from './influencers/influencers.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { EditBrandComponent } from './edit-brand/edit-brand.component';
     SettingsComponent,
     NgbdModalContent,
     EditProfileComponent,
-    EditBrandComponent
+    EditBrandComponent,
+    InfluencerProfileComponent,
+    InfluencersComponent
   ],
   imports: [
     BrowserModule,

@@ -118,6 +118,17 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
+  getInfluencers(userid: string): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/getinfluencers";
+    return this.htttp
+      .post<UserInterface>(
+        url_api,
+        { userid },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
 
   logoutUser() {
     let accessToken = localStorage.getItem("accessToken");

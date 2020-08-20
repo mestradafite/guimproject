@@ -19,6 +19,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { SettingsComponent } from './settings/settings.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditBrandComponent } from './edit-brand/edit-brand.component';
+import { InfluencerProfileComponent } from './influencer-profile/influencer-profile.component';
+import { InfluencersComponent } from './influencers/influencers.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
@@ -35,6 +37,8 @@ const routes: Routes =[
     { path: 'settings',          component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'edit-profile',          component: EditProfileComponent },
     { path: 'edit-brand',          component: EditBrandComponent },
+    { path: 'influencer-profile',          component: InfluencerProfileComponent },
+    { path: 'influencers',          component: InfluencersComponent },
     //{ path: '**', component: Page404Component },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

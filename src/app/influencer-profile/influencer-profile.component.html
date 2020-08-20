@@ -1,0 +1,531 @@
+<main class="profile-page">
+    <section class="section-profile-cover section-shaped my-0">
+      <!-- Circles background -->
+      <div class="shape shape-primary alpha-4" style="background-image: url('../../assets/img/brand/Bannerprofile.jpg');">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <!-- SVG separator -->
+      <div class="separator separator-bottom separator-skew">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="card card-profile shadow mt--300">
+          <div class="px-4">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="javascript:void(0)">
+                    <img *ngIf="!user.imageUrl" src="../../assets/img/brand/user.svg" class="rounded-circle">
+                    <img [src]="user.imageUrl" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center mrt">
+                <div class="card-profile-actions py-4 mt-lg-0">
+                  <button class="btn btn-icon btn-3 btn-primary ml-4 float-left" type="button">
+                    <span class="btn-inner--text">Enviar</span>
+                    <span class="btn-inner--icon"><i class="fa fa-paper-plane"></i></span>
+                  </button>
+                  <a href="javascript:void(0)" class="float-right"><span class="btn-inner--icon"><i style="font-size: 50px;" class="fa fa-heart"></i></span></a>
+                </div>
+              </div>
+              <div class="col-lg-4 order-lg-1">
+                <div class="card-profile-stats d-flex justify-content-center">
+                    <div>
+                        <span class="heading"><i class="fa fa-instagram" aria-hidden="true"></i></span>
+                        <span class="description">33K</span>
+                    </div>
+                    <div>
+                        <span class="heading"><i class="fa fa-youtube-play" aria-hidden="true"></i></span>
+                        <span class="description">5K</span>
+                    </div>
+                    <div>
+                        <span class="heading"><i class="fa fa-twitter" aria-hidden="true"></i></span>
+                        <span class="description">7K</span>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-5">
+              <h3>{{this.user.username}}</h3>
+              <div class="h5 font-weight-300" *ngIf="user.country && !userAge"><i class="ni location_pin mr-2"></i>{{user.country}}</div>
+              <div class="h5 font-weight-300" *ngIf="!user.country && userAge"><i class="ni location_pin mr-2"></i>{{userAge}}</div>
+              <div class="h5 font-weight-300" *ngIf="user.country && userAge"><i class="ni location_pin mr-2"></i>{{userAge}}, {{user.country}}</div>
+            </div>
+            <div class="mt-5 py-5 border-top text-center">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+                  <p *ngIf="this.user.description">{{this.user.description}}</p>
+                  <p *ngIf="!this.user.description">No hay descripción</p>
+                  <hr style="width: 15%;height:0.5px; background-color:gray;">
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <!-- Menu -->
+                <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
+                    <ngb-tab title="Acerca de">
+                      <ng-template ngbTabContent>
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-lg-8">
+                              <div class="row">
+                                <h4>Puntuación</h4>
+                                <div class="container">
+                                  <div class="row mt-4 mb-5">
+                                    <div class="col-lg-3">
+                                      <div class="progress-wrapper">
+                                        <div class="progress-info">
+                                          <div class="progress-label">
+                                            <span>Calidad</span>
+                                          </div>
+                                          <div class="progress-percentage">
+                                            <span>4/5</span>
+                                          </div>
+                                        </div>
+                                        <ngb-progressbar type="default" [value]="70"></ngb-progressbar>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                      <div class="progress-wrapper">
+                                        <div class="progress-info">
+                                          <div class="progress-label">
+                                            <span>Influencia</span>
+                                          </div>
+                                          <div class="progress-percentage">
+                                            <span>4.3/5</span>
+                                          </div>
+                                        </div>
+                                        <ngb-progressbar type="default" [value]="75"></ngb-progressbar>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                      <div class="progress-wrapper">
+                                        <div class="progress-info">
+                                          <div class="progress-label">
+                                            <span>Engagement</span>
+                                          </div>
+                                          <div class="progress-percentage">
+                                            <span>3/5</span>
+                                          </div>
+                                        </div>
+                                        <ngb-progressbar type="default" [value]="60"></ngb-progressbar>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                      <div class="progress-wrapper">
+                                        <div class="progress-info">
+                                          <div class="progress-label">
+                                            <span>Afinidad</span>
+                                          </div>
+                                          <div class="progress-percentage">
+                                            <span>3.5/5</span>
+                                          </div>
+                                        </div>
+                                        <ngb-progressbar type="default" [value]="65"></ngb-progressbar>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row mt-5" id="stadistics">
+                                <h4>Estadísticas</h4>
+                                <div class="container">
+                                  <div class="row mt-5 mb-5 justify-content-center">
+                                    <div class="mt-4 col-lg-3 block justify-content-center" style="width: unset !important;">
+                                      <div class="circle">
+                                        <h5>190</h5>
+                                        <p>Solicitudes</p>
+                                      </div>
+                                    </div>
+                                    <div class="mt-4 col-lg-3 block justify-content-center" style="width: unset !important;">
+                                      <div class="circle">
+                                        <h5>96%</h5>
+                                        <p>Respondidas</p>
+                                      </div>
+                                    </div>
+                                    <div class="mt-4 col-lg-3 block justify-content-center" style="width: unset !important;">
+                                      <div class="circle">
+                                        <h5>12%</h5>
+                                        <p>Aprobadas</p>
+                                      </div>
+                                    </div>
+                                    <div class="mt-4 col-lg-3 block justify-content-center" style="width: unset !important;">
+                                      <div class="circle">
+                                        <h5>2 Días</h5>
+                                        <p>Comparte en</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-4">
+                              <h4>Opiniones</h4>
+                              <div class="container">
+                                <div class="row mt-4">
+                                  <fieldset class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                  </fieldset>
+                                </div>
+                                <div class="row">
+                                  <h5>4,5 / 5</h5>
+                                  <hr style="width: 100%;height:0.5px; background-color:#e0e0eb;">
+                                </div>
+                                <div class="row mt-1 d-flex justify-content-center">
+                                  <div class="container">
+                                    <div class="row ">
+                                      <div class="col-md-12">
+                                        <div class="pull-left" style="width:35px; line-height:1;">
+                                          <div style="height:9px; margin:5px 0;">5 <span class="fa fa-star"></span></div>
+                                        </div>
+                                        <div class="pull-left" style="width:70%">
+                                          <div class="progress" style="height:9px; margin:8px 0;">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="pull-right" style="margin-left:10px;">1</div>
+                                      </div>
+                                    </div>
+                                    <div class="row ">
+                                      <div class="col-md-12">
+                                        <div class="pull-left" style="width:35px; line-height:1;">
+                                          <div style="height:9px; margin:5px 0;">4 <span class="fa fa-star"></span></div>
+                                        </div>
+                                        <div class="pull-left" style="width:70%">
+                                          <div class="progress" style="height:9px; margin:8px 0;">
+                                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="pull-right" style="margin-left:10px;">1</div>
+                                      </div>
+                                    </div>
+                                    <div class="row ">
+                                      <div class="col-md-12">
+                                        <div class="pull-left" style="width:35px; line-height:1;">
+                                          <div style="height:9px; margin:5px 0;">3 <span class="fa fa-star"></span></div>
+                                        </div>
+                                        <div class="pull-left" style="width:70%">
+                                          <div class="progress" style="height:9px; margin:8px 0;">
+                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="pull-right" style="margin-left:10px;">0</div>
+                                      </div>
+                                    </div>
+                                    <div class="row ">
+                                      <div class="col-md-12">
+                                        <div class="pull-left" style="width:35px; line-height:1;">
+                                          <div style="height:9px; margin:5px 0;">2 <span class="fa fa-star"></span></div>
+                                        </div>
+                                        <div class="pull-left" style="width:70%">
+                                          <div class="progress" style="height:9px; margin:8px 0;">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="pull-right" style="margin-left:10px;">0</div>
+                                      </div>
+                                    </div>
+                                    <div class="row ">
+                                      <div class="col-md-12">
+                                        <div class="pull-left" style="width:35px; line-height:1;">
+                                          <div style="height:9px; margin:5px 0;">1 <span class="fa fa-star"></span></div>
+                                        </div>
+                                        <div class="pull-left" style="width:70%">
+                                          <div class="progress" style="height:9px; margin:8px 0;">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="pull-right" style="margin-left:10px;">0</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mt-2 d-flex justify-content-center">
+                                    <div class="review-block">
+                                      <div class="row">
+                                        <div class="col-sm-2">
+                                          <span><i class="fa fa-comment"></i></span>
+                                        </div>
+                                        <div class="col-sm-10">
+                                          <div class="review-block-title">Marca de ropa</div>
+                                          
+                                        </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="review-block-description">This was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Ganancias">
+                      <ng-template ngbTabContent>
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="container">
+                                <div class="row d-flex justify-content-center">
+                                  <h6>Beneficios <i ngbTooltip="Beneficios" class="fa fa-info-circle"></i></h6>
+                                </div>
+                                <div class="row mt-4 mb-5 d-flex justify-content-center">
+                                  <h6>+ 350 €</h6>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="container">
+                                <div class="row d-flex justify-content-center">
+                                  <h6>Por Compartir <i ngbTooltip="Por Compartir" class="fa fa-info-circle"></i></h6>
+                                </div>
+                                <div class="row mt-4 mb-5 d-flex justify-content-center">
+                                  <h6>- 6 €</h6>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="container">
+                                <div class="row d-flex justify-content-center">
+                                  <h6>Retirado <i ngbTooltip="Retirado" class="fa fa-info-circle"></i></h6>
+                                </div>
+                                <div class="row mt-4 mb-5 d-flex justify-content-center">
+                                  <h6> 200 €</h6>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="container">
+                                <div class="row d-flex justify-content-center">
+                                  <h6>Balance <i ngbTooltip="Beneficios" class="fa fa-info-circle"></i></h6>
+                                </div>
+                                <div class="row mt-4 mb-5 d-flex justify-content-center">
+                                  <h6>+ 344 €</h6>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mt-4 pull-right">
+                            <button class="btn btn-1 btn-outline-primary" type="button">Retirar Dinero</button>
+                          </div>
+                          <div class="row mt-5 d-flex justify-content-center">
+                            
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Redes Sociales">
+                      <ng-template ngbTabContent>
+                        <div class="" ngbDropdown>
+                          <a class="btn btn-default dropdown-toggle " id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                            <i class="{{selectedSortOrderIcon}}" aria-hidden="true"></i> {{selectedSortOrder}}
+                          </a>
+                          <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                            <li *ngFor="let socialNetwork of socialNetworks;  let i = index"> 
+                              <a class="dropdown-item" (click)="ChangeSortOrder(socialNetwork)">
+                                <i class="{{sortOrdersIcons[i]}}" aria-hidden="true"></i> {{socialNetwork}}
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="container" *ngIf="currDiv == socialNetworks[0]" id="instagram">
+                          <div class="row mt-5">
+                            <div class="col-md-6">
+                              <div class="container">
+                                <div class="row" >
+                                  <h5>General <i ngbTooltip="General" class="fa fa-info-circle"></i></h5>
+                                </div>
+                                <div class="row mt-2 info-table">
+                                  <div class="container">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-users" aria-hidden="true"></i> Seguidores: </h7>
+                                      <h7> 34.350</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-eye" aria-hidden="true"></i> Views per story: </h7>
+                                      <h7 > 850</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-heart" aria-hidden="true"></i> Likes per post: </h7>
+                                      <h7 > 2.500</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-comment" aria-hidden="true"></i> Comentarios per post: </h7>
+                                      <h7 > 300</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-link" aria-hidden="true"></i> Engagement per post: </h7>
+                                      <h7 > 14%</h7>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="container">
+                                <div class="row d-flex">
+                                  <h5>Perfil</h5>
+                                </div>
+                                <div class="row d-flex mt-4">
+                                  <a href="https://www.instagram.com/?hl=es" target="_blank" style="text-decoration: underline;">
+                                      <img src="../../assets/img/icons/common/instagram-color.png" width="40px">@martaromero
+                                  </a>
+                                </div>
+                                <div class="row mt-5 d-flex ">
+                                  <h5>Crecimiento</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="container" *ngIf="currDiv == socialNetworks[1]">
+                          <div class="row mt-5">
+                            <div class="col-md-6">
+                              <div class="container">
+                                <div class="row" >
+                                  <h5>General <i ngbTooltip="General" class="fa fa-info-circle"></i></h5>
+                                </div>
+                                <div class="row mt-2 info-table">
+                                  <div class="container">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-users" aria-hidden="true"></i> Seguidores: </h7>
+                                      <h7 > 50.000</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-eye" aria-hidden="true"></i> Views per story: </h7>
+                                      <h7 > 950</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-heart" aria-hidden="true"></i> Likes per post: </h7>
+                                      <h7 > 3.500</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-comment" aria-hidden="true"></i> Comentarios per post: </h7>
+                                      <h7 > 400</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-link" aria-hidden="true"></i> Engagement per post: </h7>
+                                      <h7 > 20%</h7>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="container">
+                                <div class="row d-flex">
+                                  <h5>Perfil</h5>
+                                </div>
+                                <div class="row d-flex mt-4">
+                                  <a href="https://www.youtube.com/" target="_blank" style="text-decoration: underline;">
+                                      <img src="../../assets/img/icons/common/youtube-color.png" width="40px">Marta Romero
+                                  </a>
+                                </div>
+                                <div class="row mt-5 d-flex ">
+                                  <h5>Crecimiento</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="container" *ngIf="currDiv == socialNetworks[2]">
+                          <div class="row mt-5">
+                            <div class="col-md-6">
+                              <div class="container">
+                                <div class="row" >
+                                  <h5>General <i ngbTooltip="General" class="fa fa-info-circle"></i></h5>
+                                </div>
+                                <div class="row mt-2 info-table">
+                                  <div class="container">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-users" aria-hidden="true"></i> Seguidores: </h7>
+                                      <h7 > 14.350</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-eye" aria-hidden="true"></i> Views per story: </h7>
+                                      <h7 > 1.000</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-heart" aria-hidden="true"></i> Likes per post: </h7>
+                                      <h7 > 5.500</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-comment" aria-hidden="true"></i> Comentarios per post: </h7>
+                                      <h7 > 200</h7>
+                                    </div>
+                                    <hr style="margin: 0;">
+                                    <div class="row justify-content-between">
+                                      <h7><i class="fa fa-link" aria-hidden="true"></i> Engagement per post: </h7>
+                                      <h7 > 10%</h7>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="container">
+                                <div class="row d-flex">
+                                  <h5>Perfil</h5>
+                                </div>
+                                <div class="row d-flex mt-4">
+                                  <a href="https://twitter.com/" target="_blank" style="text-decoration: underline;">
+                                    <img src="../../assets/img/icons/common/twitter-color.png" width="40px" class="ml-3">@martaromero
+                                  </a>
+                                </div>
+                                <div class="row mt-5 d-flex ">
+                                  <h5>Crecimiento</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-tab>
+                </ngb-tabset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  

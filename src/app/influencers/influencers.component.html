@@ -1,0 +1,57 @@
+
+<main>
+    <ngx-spinner
+        bdColor="rgba(51,51,51,0.8)"
+        size="large"
+        color="#fff" 
+        type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Cargando Influencers...</p>
+    </ngx-spinner>
+    <section class="section section-lg">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-3">
+                    <h3>Filtrar <i class="fa fa-sliders" aria-hidden="true"></i></h3>
+                </div>
+                <div class="col-md-9">
+                    <div class="row mt-3">
+                        <h3>Selecciona uno o más influencers para tu campaña</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <h5>Ordenar</h5>
+                        </div>
+                        <div class="col-md-3 ml-2">
+                            <input type="text" placeholder="Nombre y Apellidos" class="form-control form-control-alternative" />
+                        </div>
+                        <div class="col-md-3 ml-2">
+                            <h5>Buscar por nombre</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" placeholder="Nombre y Apellidos" class="form-control form-control-alternative" />
+                        </div>
+                    </div>
+
+                    <div class="container mt-5" *ngFor="let user of users">
+                        <div class="shadow">
+                            <div class="row">
+                                <div class="col-sm-3 col-6 mt-5 mt-sm-0  p-4">
+                                    <img *ngIf="!user.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px;">
+                                    <img [src]="user.imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px;">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <h4>{{user.username}}</h4>
+                                    </div>
+                                    <div class="row">
+                                        <span>{{user.country}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
