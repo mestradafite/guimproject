@@ -75,14 +75,6 @@
                                         <input type="text" placeholder="Nombre" [(ngModel)]="user.username" name="username" class="form-control form-control-alternative" />
                                     </div>
                                 </div>
-                                <div class="col-md-3 ml-5">
-                                    <div class="row">
-                                        <h5>Apellidos</h5>
-                                    </div>
-                                    <div class="row">
-                                        <input type="text" placeholder="Apellidos" class="form-control form-control-alternative" />
-                                    </div>
-                                </div>
                             </div>
                             <div class="row mt-5">
                                 <div class="col-md-3">
@@ -119,6 +111,12 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row mt-5">
+                                <h5>Descripción</h5>
+                            </div>
+                            <div class="row mt-2">
+                                <textarea [(ngModel)]="user.description" name="description"  cols="200" rows="5"></textarea>
                             </div>
                             <div class="row float-right mt-5">
                                 <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="submit">

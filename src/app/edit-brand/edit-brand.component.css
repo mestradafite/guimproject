@@ -1,0 +1,52 @@
+.section-profile-cover{
+    height: auto;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    color: #32325d;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown{
+    margin-top: -5px !important;
+    color: #32325d;
+    background-color: white;
+}
+
+.dropdown-without-mg{
+    color: #32325d;
+    background-color: white;
+}
+
+.btn-default{
+    background-color: white;
+}
+
+.btn-default:not(:disabled):not(.disabled):active, .btn-default:not(:disabled):not(.disabled).active, .show > .btn-default.dropdown-toggle{
+    background-color: white;
+    color: #32325d;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+.dropdown-item:active,
+.dropdown-item:hover{
+    background-color: #32325d;
+    color: white !important;
+}
+
+.badge:hover{
+    cursor: pointer;
+}
