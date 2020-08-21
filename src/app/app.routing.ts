@@ -37,8 +37,8 @@ const routes: Routes =[
     { path: 'settings',          component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'edit-profile',          component: EditProfileComponent },
     { path: 'edit-brand',          component: EditBrandComponent },
-    { path: 'influencer-profile',          component: InfluencerProfileComponent },
-    { path: 'influencers',          component: InfluencersComponent },
+    { path: 'influencer-profile',          component: InfluencerProfileComponent, canActivate: [AuthGuard] },
+    { path: 'influencers',          component: InfluencersComponent, canActivate: [AuthGuard] },
     //{ path: '**', component: Page404Component },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

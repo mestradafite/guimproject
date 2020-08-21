@@ -31,25 +31,59 @@
                             <input type="text" placeholder="Nombre y Apellidos" class="form-control form-control-alternative" />
                         </div>
                     </div>
-
-                    <div class="container mt-5" *ngFor="let user of users">
-                        <div class="shadow">
-                            <div class="row">
-                                <div class="col-sm-3 col-6 mt-5 mt-sm-0  p-4">
-                                    <img *ngIf="!user.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px;">
-                                    <img [src]="user.imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px;">
-                                </div>
-                                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="container mt-5" *ngFor="let user of users">
+                                <div class="shadow">
                                     <div class="row">
-                                        <h4>{{user.username}}</h4>
-                                    </div>
-                                    <div class="row">
-                                        <span>{{user.country}}</span>
+                                        <div class="col-sm-3 col-6 mt-5 mt-sm-0  p-4">
+                                            <img *ngIf="!user.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px;">
+                                            <img [src]="user.imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px;">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <h4>{{user.username}}</h4>
+                                            </div>
+                                            <div class="row">
+                                                <span>{{user.country}}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4 mt-5">
+                                <div class="shadow">
+                                    <div class="row d-flex justify-content-center pinkdiv nomargin">
+                                        <h4 class="mt-2" style="color: white;">Mi Campaña</h4>
+                                    </div>
+                                    <div class="row nomargin mt-3" *ngFor="let user of users">
+                                        <div class="col-md-1 nopadding">
+                                            <i class="fa fa-times" style="cursor: pointer;" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-2 nopadding">
+                                            <img  src="../../assets/img/theme/team-2-800x800.jpg" class="img-fluid rounded-circle shadow-lg" width="100%" >
+                                        </div>
+                                        <div class="col-md-7 nopadding">
+                                            <span style="font-size: 15px;">Marta Romero</span>
+                                        </div>
+                                        <div class="col-md-2 nopadding">
+                                            <span style="font-size: 15px; color: #5e72e4;">5 <i class="fa fa-diamond" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row nomargin fright mr-4">
+                                        <span>Total <span style="color: #5e72e4;">15 créditos</span></span>
+                                    </div>
+                                    <div class="row float-right mr-4 mt-2">
+                                        <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="button">
+                                            <span class="btn-inner--text">Enviar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
