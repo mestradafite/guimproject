@@ -1,3 +1,40 @@
+fieldset, label { margin: 0; padding: 0; }
+
+.rating { 
+    border: none;
+    float: left;
+  }
+  
+.rating > input { display: none; } 
+.rating > label:before { 
+margin: 5px;
+font-size: 1.25em;
+font-family: FontAwesome;
+display: inline-block;
+content: "\f005";
+}
+
+.rating > .half:before { 
+content: "\f089";
+position: absolute;
+}
+
+.rating > label { 
+color: #ddd; 
+float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
 .pinkdiv{
     background-color: #e83a80;
     border-radius: 0.25rem;
@@ -10,6 +47,7 @@
 
 .nopadding{
     padding-right: unset;
+    padding-left: unset;
 }
 
 .shadow{
@@ -20,6 +58,8 @@
     background-color: #5e72e4;
     border-color: #5e72e4;
     color: white !important;
+    padding: 6px;
+    font-size: 15px;
 }
 
 .btn-primary:active{
@@ -31,4 +71,42 @@
 .fright{
     position: relative;
     left: 50%;
+}
+
+.pink{
+    color: #e83a80;
+}
+
+.description{
+    font-size: 10px;
+}
+
+.tick{
+    color: #e83a80;
+    cursor: pointer;
+    font-size: 25px;
+    float: right;
+}
+
+.progress-wrapper{
+    padding-top: unset;
+}
+
+.progress-label span{
+    font-size: 8px !important;
+    color: #5e72e4;
+}
+
+.fontmin{
+    font-size: 12px;
+}
+
+.progress-percentage span{
+    font-size: 8px !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .padding-mobile{
+        padding: 50px;
+    }
 }

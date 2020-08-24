@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { ProductsService } from '../services/products.service';
-import { ProductInterface } from "../models/product-interface";
 import { NgxSpinnerService } from "ngx-spinner";
 import { UserInterface } from '../models/user-interface';
+import { AgeFromDateString } from 'age-calculator'
+
 
 @Component({
   selector: 'app-influencers',
@@ -13,6 +13,12 @@ import { UserInterface } from '../models/user-interface';
 export class InfluencersComponent implements OnInit {
 
   private users: UserInterface[] = [];
+  private usersAge: string[] = [];
+  private birthday: any = {
+    year: "",
+    month: "",
+    day: ""
+}
 
   constructor(private spinner: NgxSpinnerService, private authService: AuthService) { }
 
@@ -27,6 +33,7 @@ export class InfluencersComponent implements OnInit {
       .subscribe(data => {
         console.log("Getting user products...");
         this.users = data;
+        this.getUserAge();
         this.spinner.hide();
       },
       error => {
@@ -34,6 +41,16 @@ export class InfluencersComponent implements OnInit {
       });
     }
   }
+
+  getUserAge(){
+    for (let i = 0; i < this.users.length; i++) {
+      if(this.users[i].birthDay){
+        this.birthday = this.users[i].birthDay;
+        let ageFromString = new AgeFromDateString(this.birthday.year + "-" + this.birthday.month + "-" + this.birthday.day).age;
+        this.usersAge[i] = String(ageFromString);
+      }
+    }
+}
 
 }
 

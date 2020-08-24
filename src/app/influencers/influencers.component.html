@@ -14,7 +14,7 @@
                     <h3>Filtrar <i class="fa fa-sliders" aria-hidden="true"></i></h3>
                 </div>
                 <div class="col-md-9">
-                    <div class="row mt-3">
+                    <div class="mt-3">
                         <h3>Selecciona uno o más influencers para tu campaña</h3>
                     </div>
                     <div class="row">
@@ -33,19 +33,180 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            <div class="container mt-5" *ngFor="let user of users">
+                            <div class="container mt-5 nomargin" *ngFor="let user of users; let i = index">
                                 <div class="shadow">
                                     <div class="row">
-                                        <div class="col-sm-3 col-6 mt-5 mt-sm-0  p-4">
-                                            <img *ngIf="!user.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px;">
-                                            <img [src]="user.imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px;">
+                                        <div class="col-md-3 d-flex justify-content-center p-4">
+                                            <img *ngIf="!user.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                            <img *ngIf="user.imageUrl" [src]="user.imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-9 padding-mobile">
                                             <div class="row">
-                                                <h4>{{user.username}}</h4>
+                                                <h5 class="mr-2 pink">{{user.username}}</h5>
+                                                <a class="btn btn-1 btn-primary" >
+                                                    <span class="nav-link-inner--text">15 <i class="fa fa-diamond" aria-hidden="true"></i>
+                                                    </span>
+                                                </a>
+                                                <i class="fa fa-check tick ml-auto mr-4 mt-1" aria-hidden="true"></i>
                                             </div>
                                             <div class="row">
-                                                <span>{{user.country}}</span>
+                                                <span style="margin-right: 2px;" *ngIf="usersAge[i]">{{usersAge[i]}},</span><span>{{user.country}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="mr-4" style="margin-left: 10px;">
+                                                    <div class="row d-flex justify-content-center">
+                                                        <span class="heading"><i class="fa fa-instagram" aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="row d-flex justify-content-center">
+                                                        <span class="description">33K</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mr-4">
+                                                    <div class="row d-flex justify-content-center">
+                                                        <span class="heading"><i class="fa fa-youtube-play" aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="row d-flex justify-content-center">
+                                                        <span class="description">5K</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mr-4">
+                                                    <div class="row d-flex justify-content-center">
+                                                        <span class="heading"><i class="fa fa-twitter" aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <div class="row d-flex justify-content-center">
+                                                        <span class="description">7K</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-4">
+                                                    <div class="row">
+                                                        <h5 class="pink">Puntuación</h5>
+                                                        <div class="container nopadding">
+                                                            <div class="row">
+                                                                <div class="col-md-6" style="margin-right: inherit;">
+                                                                    <div class="progress-wrapper">
+                                                                        <div class="progress-info">
+                                                                          <div class="progress-label">
+                                                                            <span>Calidad</span>
+                                                                          </div>
+                                                                          <div class="progress-percentage">
+                                                                            <span>4/5</span>
+                                                                          </div>
+                                                                        </div>
+                                                                        <ngb-progressbar type="default" [value]="70"></ngb-progressbar>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6" style="margin-right: inherit;">
+                                                                    <div class="progress-wrapper">
+                                                                        <div class="progress-info">
+                                                                          <div class="progress-label">
+                                                                            <span>Infl.</span>
+                                                                          </div>
+                                                                          <div class="progress-percentage">
+                                                                            <span>4.3/5</span>
+                                                                          </div>
+                                                                        </div>
+                                                                        <ngb-progressbar type="default" [value]="75"></ngb-progressbar>
+                                                                      </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6" style="margin-right: inherit;">
+                                                                    <div class="progress-wrapper">
+                                                                        <div class="progress-info">
+                                                                          <div class="progress-label">
+                                                                            <span>Engagement</span>
+                                                                          </div>
+                                                                          <div class="progress-percentage">
+                                                                            <span>3/5</span>
+                                                                          </div>
+                                                                        </div>
+                                                                        <ngb-progressbar type="default" [value]="60"></ngb-progressbar>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6" style="margin-right: inherit;">
+                                                                    <div class="progress-wrapper">
+                                                                        <div class="progress-info">
+                                                                          <div class="progress-label">
+                                                                            <span>Afinidad</span>
+                                                                          </div>
+                                                                          <div class="progress-percentage">
+                                                                            <span>3.5/5</span>
+                                                                          </div>
+                                                                        </div>
+                                                                        <ngb-progressbar type="default" [value]="65"></ngb-progressbar>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="row">
+                                                        <h5 class="pink">Estadísticas</h5>
+                                                        <div class="container nopadding fontmin">
+                                                            <div class="row mt-2">
+                                                                <div class="col-md-7" >
+                                                                    <span >Solicitudes</span>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <span class="pink">190</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-2">
+                                                                <div class="col-md-7">
+                                                                    <span>Responde al</span>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <span class="pink">96%</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-2">
+                                                                <div class="col-md-7">
+                                                                    <span>Aprobadas</span>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <span class="pink">12%</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-2 mb-3">
+                                                                <div class="col-md-7">
+                                                                    <span>Comparte en</span>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <span class="pink" style="font-size: 11px;">2 días</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="row">
+                                                        <h5 class="pink">Valoración</h5>
+                                                        <div class="container nopadding">
+                                                            <div class="row mt-2 nomargin">
+                                                                <fieldset class="rating">
+                                                                  <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                                                  <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                                                  <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                                                  <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                                                  <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                                                  <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                                                  <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                                  <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                                                  <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                                                  <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                                </fieldset>
+                                                              </div>
+                                                              <div class="row nomargin">
+                                                                <span>4,5 / 5</span>
+                                                              </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
