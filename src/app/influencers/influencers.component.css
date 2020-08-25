@@ -35,6 +35,25 @@ float: right;
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
+.shadow{
+    height: unset !important;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
+}
+
+.dropdown{
+    cursor: pointer;
+}
+
+.scroll{
+    overflow: scroll;
+    height: 170px;
+}
+
+.nomargin15{
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
 .pinkdiv{
     background-color: #e83a80;
     border-radius: 0.25rem;
@@ -52,6 +71,40 @@ float: right;
 
 .shadow{
     height: 60%;
+}
+
+.dropdown{
+    margin-top: -5px !important;
+    color: #32325d;
+    background-color: white;
+}
+
+.dropdown-without-mg{
+    color: #32325d;
+    background-color: white;
+}
+
+.btn-default{
+    background-color: white;
+}
+
+.btn-default:not(:disabled):not(.disabled):active, .btn-default:not(:disabled):not(.disabled).active, .show > .btn-default.dropdown-toggle{
+    background-color: white;
+    color: #32325d;
+}
+
+.dropdown-item{
+    cursor: pointer;
+}
+
+.dropdown-item:active,
+.dropdown-item:hover{
+    background-color: #32325d;
+    color: white !important;
+}
+
+.badge:hover{
+    cursor: pointer;
 }
 
 .btn-primary{
