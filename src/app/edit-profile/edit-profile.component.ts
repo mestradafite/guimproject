@@ -27,6 +27,7 @@ export class EditProfileComponent implements OnInit {
   private closeResult: string;
   private alertErrorVisible: boolean;
   private PRODUCTO_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
+  private username: string = "";
 
 
   private user: UserInterface = {
@@ -72,6 +73,7 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
+    this.formatUserName();
     if(this.user.country){
       this.selectedCountry = this.user.country;
     }
@@ -119,8 +121,16 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
+  formatUserName(){
+    var splitted = this.user.username.split(" "); 
+    for (let i = 0; i < splitted.length; i++) {
+        this.username += splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1).toLowerCase() + " ";
+    }
+    this.user.username = this.username;
+  }
+
   updateUserInfo(){
-    this.authService.updateUser(this.authService.getCurrentUser().id, this.user.username, this.user.imageUrl, this.user.country, 
+    this.authService.updateUser(this.authService.getCurrentUser().id, this.user.username.toLocaleLowerCase(), this.user.imageUrl, this.user.country, 
                                               this.user.birthDay, this.user.userLocation, this.user.description, this.user.website)
     .subscribe(data => {
       console.log("User Submited!");

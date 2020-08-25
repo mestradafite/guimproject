@@ -50,7 +50,7 @@
             </div>
           </div>
           <div class="text-center mt-5">
-            <h3>{{this.user.username}}</h3>
+            <h3>{{username}}</h3>
             <div class="h5 font-weight-300" *ngIf="user.country && !userAge"><i class="ni location_pin mr-2"></i>{{user.country}}</div>
             <div class="h5 font-weight-300" *ngIf="!user.country && userAge"><i class="ni location_pin mr-2"></i>{{userAge}}</div>
             <div class="h5 font-weight-300" *ngIf="user.country && userAge"><i class="ni location_pin mr-2"></i>{{userAge}}, {{user.country}}</div>

@@ -27,7 +27,7 @@ export class EditBrandComponent implements OnInit {
   private closeResult: string;
   private alertErrorVisible: boolean;
   private PRODUCTO_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
-
+  private username: string = "";
 
   private user: UserInterface = {
     id: "",
@@ -72,6 +72,7 @@ export class EditBrandComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
+    this.formatUserName();
     if(this.user.country){
       this.selectedCountry = this.user.country;
     }
@@ -88,6 +89,14 @@ export class EditBrandComponent implements OnInit {
   uploadImage(){
     if(this.selectedFile) this.getURLImage(this.selectedFile); 
     else this.updateUserInfo();
+  }
+
+  formatUserName(){
+    var splitted = this.user.username.split(" "); 
+    for (let i = 0; i < splitted.length; i++) {
+        this.username += splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1).toLowerCase() + " ";
+    }
+    this.user.username = this.username;
   }
 
   getURLImage(file: File) {

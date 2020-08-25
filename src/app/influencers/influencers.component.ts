@@ -57,6 +57,7 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
         console.log("Getting user products...");
         this.users = data;
         this.getUserAge();
+        this.formatUserName();
         this.spinner.hide();
       },
       error => {
@@ -72,6 +73,17 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
         let ageFromString = new AgeFromDateString(this.birthday.year + "-" + this.birthday.month + "-" + this.birthday.day).age;
         this.usersAge[i] = String(ageFromString);
       }
+    }
+  }
+
+  formatUserName(){
+    for (let i = 0; i < this.users.length; i++) {
+      var splitted = this.users[i].username.split(" "); 
+      var username = "";
+      for (let i = 0; i < splitted.length; i++) {
+          username += splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1).toLowerCase() + " ";
+      }
+      this.users[i].username = username;
     }
   }
 
@@ -256,6 +268,7 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
         console.log("Getting user products...");
         this.users = data;
         this.getUserAge();
+        this.formatUserName();
         this.spinner.hide();
       },
       error => {

@@ -13,6 +13,7 @@ import { AgeFromDateString, AgeFromDate } from 'age-calculator'
 
 export class ProfileComponent implements OnInit {
     private userAge = "";
+    private username = "";
     private user: UserInterface = {
         id: "",
         username: "",
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
         console.log(this.user);
         
         this.getUserAge();
+        this.formatUserName();
     } 
 
     getUserAge(){
@@ -52,11 +54,19 @@ export class ProfileComponent implements OnInit {
         }
     }
 
+    formatUserName(){
+        var splitted = this.user.username.split(" "); 
+
+        for (let i = 0; i < splitted.length; i++) {
+            this.username += splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1).toLowerCase() + " ";
+        }
+        
+    }
+
     ChangeSortOrder(selectedSocialNetwork: string) { 
         this.selectedSortOrder = selectedSocialNetwork;
         this.selectedSortOrderIcon = "fa fa-" + selectedSocialNetwork.toLowerCase();
         this.currDiv = selectedSocialNetwork;
-        
     }
 
 }
