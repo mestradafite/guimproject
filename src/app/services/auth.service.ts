@@ -118,12 +118,12 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  getInfluencers(userid: string): Observable<any> {
+  getInfluencers(userid: string, username: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/getinfluencers";
     return this.htttp
       .post<UserInterface>(
         url_api,
-        { userid },
+        { userid, username },
         { headers: this.headers }
       )
       .pipe(map(data => data));

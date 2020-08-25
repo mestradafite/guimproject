@@ -52,7 +52,7 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
 
   getAllInfluencers(){ 
     if(this.authService.getCurrentUser()){
-      return this.authService.getInfluencers(this.authService.getCurrentUser().id)
+      return this.authService.getInfluencers(this.authService.getCurrentUser().id, "")
       .subscribe(data => {
         console.log("Getting user products...");
         this.users = data;
@@ -247,6 +247,23 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
   changeFilter(filter: string){
     this.selectedFilter = filter;
   }
+
+  search(){
+    var inputValue = (<HTMLInputElement>document.getElementById("namesearch")).value; 
+    if(this.authService.getCurrentUser()){
+      return this.authService.getInfluencers(this.authService.getCurrentUser().id, inputValue)
+      .subscribe(data => {
+        console.log("Getting user products...");
+        this.users = data;
+        this.getUserAge();
+        this.spinner.hide();
+      },
+      error => {
+        console.log(error);
+      });
+    }
+  }
+    
 
 }
 

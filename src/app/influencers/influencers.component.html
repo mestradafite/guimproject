@@ -149,7 +149,7 @@
                             <h5>Buscar por nombre</h5>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" placeholder="Nombre y Apellidos" class="form-control form-control-alternative" />
+                            <input (keyup)="search()" id="namesearch" type="text" placeholder="Nombre y Apellidos" class="form-control form-control-alternative" />
                         </div>
                     </div>
                     <div class="row">
