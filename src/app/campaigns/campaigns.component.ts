@@ -46,7 +46,7 @@ export class CampaignsComponent implements OnInit {
   }
 
   getInfluencerInfo(){
-    for (let i = 0; i < this.campaigns.length; i++) {
+    for (let i = 0; i < this.campaigns.length; i++) { 
       this.authService.getUserById(this.campaigns[i].influencerId)
         .subscribe(data => {
           console.log("Getting user info from campaigns...");
