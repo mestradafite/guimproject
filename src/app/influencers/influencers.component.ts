@@ -246,7 +246,7 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
   getTags(){
     return this.productService.getTags()
     .subscribe(data => {
-      console.log("Getting tags...");
+      console.log("Getting tags..."); 
       for (let i = 0; i < data.length; i++) {
         this.tags.push(data[i].name); 
       }

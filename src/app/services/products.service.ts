@@ -41,6 +41,17 @@ export class ProductsService {
       .pipe(map(data => data));
   }
 
+  getProductById(productId: string): Observable<any> {
+    const url_api = this.PRODUCTO_PROD + "/getproductbyid";
+    return this.htttp
+      .post<ProductInterface>(
+        url_api,
+        { productId },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
   getCategories(): Observable<any> {
     const url_api = this.PRODUCTO_PROD + "/getcategories";
     return this.htttp

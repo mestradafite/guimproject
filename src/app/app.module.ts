@@ -32,6 +32,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditBrandComponent } from './edit-brand/edit-brand.component';
 import { InfluencerProfileComponent } from './influencer-profile/influencer-profile.component';
 import { InfluencersComponent } from './influencers/influencers.component';
+import { CampaignsComponent } from './campaigns/campaigns.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { InfluencersComponent } from './influencers/influencers.component';
     EditProfileComponent,
     EditBrandComponent,
     InfluencerProfileComponent,
-    InfluencersComponent
+    InfluencersComponent,
+    CampaignsComponent
   ],
   imports: [
     BrowserModule,

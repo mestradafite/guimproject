@@ -75,6 +75,17 @@ export class AuthService {
     }
   }
 
+  getUserById(userid: string): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/getuserbyuserid";
+    return this.htttp
+      .post<UserInterface>(
+        url_api,
+        { userid },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
   setCurrentUserSettings(userid: string, boxlimit: string, price: string, locale: string, categories: string, tags: string, account: string, vacationMode: boolean): Observable<any> {
     const url_api = this.LOGIN_PROD + "/updateusersettings";
     return this.htttp
@@ -124,6 +135,17 @@ export class AuthService {
       .post<UserInterface>(
         url_api,
         { userid, username },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
+  getCampaigns(userid: string): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/getcampaignsbyuserid";
+    return this.htttp
+      .post<UserInterface>(
+        url_api,
+        { userid },
         { headers: this.headers }
       )
       .pipe(map(data => data));

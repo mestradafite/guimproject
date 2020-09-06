@@ -1,0 +1,13 @@
+.userinfo{
+    float: right;
+    margin-right: 0.25em;
+}
+
+.userinfoFL{
+    float: left;
+    margin-left: 0.25em;
+}
+
+.pink{
+    color: #e83a80;
+}

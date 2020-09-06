@@ -44,8 +44,8 @@
           </a>
           <!-- USER LOGGED-->
         </li>
-        <li class="nav-item">
-          <a class="nav-link"role="button" [routerLink]="['/home']" *ngIf="isUserLogged() && isBrand()">
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link"role="button" [routerLink]="['/campaigns']" *ngIf="isUserLogged() && isBrand()">
             <span class="nav-link-inner--text">Mis campañas</span>
           </a>
         </li>

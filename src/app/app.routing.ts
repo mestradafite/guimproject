@@ -21,6 +21,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { EditBrandComponent } from './edit-brand/edit-brand.component';
 import { InfluencerProfileComponent } from './influencer-profile/influencer-profile.component';
 import { InfluencersComponent } from './influencers/influencers.component';
+import { CampaignsComponent } from './campaigns/campaigns.component';
 
 const routes: Routes =[
     { path: 'home',             component: HomeComponent },
@@ -39,6 +40,7 @@ const routes: Routes =[
     { path: 'edit-brand',          component: EditBrandComponent },
     { path: 'influencer-profile',          component: InfluencerProfileComponent, canActivate: [AuthGuard] },
     { path: 'influencers',          component: InfluencersComponent, canActivate: [AuthGuard] },
+    { path: 'campaigns',          component: CampaignsComponent, canActivate: [AuthGuard] },
     //{ path: '**', component: Page404Component },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
