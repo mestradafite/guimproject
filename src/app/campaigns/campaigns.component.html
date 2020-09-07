@@ -28,7 +28,7 @@
                             </div>
                             <div *ngIf="products.length!==0 && influencers.length!==0">
                                 <div class="container mt-5" *ngFor="let campaign of campaigns; let e = index" >
-                                    <div class="shadow" *ngIf="campaign.status==0">
+                                    <div class="shadow" *ngIf="campaign.cState==0">
                                         <div class="row">
                                             <div class="col-md-2 d-flex justify-content-center p-4">
                                                 <img *ngIf="!products[e].urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
@@ -109,10 +109,10 @@
                                 <div class="container mt-5" *ngFor="let campaign of campaigns; let i = index">
                                     <div class="row">
                                         <div class="col-md-1">
-                                            <button *ngIf="campaign.status==1" type="button" id="step1Button" class="btn btn-round btn-circle">{{i}}</button>
+                                            <button *ngIf="campaign.cState==1" type="button" id="step1Button" class="btn btn-round btn-circle">{{i}}</button>
                                         </div>
                                         <div class="col-md-11">
-                                            <div class="shadow" *ngIf="campaign.status==1">
+                                            <div class="shadow" *ngIf="campaign.cState==1">
                                                 <div class="row float-right mr-4 mt-4">
                                                     <a class="btn btn-1 btn-primary" >
                                                         <i class="fa fa-comments" aria-hidden="true" style="font-size: 25px !important;"></i>

@@ -141,12 +141,12 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  addCampaign(userid: string, influencerId: string, productId: string, valoration: string, status: string): Observable<any> {
+  addCampaign(userid: string, influencerId: string, productId: string, valoration: string, cState: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/insertcampaign";
     return this.htttp
       .post<CampaignInterface>(
         url_api,
-        { userid, influencerId, productId, valoration, status },
+        { userid, influencerId, productId, valoration, cState },
         { headers: this.headers }
       )
       .pipe(map(data => data));
