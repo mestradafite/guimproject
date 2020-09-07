@@ -158,6 +158,22 @@ float: right;
     font-size: 8px !important;
 }
 
+.btn-check{
+    background-color: white;
+    border-color: white;
+    color: #e83a80 !important;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.btn-checked{
+    background-color: #e83a80;
+    border-color: #e83a80;
+    color: white !important;
+    padding: 5px;
+    font-size: 15px;
+}
+
 @media only screen and (max-width: 767px) {
     .padding-mobile{
         padding: 50px;

@@ -20,6 +20,7 @@ export class CampaignsComponent implements OnInit {
   private influencernames: string[] = [];
   private influencerages: string[] = [];
   private products: ProductInterface[] = [];
+  private campaignStartDate: string[] = [];
 
   constructor(private authService: AuthService, private productService: ProductsService, private spinner: NgxSpinnerService) { }
 
@@ -35,13 +36,28 @@ export class CampaignsComponent implements OnInit {
       .subscribe(data => {
         console.log("Getting user campaigns...");
         this.campaigns = data;
-        this.getInfluencerInfo();
+        this.getCampaignStartDate();
         this.getProductInfo();
+        this.getInfluencerInfo();
         this.spinner.hide();
       },
       error => {
         console.log(error);
       });
+    }
+  }
+
+  getCampaignStartDate(){
+    for (let i = 0; i < this.campaigns.length; i++) {
+      var a = new Date(this.campaigns[i].createdAt);
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var month = months[a.getMonth()];
+      var year = a.getFullYear();
+      var date = a.getDate();
+      var month = months[a.getMonth()];
+      var date = a.getDate();
+      var time = date + ' ' + month + ' ' + year;
+      this.campaignStartDate[i] = time;
     }
   }
 

@@ -40,6 +40,7 @@ const routes: Routes =[
     { path: 'edit-brand',          component: EditBrandComponent },
     { path: 'influencer-profile',          component: InfluencerProfileComponent, canActivate: [AuthGuard] },
     { path: 'influencers',          component: InfluencersComponent, canActivate: [AuthGuard] },
+    { path: 'influencers/:id',          component: InfluencersComponent, canActivate: [AuthGuard] },
     { path: 'campaigns',          component: CampaignsComponent, canActivate: [AuthGuard] },
     //{ path: '**', component: Page404Component },
     { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -5,6 +5,7 @@ import { UserInterface } from '../models/user-interface';
 import { AgeFromDateString } from 'age-calculator';
 import noUiSlider from "nouislider";
 import { ProductsService } from '../services/products.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BrandProfileComponent } from '../brand-profile/brand-profile.component';
 
 
@@ -16,7 +17,7 @@ import { BrandProfileComponent } from '../brand-profile/brand-profile.component'
 })
 export class InfluencersComponent implements OnInit, AfterViewInit {
 
-  private users: UserInterface[] = [];
+  private users: UserInterface[] = []; 
   private usersAge: string[] = [];
   private birthday: any = {
     year: "",
@@ -36,18 +37,26 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
   private tags: string[] = [];
   private filters: string[] = ["Calidad: Más a menos", "Calidad: Menos a más"];
   private selectedFilter: string = this.filters[0];
+  private selectedProductId: string = "";
 
 
-  constructor(private spinner: NgxSpinnerService, private productService: ProductsService, private authService: AuthService) { }
+  constructor(private router: Router, private spinner: NgxSpinnerService, private productService: ProductsService, private authService: AuthService, private _Activatedroute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.spinner.show();
+    this.getProductId();
     this.getAllInfluencers();
     this.getTags();
   }
 
   ngAfterViewInit(){
     
+  }
+
+  getProductId(){
+    this._Activatedroute.paramMap.subscribe(params => { 
+      this.selectedProductId = params.get('id');
+    });
   }
 
   getAllInfluencers(){ 
@@ -74,6 +83,22 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
         this.usersAge[i] = String(ageFromString);
       }
     }
+  }
+
+  addCampaign(influencerId: string){
+    if(this.authService.getCurrentUser() && this.selectedProductId){
+      this.spinner.show();
+      return this.authService.addCampaign(this.authService.getCurrentUser().id, influencerId, this.selectedProductId, "0", "0")
+      .subscribe(data => {
+        this.spinner.hide();
+        this.router.navigateByUrl('/campaigns');
+      },
+      error => {
+        console.log(error);
+      });
+    }
+
+    
   }
 
   formatUserName(){

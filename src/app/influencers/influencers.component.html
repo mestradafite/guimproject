@@ -168,7 +168,9 @@
                                                     <span class="nav-link-inner--text">15 <i class="fa fa-diamond" aria-hidden="true"></i>
                                                     </span>
                                                 </a>
-                                                <i class="fa fa-check tick ml-auto mr-4 mt-1" aria-hidden="true"></i>
+                                                <a class="btn btn-1 btn-check ml-auto mr-4 mt-1" (click)="addCampaign(user.id)" >
+                                                    <i class="fa fa-check" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                </a>
                                             </div>
                                             <div class="row">
                                                 <span style="margin-right: 2px;" *ngIf="usersAge[i]">{{usersAge[i]}},</span><span>{{user.country}}</span>

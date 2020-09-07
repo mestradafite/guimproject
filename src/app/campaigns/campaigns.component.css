@@ -11,3 +11,60 @@
 .pink{
     color: #e83a80;
 }
+
+.btn-primary{
+    background-color: #5e72e4;
+    border-color: #5e72e4;
+    color: white !important;
+    padding: 6px;
+    font-size: 15px;
+}
+
+
+.btn-primary:active{
+    background-color: #5e72e4 !important;
+    border-color: #5e72e4 !important;
+    color: white !important;
+}
+
+.btn-round{
+    background-color: #e83a80 !important;
+    border-color: #e83a80 !important;
+    color: white !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 40px !important;
+    font-size: 20px !important;
+    padding: unset !important;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+  }
+
+  .scroll{
+    overflow: scroll;
+    height: 170px;
+   }
+
+   .btn-thumpsup{
+        background-color: #e83a80;
+        border-color: #e83a80;
+        color: white !important;
+        padding: 5px;
+        font-size: 15px;
+   }
+
+   .btn-thumbs-down{
+        background-color: unset;
+        border-color: white;
+        color: #e83a80 !important;
+        padding: 5px;
+        font-size: 15px;
+   }
