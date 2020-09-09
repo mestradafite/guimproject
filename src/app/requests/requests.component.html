@@ -1,0 +1,152 @@
+<main>
+    <ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="large"
+    color="#fff" 
+    type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Cargando...</p>
+    </ngx-spinner>
+    <section class="section section-lg">
+        <div class="container">
+            <div class="row row-grid align-items-center">
+                <div class="col-md-6 order-md-1">
+                    <div class="pr-md-5">
+                        <h2>Solicitudes</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center" >
+                <div class="col-lg-12">
+                  <!-- Menu -->
+                  <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
+
+                      // PENDIENTES
+                      <ngb-tab title="Pendientes ({{pendingCampaigns.length}})">
+                        <ng-template ngbTabContent>
+                            <div class="row mt-5 d-flex justify-content-center" *ngIf="pendingCampaigns.length===0">
+                                <h1 class="mt-5 ">No hay Campañas</h1>
+                            </div>
+                            <div class="container mt-5" *ngFor="let campaign of pendingCampaigns; let e = index" >
+                                <div class="shadow">
+                                    <div class="row">
+                                        <div class="col-md-2 d-flex justify-content-center p-4">
+                                            <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                            <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                        </div>
+
+                                        <div class="col-md-5 p-4">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <h5 style="text-decoration: underline;">Nombre marca</h5>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.name}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.sizes}}</h6>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <h6>{{campaign.product.tags}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.category}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <a href="{{campaign.product.url}}" target="_blank" >
+                                                        <h6 style="font-size: 15px; text-decoration: underline;">{{campaign.product.url}}</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 p-4">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <h6 class="pink"><i class="fa fa-clock-o" aria-hidden="true"></i> {{getCampaignStartDate(campaign.createdAt)}}</h6>
+                                                    <a class="btn btn-1 btn-thumpsup ml-5" (click)="acceptRequest(campaign.campaignId)" >
+                                                        <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                    </a>
+                                                    <a class="btn btn-1 btn-thumbs-down  ml-4" (click)="cancelRequest()">
+                                                        <i class="fa fa-thumbs-down" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="row mt-5">
+                                                    <p>{{campaign.product.description}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                      </ngb-tab>
+
+                      // EN CURSO
+                      <ngb-tab title="En Curso ({{inProgressCampaigns.length}})">
+                        <ng-template ngbTabContent>
+                            <div class="row mt-5 d-flex justify-content-center" *ngIf="inProgressCampaigns.length===0">
+                                <h1 class="mt-5 ">No hay Campañas</h1>
+                            </div>
+                            <div class="container mt-5" *ngFor="let campaign of inProgressCampaigns; let e = index" >
+                                <div class="shadow">
+                                    <div class="row">
+                                        <div class="col-md-2 d-flex justify-content-center p-4">
+                                            <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                            <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                        </div>
+
+                                        <div class="col-md-5 p-4">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <h5 style="text-decoration: underline;">Nombre marca</h5>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.name}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.sizes}}</h6>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <h6>{{campaign.product.tags}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.category}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <a href="{{campaign.product.url}}" target="_blank" >
+                                                        <h6 style="font-size: 15px; text-decoration: underline;">{{campaign.product.url}}</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 p-4">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <a class="btn btn-1 btn-primary" >
+                                                        <i class="fa fa-comments" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="row mt-5">
+                                                    <p>{{campaign.product.description}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                      </ngb-tab>
+                      <ngb-tab title="Finalizadas">
+                        <ng-template ngbTabContent>
+                          <div class="container" >
+                            <!--<div class="row mt-5 d-flex justify-content-center" *ngIf="campaigns.length===0">
+                                <h1 class="mt-5 ">No hay Campañas</h1>
+                            </div>-->
+                          </div>
+                        </ng-template>
+                      </ngb-tab>
+                  </ngb-tabset>
+                </div>
+              </div>
+        </div>
+    </section>
+</main>

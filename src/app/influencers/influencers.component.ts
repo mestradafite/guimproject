@@ -88,7 +88,37 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
   addCampaign(influencerId: string){
     if(this.authService.getCurrentUser() && this.selectedProductId){
       this.spinner.show();
-      return this.authService.addCampaign(this.authService.getCurrentUser().id, influencerId, this.selectedProductId, "0", "0")
+      this.getProductAndInfluencer(influencerId);
+      
+    }    
+  }
+
+  getProductAndInfluencer(influencerId: string){
+    var product;
+    var influencer;
+      this.productService.getProductById(this.selectedProductId)
+      .subscribe(data => {
+        product = data[0]; 
+        if(product){
+          this.authService.getUserById(influencerId)
+          .subscribe(data => {
+            influencer = data[0];
+            this.addNewCampaign(product, influencer);
+          },
+          error => {
+            console.log(error);
+          });     
+        }  
+      },
+      error => {
+        console.log(error);
+      });
+
+      
+  }
+
+  addNewCampaign(product, influencer){
+    return this.authService.addCampaign(this.authService.getCurrentUser().id, product, influencer, "0", "0")
       .subscribe(data => {
         this.spinner.hide();
         this.router.navigateByUrl('/campaigns');
@@ -96,9 +126,6 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
       error => {
         console.log(error);
       });
-    }
-
-    
   }
 
   formatUserName(){

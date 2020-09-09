@@ -2,8 +2,8 @@
 export interface CampaignInterface {
     campaignId?: string,
     userid?: string,
-    influencerId?: string,
-    productId?: string,
+    influencer?: any,
+    product?: any,
     valoration?: string,
     createdAt?: number
   }

@@ -7,6 +7,7 @@ import { isNullOrUndefined } from "util";
 import { UserInterface } from "../models/user-interface";
 import { UserSettingsInterface } from "../models/user-settings-interface";
 import { CampaignInterface } from "../models/campaign-interface";
+import { ProductInterface } from "../models/product-interface";
 
 @Injectable({
   providedIn: "root"
@@ -141,23 +142,45 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  addCampaign(userid: string, influencerId: string, productId: string, valoration: string, cState: string): Observable<any> {
+  addCampaign(userid: string, product: ProductInterface, influencer: UserInterface, valoration: string, cState: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/insertcampaign";
     return this.htttp
       .post<CampaignInterface>(
         url_api,
-        { userid, influencerId, productId, valoration, cState },
+        { userid, influencer, product, valoration, cState },
         { headers: this.headers }
       )
       .pipe(map(data => data));
   }
 
-  getCampaigns(userid: string): Observable<any> {
+  getCampaigns(userid: string, cState: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/getcampaignsbyuserid";
     return this.htttp
       .post<UserInterface>(
         url_api,
-        { userid },
+        { userid, cState },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
+  getRequests(userid: string, cState: string): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/getcampaignsbyinfluencerid";
+    return this.htttp
+      .post<UserInterface>(
+        url_api,
+        { userid, cState },
+        { headers: this.headers }
+      )
+      .pipe(map(data => data));
+  }
+
+  updateCampaign(campaignId: string, cState: string): Observable<any> {
+    const url_api = this.LOGIN_PROD + "/updatecampaign";
+    return this.htttp
+      .put<UserSettingsInterface>(
+        url_api,
+        { campaignId, cState },
         { headers: this.headers }
       )
       .pipe(map(data => data));

@@ -4,7 +4,7 @@
     size="large"
     color="#fff" 
     type="ball-scale-multiple">
-    <p style="font-size: 20px; color: white">Cargando Influencers...</p>
+    <p style="font-size: 20px; color: white">Cargando Campañas...</p>
     </ngx-spinner>
     <section class="section section-lg">
         <div class="container">
@@ -21,75 +21,75 @@
                   <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
 
                       // PENDIENTES
-                      <ngb-tab title="Pendientes">
+                      <ngb-tab title="Pendientes ({{pendingCampaigns.length}})">
                         <ng-template ngbTabContent>
-                            <div class="row mt-5 d-flex justify-content-center" *ngIf="campaigns.length===0">
+                            <div class="row mt-5 d-flex justify-content-center" *ngIf="pendingCampaigns.length===0">
                                 <h1 class="mt-5 ">No hay Campañas</h1>
                             </div>
-                            <div *ngIf="products.length!==0 && influencers.length!==0">
-                                <div class="container mt-5" *ngFor="let campaign of campaigns; let e = index" >
-                                    <div class="shadow" *ngIf="campaign.cState==0">
-                                        <div class="row">
-                                            <div class="col-md-2 d-flex justify-content-center p-4">
-                                                <img *ngIf="!products[e].urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                                <img *ngIf="products[e].urlimages" [src]="products[e].urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                            </div>
+                            <div class="container mt-5" *ngFor="let campaign of pendingCampaigns; let e = index" >
+                                <div class="shadow">
+                                    <div class="row">
+                                        <div class="col-md-2 d-flex justify-content-center p-4">
+                                            <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                            <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                        </div>
 
-                                            <div class="col-md-5 p-4">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <h5 style="text-decoration: underline;">{{user.username}}</h5>
-                                                    </div>
-                                                    <div class="row">
-                                                        <h6>{{products[e].name}}</h6>
-                                                    </div>
-                                                    <div class="row">
-                                                        <h6>{{products[e].sizes}}</h6>
-                                                    </div>
-                                                    <div class="row mt-2">
-                                                        <h6>{{products[e].tags}}</h6>
-                                                    </div>
-                                                    <div class="row">
-                                                        <h6>{{products[e].category}}</h6>
-                                                    </div>
-                                                    <div class="row">
-                                                        <a href="{{products[e].url}}" target="_blank" >
-                                                            <h6 style="font-size: 15px; text-decoration: underline;">{{products[e].url}}</h6>
-                                                        </a>
-                                                    </div>
+                                        <div class="col-md-5 p-4">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <h5 style="text-decoration: underline;">{{user.username}}</h5>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.name}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.sizes}}</h6>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <h6>{{campaign.product.tags}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.category}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <a href="{{campaign.product.url}}" target="_blank" >
+                                                        <h6 style="font-size: 15px; text-decoration: underline;">{{campaign.product.url}}</h6>
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-5 p-4">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <h5 class="pink">Respuestas</h5>
-                                                    </div>
-                                                    <div class="row scroll">
-                                                        <div class="scroll">
-                                                            <div class="row">
-                                                                <div class="col-md-2">
-                                                                    <img  src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle" style="width: 200px; height: max-content;">
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <h5>{{influencernames[e]}}</h5>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <!--<a class="btn btn-1 btn-thumpsup" >
-                                                                        <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 25px !important;"></i>
-                                                                    </a>
-                                                                    <a class="btn btn-1 btn-thumbs-down" >
-                                                                        <i class="fa fa-thumbs-down" aria-hidden="true" style="font-size: 25px !important;"></i>
-                                                                    </a>-->
-                                                                    <a class="btn btn-1 btn-thumbs-down" >
-                                                                        <i class="fa fa-minus" aria-hidden="true" style="font-size: 20px !important;"></i>
-                                                                    </a>
-                                                                </div>
+                                        </div>
+                                        <div class="col-md-5 p-4">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <h5 class="pink">Respuestas</h5>
+                                                </div>
+                                                <div class="row scroll">
+                                                    <div class="scroll">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <img *ngIf="!campaign.influencer.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 200px; height: max-content;">
+                                                                <img *ngIf="campaign.influencer.imageUrl" [src]="campaign.influencer.imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h5>{{getUserName(campaign.influencer.username)}}</h5>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <!--<a class="btn btn-1 btn-thumpsup" >
+                                                                    <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                                </a>
+                                                                <a class="btn btn-1 btn-thumbs-down" >
+                                                                    <i class="fa fa-thumbs-down" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                                </a>-->
+                                                                <a class="btn btn-1 btn-thumbs-down" >
+                                                                    <i class="fa fa-minus" aria-hidden="true" style="font-size: 20px !important;"></i>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row float-right mr-1 mt-5">
-                                                        <h6 class="pink"><i class="fa fa-clock-o" aria-hidden="true"></i> {{campaignStartDate[e]}}</h6>
-                                                    </div>
+                                                </div>
+                                                <div class="row float-right mr-1 mt-5">
+                                                    <h6 class="pink"><i class="fa fa-clock-o" aria-hidden="true"></i> {{getCampaignStartDate(campaign.createdAt)}}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -100,63 +100,61 @@
                       </ngb-tab>
 
                       // EN CURSO
-                      <ngb-tab title="En Curso">
+                      <ngb-tab title="En Curso ({{inProgreessCampaigns.length}})">
                         <ng-template ngbTabContent>
-                            <div class="row mt-5 d-flex justify-content-center" *ngIf="campaigns.length===0">
+                            <div class="row mt-5 d-flex justify-content-center" *ngIf="inProgreessCampaigns.length===0">
                                 <h1 class="mt-5 ">No hay Campañas</h1>
                             </div>
-                            <div *ngIf="products.length!==0 && influencers.length!==0">
-                                <div class="container mt-5" *ngFor="let campaign of campaigns; let i = index">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <button *ngIf="campaign.cState==1" type="button" id="step1Button" class="btn btn-round btn-circle">{{i}}</button>
-                                        </div>
-                                        <div class="col-md-11">
-                                            <div class="shadow" *ngIf="campaign.cState==1">
-                                                <div class="row float-right mr-4 mt-4">
-                                                    <a class="btn btn-1 btn-primary" >
-                                                        <i class="fa fa-comments" aria-hidden="true" style="font-size: 25px !important;"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-5" >
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="col-md-6 p-4">
-                                                                    <div class="row userinfo">
-                                                                        <h5 class="pink">{{influencernames[i]}}</h5>
-                                                                    </div>
-                                                                    <div class="row userinfo">
-                                                                        <h5>{{influencerages[i]}}, {{influencers[i].country}}</h5>
-                                                                    </div>
-                                                                    <div class="row userinfo">
-                                                                        <h6>{{influencers[i].description}}</h6>
-                                                                    </div>
+                            <div class="container mt-5" *ngFor="let campaign of inProgreessCampaigns; let i = index">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <button type="button" id="step1Button" class="btn btn-round btn-circle">{{i+1}}</button>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <div class="shadow">
+                                            <div class="row float-right mr-4 mt-4">
+                                                <a class="btn btn-1 btn-primary" >
+                                                    <i class="fa fa-comments" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                </a>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5" >
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-6 p-4">
+                                                                <div class="row userinfo">
+                                                                    <h5 class="pink">{{getUserName(campaign.influencer.username)}}</h5>
                                                                 </div>
-                                                                <div class="col-md-6 d-flex justify-content-center p-4">
-                                                                    <img *ngIf="!influencers[i].imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                                                    <img *ngIf="influencers[i].imageUrl" [src]="influencers[i].imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                                                <div class="row userinfo">
+                                                                    <h5>{{getUserInfoFormatted(campaign.influencer)}}, {{campaign.influencer.country}}</h5>
                                                                 </div>
+                                                                <div class="row userinfo">
+                                                                    <h6>{{campaign.influencer.description}}</h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 d-flex justify-content-center p-4">
+                                                                <img *ngIf="!campaign.influencer.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                                                <img *ngIf="campaign.influencer.imageUrl" [src]="campaign.influencer.imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2 d-flex justify-content-center p-4">
-                                                        <i class="fa fa-arrows-h" aria-hidden="true" style="color: #e83a80; font-size: 149px !important;"></i>
-                                                    </div>
-                                                    <div class="col-md-5" >
-                                                        <div class="container">
-                                                            <div class="row">
-                                                                <div class="col-md-6 d-flex justify-content-center p-4" >
-                                                                    <img *ngIf="!products[i].urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                                                    <img *ngIf="products[i].urlimages" [src]="products[i].urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                                </div>
+                                                <div class="col-md-2 d-flex justify-content-center p-4">
+                                                    <i class="fa fa-arrows-h" aria-hidden="true" style="color: #e83a80; font-size: 149px !important;"></i>
+                                                </div>
+                                                <div class="col-md-5" >
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-6 d-flex justify-content-center p-4" >
+                                                                <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                                                <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                                            </div>
+                                                            <div class="col-md-6 p-4" >
+                                                                <div class="row userinfoFL">
+                                                                    <h5 class="pink">{{user.username}}</h5>
                                                                 </div>
-                                                                <div class="col-md-6 p-4" >
-                                                                    <div class="row userinfoFL">
-                                                                        <h5 class="pink">{{user.username}}</h5>
-                                                                    </div>
-                                                                    <div class="row userinfoFL">
-                                                                        <h5>{{products[i].name}}</h5>
-                                                                    </div>
+                                                                <div class="row userinfoFL">
+                                                                    <h5>{{campaign.product.name}}</h5>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -172,9 +170,9 @@
                       <ngb-tab title="Finalizadas">
                         <ng-template ngbTabContent>
                           <div class="container" >
-                            <div class="row mt-5 d-flex justify-content-center" *ngIf="campaigns.length===0">
+                            <!--<div class="row mt-5 d-flex justify-content-center" *ngIf="campaigns.length===0">
                                 <h1 class="mt-5 ">No hay Campañas</h1>
-                            </div>
+                            </div>-->
                           </div>
                         </ng-template>
                       </ngb-tab>
