@@ -8,10 +8,13 @@
     </ngx-spinner>
     <section class="section section-lg">
         <div class="container">
-            <div class="row row-grid align-items-center">
-                <div class="col-md-6 order-md-1">
-                    <div class="pr-md-5">
-                        <h2>Solicitudes</h2>
+            <div class="d-flex mt-3">
+                <div class="row">
+                    <div class="col-md-7 order-md-1 border-products">
+                        <h4>Solicitudes</h4>
+                    </div>
+                    <div class="col-md-5 order-md-1">
+                        <button class="btn btn-1 btn-outline-primary ml-2" type="button">Tu Precio: 3€</button>
                     </div>
                 </div>
             </div>
@@ -31,7 +34,7 @@
                                     <div class="row">
                                         <div class="col-md-2 d-flex justify-content-center p-4">
                                             <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                            <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                            <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid  shadow-lg" style="width: 150px; height: 150px;">
                                         </div>
 
                                         <div class="col-md-5 p-4">
@@ -62,16 +65,188 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <h6 class="pink"><i class="fa fa-clock-o" aria-hidden="true"></i> {{getCampaignStartDate(campaign.createdAt)}}</h6>
-                                                    <a class="btn btn-1 btn-thumpsup ml-5" (click)="acceptRequest(campaign.campaignId)" >
+                                                    <a class="btn btn-1 btn-thumpsup ml-5" (click)="showAcceptOptions(campaign.campaignId);">
                                                         <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 25px !important;"></i>
                                                     </a>
-                                                    <a class="btn btn-1 btn-thumbs-down  ml-4" (click)="cancelRequest()">
+                                                    <a class="btn btn-1 btn-thumbs-down  ml-4" (click)="cancelOptions(campaign.campaignId);">
                                                         <i class="fa fa-thumbs-down" aria-hidden="true" style="font-size: 25px !important;"></i>
                                                     </a>
                                                 </div>
                                                 <div class="row mt-5">
                                                     <p>{{campaign.product.description}}</p>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container mt-4" id="cancel{{campaign.campaignId}}" hidden="">
+                                    <form role="form" (ngSubmit)="declineRequest(campaign.campaignId)"  [ngClass]="{'focused':focus===true}">       
+                                        <div class="row">
+                                            <h3>Escribe tu respuesta</h3>
+                                        </div>
+                                        <div class="row">
+                                            <h5>(Las marcas podrán valorar tu respuesta y esto afectará tu Calidad)</h5>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <input type="text" placeholder="" [(ngModel)]="response" name="response" class="form-control form-control-alternative" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-icon btn-3 btn-secondary-2 ml-4 float-right" type="submit">
+                                                    <span class="btn-inner--text">Declinar</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="container mt-4" id="accept{{campaign.campaignId}}" hidden="" >
+                                    <div class="row">
+                                        <h5>Compartiré este producto en:</h5>
+                                    </div>
+                                    <div class="row">
+                                        <h6>(Elige aquellos medios en los que compartirás el producto con tu audiencia)</h6>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <h3 class="blue">Instagram</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Una Instagram story</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Un post de Instagram</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <h3 class="blue">Blog</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Un blog acerca del producto</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Un blog acerca de la marca</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <h3 class="blue">Cupón de descuento</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Pide a la marca un cupón de descuento para compartir con tus seguidores (Ej: CUPON12)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <h3 class="blue">Youtube</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>El principio o final de un video</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Durante un video</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Dedicaré todo un video al producto o empresa</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <h3 class="blue">Twitter</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Un Tweet</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <h3 class="blue">Tik Tok</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Un post</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <h3 class="blue">Facebook</h3>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custom-control custom-checkbox mb-3 mr-3">
+                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                                                    <label class="custom-control-label" for="customCheck1">
+                                                        <span>Un post en mi página de Facebook</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="row">
+                                                <h3 class="blue">Escoge tu talla:</h3>
+                                            </div>
+                                            <div class="row">
+                                                <h4>S</h4>
+                                                <h4>M</h4>
+                                                <h4>L</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="row">
+                                                <button class="btn btn-icon btn-3 btn-secondary ml-4 float-right" (onclick)="acceptRequest(campaign.campaignId)" type="submit">
+                                                    <span class="btn-inner--text">Guardar</span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

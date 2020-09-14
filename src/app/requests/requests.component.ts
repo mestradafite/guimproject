@@ -13,6 +13,7 @@ export class RequestsComponent implements OnInit {
   private user: UserInterface;
   private pendingCampaigns: CampaignInterface[] = [];
   private inProgressCampaigns: CampaignInterface[] = [];
+  private response: string;
 
 
   constructor(private authService: AuthService, private spinner: NgxSpinnerService) { }
@@ -29,7 +30,6 @@ export class RequestsComponent implements OnInit {
       .subscribe(data => {
         console.log("Getting user requests...");
         this.pendingCampaigns = data;
-
         this.spinner.hide();
       },
       error => {
@@ -78,4 +78,29 @@ export class RequestsComponent implements OnInit {
       });
   }
 
+  showAcceptOptions(divId: string){
+    document.getElementById("cancel"+divId).hidden = true;
+    document.getElementById("accept"+divId).hidden = !document.getElementById("accept" + divId).hidden;
+
+  }
+
+  cancelOptions(divId: string){
+    document.getElementById("accept"+divId).hidden = true;
+    document.getElementById("cancel"+divId).hidden = !document.getElementById("cancel" + divId).hidden;
+  }
+
+  declineRequest(campaignId){
+    console.log(this.response);
+    this.spinner.show();
+      return this.authService.updateCampaign(campaignId, "0", true, this.response)
+      .subscribe(data => {
+        console.log("Cancelando solicitud");
+        this.spinner.hide();
+        window.location.reload();
+      },
+      error => {
+        console.log(error);
+      });
+    
+  }
 }

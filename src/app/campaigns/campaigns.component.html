@@ -77,11 +77,11 @@
                                                             <div class="col-md-2">
                                                                 <!--<a class="btn btn-1 btn-thumpsup" >
                                                                     <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 25px !important;"></i>
-                                                                </a>
-                                                                <a class="btn btn-1 btn-thumbs-down" >
-                                                                    <i class="fa fa-thumbs-down" aria-hidden="true" style="font-size: 25px !important;"></i>
                                                                 </a>-->
-                                                                <a class="btn btn-1 btn-thumbs-down" >
+                                                                <a class="btn btn-1 btn-thumbs-down" *ngIf="campaign.canceled" >
+                                                                    <i class="fa fa-thumbs-down" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                                </a>
+                                                                <a class="btn btn-1 btn-thumbs-down" *ngIf="!campaign.canceled">
                                                                     <i class="fa fa-minus" aria-hidden="true" style="font-size: 20px !important;"></i>
                                                                 </a>
                                                             </div>

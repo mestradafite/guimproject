@@ -118,7 +118,7 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
   }
 
   addNewCampaign(product, influencer){
-    return this.authService.addCampaign(this.authService.getCurrentUser().id, product, influencer, "0", "0")
+    return this.authService.addCampaign(this.authService.getCurrentUser().id, product, influencer, "0", "0", false, "")
       .subscribe(data => {
         this.spinner.hide();
         this.router.navigateByUrl('/campaigns');

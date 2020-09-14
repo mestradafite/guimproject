@@ -32,3 +32,61 @@
     border-color: #5e72e4 !important;
     color: white !important;
 }
+
+.btn-secondary{
+    background-color: #e83a80;
+    border-color: #e83a80;
+    color: white !important;
+    padding: 6px;
+    font-size: 15px;
+}
+
+
+.btn-secondary:active{
+    background-color: #e83a80 !important;
+    border-color: #e83a80 !important;
+    color: white !important;
+}
+
+.btn-secondary-2{
+    background-color: white !important;
+    border-color: white !important;
+    color: #e83a80 !important;
+    padding: 6px;
+    font-size: 15px;
+}
+
+
+.btn-secondary-2:active{
+    background-color: white !important;
+    border-color: white !important;
+    color: #e83a80 !important;
+}
+
+.blue{
+    color: #5e72e4;
+}
+
+.border-products{
+    border-right: 0.0625rem solid rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-primary{
+    color: #32325d;
+    background-color: transparent;
+    background-image: none;
+    border-color: #32325d;
+}
+
+
+.btn-outline-primary:focus {
+    box-shadow: 0 0 0 0 #32325d;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.show>.btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    border-color: #32325d;
+    background-color: #32325d;
+}

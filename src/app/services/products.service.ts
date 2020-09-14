@@ -12,7 +12,7 @@ import { ProductInterface } from "../models/product-interface";
 export class ProductsService {
 
   private PRODUCTO_DEV = "http://localhost:3000/dev";
-  private PRODUCTO_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
+  private PRODUCTO_PROD = "https://90zdt80047.execute-api.us-east-1.amazonaws.com/dev";
 
   constructor(private htttp: HttpClient) {}
   headers: HttpHeaders = new HttpHeaders({

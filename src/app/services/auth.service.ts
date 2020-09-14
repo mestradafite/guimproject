@@ -15,7 +15,7 @@ import { ProductInterface } from "../models/product-interface";
 export class AuthService {
 
   private LOGIN_DEV = "http://localhost:3000/dev";
-  private LOGIN_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
+  private LOGIN_PROD = "https://90zdt80047.execute-api.us-east-1.amazonaws.com/dev";
 
   constructor(private htttp: HttpClient) {}
   headers: HttpHeaders = new HttpHeaders({
@@ -142,12 +142,12 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  addCampaign(userid: string, product: ProductInterface, influencer: UserInterface, valoration: string, cState: string): Observable<any> {
+  addCampaign(userid: string, product: ProductInterface, influencer: UserInterface, valoration: string, cState: string, canceled: boolean, message: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/insertcampaign";
     return this.htttp
       .post<CampaignInterface>(
         url_api,
-        { userid, influencer, product, valoration, cState },
+        { userid, influencer, product, valoration, cState, canceled, message },
         { headers: this.headers }
       )
       .pipe(map(data => data));
@@ -175,12 +175,12 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  updateCampaign(campaignId: string, cState: string): Observable<any> {
+  updateCampaign(campaignId: string, cState: string, canceled?: boolean, message?: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/updatecampaign";
     return this.htttp
       .put<UserSettingsInterface>(
         url_api,
-        { campaignId, cState },
+        { campaignId, cState, canceled, message },
         { headers: this.headers }
       )
       .pipe(map(data => data));

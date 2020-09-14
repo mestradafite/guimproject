@@ -26,7 +26,7 @@ export class EditProfileComponent implements OnInit {
   private selectedFile: File = null;
   private closeResult: string;
   private alertErrorVisible: boolean;
-  private PRODUCTO_PROD = "https://fjdpswr5d2.execute-api.us-east-1.amazonaws.com/dev";
+  private PRODUCTO_PROD = "https://90zdt80047.execute-api.us-east-1.amazonaws.com/dev";
   private username: string = "";
 
 
