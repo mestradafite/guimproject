@@ -62,8 +62,8 @@
                             <div class="row mt-2">
                                 <input type="file" name="file" id="file" class="inputfile" (change)="onFileSelected($event)" >
                                 <label class="row ml-1" for="file">
-                                    <img for="file" src="../../assets/img/brand/user.svg" width="15%" alt="" *ngIf="!imgURL" class="rounded-circle">
-                                    <img for="file" [src]="imgURL" alt="" width="50%" height="100%" *ngIf="imgURL">
+                                    <img for="file"  src="../../assets/img/brand/user.svg" alt="" *ngIf="!imgURL" class="rounded-circle image-resize">
+                                    <img for="file" [src]="imgURL" alt="" *ngIf="imgURL" class="rounded-circle image-resize">
                                 </label>
                             </div>
                             <div class="row mt-5">
@@ -115,6 +115,9 @@
                             <div class="row mt-5">
                                 <h5>Descripción</h5>
                             </div>
+                            <div class="row mt-2">
+                                <textarea [(ngModel)]="user.description" name="description"  cols="200" rows="5"></textarea>
+                            </div>
                             <div class="row mt-5">
                                 <h4>Redes sociales</h4>
                             </div>
@@ -130,9 +133,6 @@
                                 <div class="col-md-6">
 
                                 </div>
-                            </div>
-                            <div class="row mt-2">
-                                <textarea [(ngModel)]="user.description" name="description"  cols="200" rows="5"></textarea>
                             </div>
                             <div class="row float-right mt-5 mb-5">
                                 <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" type="submit">

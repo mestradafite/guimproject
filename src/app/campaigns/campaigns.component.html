@@ -29,12 +29,16 @@
                             <div class="container mt-5" *ngFor="let campaign of pendingCampaigns; let e = index" >
                                 <div class="shadow">
                                     <div class="row">
-                                        <div class="col-md-2 d-flex justify-content-center p-4">
-                                            <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                            <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                        <div class="col-md-3">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="image-resize" >
+                                                    <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="image-resize" >
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div class="col-md-5 p-4">
+                                        <div class="col-md-5 mt-2">
                                             <div class="container">
                                                 <div class="row">
                                                     <h5 style="text-decoration: underline;">{{user.username}}</h5>
@@ -58,7 +62,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-5 p-4">
+                                        <div class="col-md-4 mt-4">
                                             <div class="container">
                                                 <div class="row">
                                                     <h5 class="pink">Respuestas</h5>

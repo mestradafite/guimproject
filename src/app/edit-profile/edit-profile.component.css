@@ -51,6 +51,11 @@
     cursor: pointer;
 }
 
-.instagram{
-    
+.image-resize{
+    display: block;
+    margin: 0 auto;
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    object-position: center center;
 }

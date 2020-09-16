@@ -83,6 +83,12 @@
     color: white;
 }
 
+.btn-primary-back{
+    background-color: unset;
+    border-color: white;
+    color: #e83a80 !important;
+}
+
 .btn-default{
     background-color: white;
     color: #32325d;
@@ -100,4 +106,10 @@
 .dropdown-item:hover{
     background-color: #32325d;
     color: white !important;
+}
+
+.image-resize{
+    height: 300px;
+    object-fit: cover;
+    object-position: center center;
 }

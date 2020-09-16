@@ -33,6 +33,7 @@ export class NewProductComponent implements OnInit {
   step3;
   actualStep;
   public imgURL: any;
+  private state = 0;
 
   constructor(private spinner: NgxSpinnerService, private modalService: NgbModal, private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { 
     this.alerts.push({
@@ -162,6 +163,7 @@ export class NewProductComponent implements OnInit {
   }
 
   getProductSizes(){
+    this.product.sizes = "";
     for (let i = 0; i < this.sizes.length; i++) {
       if(this.sizesEnabled[i]){
         this.product.sizes = this.product.sizes  + this.sizes[i] + "/";
@@ -197,6 +199,10 @@ export class NewProductComponent implements OnInit {
   }
 
   nextStep(stepNum: number){
+    if(stepNum === 1){
+        this.changeStep(stepNum);
+    }
+
     if(stepNum === 2){
       if(this.imgURL===undefined) {
         this.open(this.content, 'Notification', '');
@@ -214,18 +220,55 @@ export class NewProductComponent implements OnInit {
   }
   
   changeStep(stepNum: number){
-    let prevStepButton = document.getElementById('step'+(stepNum-1) + 'Button');
-    prevStepButton.classList.remove('btn-primary');
-    prevStepButton.classList.add('btn-default');
-  
-    let nextStepButton = document.getElementById('step'+stepNum + 'Button');
-    nextStepButton.classList.remove('btn-default');
-    nextStepButton.classList.add('btn-primary');
-  
+    //this.actualStep.parentNode.removeChild(this.actualStep);
+    // Clear
+    this.clearButtons();
+    if(this.state<stepNum){
+      // Go forward
+      let prevStepButton = document.getElementById('step'+(stepNum-1) + 'Button');
+    
+      prevStepButton.classList.remove('btn-primary');
+      prevStepButton.classList.add('btn-default');
+      
+      let nextStepButton = document.getElementById('step'+stepNum + 'Button');
+      nextStepButton.classList.remove('btn-default');
+      nextStepButton.classList.add('btn-primary');
+      
+    }else{
+      //Go back
+      let prevStepButton = document.getElementById('step'+stepNum + 'Button');
+    
+      prevStepButton.classList.add('btn-primary');
+      prevStepButton.classList.remove('btn-default');
+      
+      if(stepNum!==3){
+        let nextStepButton = document.getElementById('step'+(stepNum+1) + 'Button');
+        nextStepButton.classList.add('btn-default');
+        nextStepButton.classList.remove('btn-primary');
+      }
+      
+    }
+ 
     let nextStep = document.getElementById('step'+stepNum);
-    this.actualStep.parentNode.removeChild(this.actualStep);
+    this.actualStep.classList.add('hidden')
+    
     this.actualStep = nextStep;
     nextStep.classList.remove('hidden');
+    this.state = stepNum;
+  }
+
+  clearButtons(){
+      let prevStepButton = document.getElementById('step1Button');
+      prevStepButton.classList.remove('btn-primary');
+      prevStepButton.classList.add('btn-default');
+      
+      let nextStepButton = document.getElementById('step2Button');
+      nextStepButton.classList.remove('btn-primary');
+      nextStepButton.classList.add('btn-default');
+
+      let nextStepButton3 = document.getElementById('step3Button');
+      nextStepButton3.classList.remove('btn-primary');
+      nextStepButton3.classList.add('btn-default');
   }
 
   checkInfoProduct(){
@@ -235,7 +278,6 @@ export class NewProductComponent implements OnInit {
         this.product.category === ""    ||
         this.product.tags === ""        ||
         this.product.url === ""         ||
-        this.product.sizes === ""       ||
         this.product.description === ""){
       return false;
     }else{
@@ -266,6 +308,8 @@ export class NewProductComponent implements OnInit {
   }
 
   addTag(selectedTag: string){
+    console.log("adding tag");
+    
     this.selectedTags.push(selectedTag);
     this.tags = this.tags.filter(item => item != selectedTag);
     this.setProductTags();

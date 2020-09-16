@@ -34,33 +34,20 @@
         <div class="container mt-5" *ngFor="let product of products; let i = index ">
             <div class="shadow">
                 <div class="row ">
-                    <div class="col-md-3 imageSize d-flex justify-content-center">
-                        <img class="imgsize" [src]="product.urlimages" width="50%"  alt="">
+                    <div class="col-md-3 mt-4 mb-4 d-flex justify-content-center">
+                        <img class="imgsize" class="image-resize" [src]="product.urlimages" alt="">
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-6">
                         <div class="container">
                             <div class="row mt-4">
-                                <div class="col-md-9">
+                                <div class="col-md-12">
                                     <h2>{{product.name}}</h2>
-                                </div>
-                                <div class="col-md-3" >
-                                    <button class="btn btn-icon btn-3 btn-primary" type="button" [routerLink]="['/influencers', product.id]">
-                                        <span class="btn-inner--text">Enviar</span>
-                                        <span class="btn-inner--icon"><i class="fa fa-paper-plane"></i></span>
-                                    </button>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-9 blockruby">
                                     <h6>{{product.sizes}}</h6>
                                     <h6 *ngFor="let disabledSize of disabledSizes[i]" style="color: gray;">/{{disabledSize}}</h6>
-                                    
-                                </div>
-                                <div class="col-md-3 mt-4">
-                                    <a class="" style="cursor: pointer;">
-                                        <span class="btn-inner--text">Editar</span>
-                                        <span class="btn-inner--icon ml-2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-                                    </a>
                                 </div>
                             </div>
                             <div class="row">
@@ -80,6 +67,27 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="container">
+                            <div class="row mt-4  mr-5">
+                                <div class="ml-auto">
+                                    <button class="btn btn-icon btn-3 btn-primary" type="button" [routerLink]="['/influencers', product.id]">
+                                        <span class="btn-inner--text">Enviar</span>
+                                        <span class="btn-inner--icon"><i class="fa fa-paper-plane"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row mt-4 mr-5">
+                                <div class="ml-auto">
+                                    <a class="" style="cursor: pointer;">
+                                        <span class="btn-inner--text">Editar</span>
+                                        <span class="btn-inner--icon ml-2"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

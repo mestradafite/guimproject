@@ -79,15 +79,15 @@
                 <div class="stepwizard">
                     <div class="stepwizard-row">
                         <div class="stepwizard-step">
-                            <button type="button" id="step1Button" class="btn btn-primary btn-circle">1</button>
+                            <button type="button" (click)="nextStep(1)" id="step1Button" class="btn btn-primary btn-circle">1</button>
                             <p>Imágenes</p>
                         </div>
                         <div class="stepwizard-step">
-                            <button type="button" id="step2Button" class="btn btn-default btn-circle" disabled="disabled">2</button>
+                            <button type="button" (click)="nextStep(2)" id="step2Button" class="btn btn-default btn-circle" >2</button>
                             <p>Información</p>
                         </div>
                         <div class="stepwizard-step">
-                            <button type="button" id="step3Button" class="btn btn-default btn-circle" disabled="disabled">3</button>
+                            <button type="button" (click)="nextStep(3)" id="step3Button" class="btn btn-default btn-circle" >3</button>
                             <p>Resumen</p>
                         </div> 
                     </div>
@@ -100,8 +100,8 @@
                 <div class="row d-flex justify-content-center mt-5">
                     <input type="file" name="file" id="file" class="inputfile" (change)="onFileSelected($event)" >
                     <label class="row d-flex justify-content-center" for="file">
-                        <img for="file" src="../../../assets/img/icons/common/add.png" alt="" *ngIf="!imgURL">
-                        <img for="file" [src]="imgURL" alt="" width="50%" height="100%" *ngIf="imgURL">
+                        <img for="file" class="image-resize" src="../../../assets/img/icons/common/add.png" alt="" *ngIf="!imgURL">
+                        <img for="file" class="image-resize" [src]="imgURL" alt="" *ngIf="imgURL">
                     </label>
                 </div>
                 <div class="row d-flex justify-content-center mt-5">
@@ -255,6 +255,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="row float-left mt-5" >
+                    <button class="btn btn-icon btn-3 btn-primary-back  ml-4 float-left" (click)="nextStep(1)" type="button">
+                        <span class="btn-inner--text"><i class="fa fa-arrow-left" aria-hidden="true"></i> Atrás</span>
+                    </button>
+                </div>
                 <div class="row float-right mt-5">
                     <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" (click)="nextStep(3)" type="submit">
                         <span class="btn-inner--text">Siguiente</span>
@@ -284,7 +289,8 @@
                                 <h4>Tallas</h4>
                             </div>
                             <div class="row mt-2">
-                                <span>{{product.sizes}}</span>
+                                <span *ngIf="product.sizes">{{product.sizes}}</span>
+                                <span *ngIf="!product.sizes">Sin información</span>
                             </div>
                             <div class="row mt-4">
                                 <h4>Descripción del producto</h4>
@@ -295,8 +301,13 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img for="file" [src]="imgURL" alt="" width="50%" *ngIf="imgURL">
+                        <img for="file" class="image-resize" [src]="imgURL" alt="" width="50%" *ngIf="imgURL">
                     </div>
+                </div>
+                <div class="row float-left mt-5" >
+                    <button class="btn btn-icon btn-3 btn-primary-back ml-4 float-left" (click)="nextStep(2)" type="button">
+                        <span class="btn-inner--text"><i class="fa fa-arrow-left" aria-hidden="true"></i> Atrás</span>
+                    </button>
                 </div>
                 <div class="row float-right mt-5">
                     <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" (click)="insertProduct()" type="button">

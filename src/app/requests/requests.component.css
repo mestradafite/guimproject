@@ -90,3 +90,11 @@
     border-color: #32325d;
     background-color: #32325d;
 }
+
+.image-resize{
+    display: block;
+    margin: 0 auto;
+    height: 250px;
+    object-fit: cover;
+    object-position: center center;
+}
