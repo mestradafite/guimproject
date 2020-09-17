@@ -62,8 +62,8 @@
                             <div class="row mt-2">
                                 <input type="file" name="file" id="file" class="inputfile" (change)="onFileSelected($event)" >
                                 <label class="row ml-1" for="file">
-                                    <img for="file" src="../../assets/img/brand/user.svg" width="15%" alt="" *ngIf="!imgURL" class="rounded-circle">
-                                    <img for="file" [src]="imgURL" alt="" width="50%" height="100%" *ngIf="imgURL">
+                                    <img for="file" src="../../assets/img/brand/user.svg" alt="" *ngIf="!imgURL" class="rounded-circle image-resize">
+                                    <img for="file" [src]="imgURL" alt="" *ngIf="imgURL" class="rounded-circle image-resize">
                                 </label>
                             </div>
                             <div class="row mt-5">

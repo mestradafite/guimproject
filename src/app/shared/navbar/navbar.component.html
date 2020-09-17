@@ -81,8 +81,13 @@
           </a>
         </li>
         <li class="nav-item d-lg-block ml-lg-4" *ngIf="!isUserLogged()">
+          <a class="btn btn-1 btn-primary-principal" [routerLink]="['/pre-signup']">
+            <span class="nav-link-inner--text">Regístrate</span>
+          </a>
+        </li>
+        <li class="nav-item d-lg-block ml-lg-4" *ngIf="!isUserLogged()">
           <a class="btn btn-neutral btn-icon" [routerLink]="['/login']">
-            <span class="nav-link-inner--text">Log in</span>
+            <span class="nav-link-inner--text">Iniciar sesión</span>
           </a>
         </li>
 

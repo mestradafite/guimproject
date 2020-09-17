@@ -50,3 +50,12 @@
 .badge:hover{
     cursor: pointer;
 }
+
+.image-resize{
+    display: block;
+    margin: 0 auto;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    object-position: center center;
+}

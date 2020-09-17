@@ -91,13 +91,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    this.spinner.show();
     if(this.user.email === "" && this.user.password === "" ){
       // User o contraseña vacios
       console.log("Undefined");
       this.alertVisible = true;
       
     }else{
+      this.spinner.show();
       return this.authService.loginuser(this.user.email, this.user.password)
       .subscribe(data => {
         console.log("Login Ok! ");
