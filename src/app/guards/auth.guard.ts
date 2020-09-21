@@ -7,14 +7,36 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  private userValid = false;
   constructor(private authService: AuthService, private router: Router) { }
+
   canActivate() {
+    console.log(this.authService.getCurrentUser());
+    
     if (this.authService.getCurrentUser()) {
+      console.log(this.authService.getCurrentUser());
+      if(this.authService.getCurrentUser().influencer == true) this.checkInfoInfluencer();
+      else this.checkInfoBrand();
+      
       // login TRUE
-      return true;
+      return this.userValid;
     } else {
       this.router.navigate(['/login']);
       return false;
     }
+  }
+
+  checkInfoInfluencer(){
+    console.log(this.authService.getCurrentUser());
+    
+    if(this.authService.getCurrentUser().birthDay != "" && this.authService.getCurrentUser().country!="" && this.authService.getCurrentUser().imageUrl !=""){
+      this.userValid = true;
+    }else{
+      this.router.navigate(['/edit-profile']);
+    }
+  }
+
+  checkInfoBrand(){
+
   }
 }

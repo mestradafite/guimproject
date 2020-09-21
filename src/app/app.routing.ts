@@ -34,7 +34,7 @@ const routes: Routes =[
     { path: 'register',           component: SignupComponent },
     { path: 'landing',          component: LandingComponent },
     { path: 'login',          component: LoginComponent },
-    { path: 'new-product',          component: NewProductComponent },
+    { path: 'new-product',          component: NewProductComponent, canActivate: [AuthGuard] },
     { path: 'send-product',          component: SendProductComponent, canActivate: [AuthGuard] },
     { path: 'settings',          component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'edit-profile',          component: EditProfileComponent },

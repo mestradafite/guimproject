@@ -112,8 +112,7 @@ export class LoginComponent implements OnInit {
           this.loginSucceed = true;
           this.user = data;
           this.authService.setUser(this.user);
-          if(this.user.influencer) this.router.navigateByUrl('/user-profile');
-          else if(this.user.brand) this.router.navigateByUrl('/brand-profile');
+          this.checkUserInfo();
 
           this.authService.getUserSettings(this.user.id)
           .subscribe(data => {
@@ -136,6 +135,11 @@ export class LoginComponent implements OnInit {
       });
     }
     
+  }
+
+  checkUserInfo(){
+    if(this.user.influencer) this.router.navigateByUrl('/user-profile');
+    else if(this.user.brand) this.router.navigateByUrl('/brand-profile');
   }
 
   isAlertVisible(){
