@@ -18,6 +18,8 @@ import { BrandProfileComponent } from '../brand-profile/brand-profile.component'
 export class InfluencersComponent implements OnInit, AfterViewInit {
 
   private users: UserInterface[] = []; 
+  private selectedUsers: UserInterface[] = []; 
+
   private usersAge: string[] = [];
   private birthday: any = {
     year: "",
@@ -85,11 +87,12 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addCampaign(influencerId: string){
+  addCampaign(influencerId: string, index: number){
     if(this.authService.getCurrentUser() && this.selectedProductId){
-      this.spinner.show();
-      this.getProductAndInfluencer(influencerId);
-      
+      this.selectedUsers.push(this.users[index]);
+      this.users.splice(index,1);
+      /*this.spinner.show();
+      this.getProductAndInfluencer(influencerId);*/
     }    
   }
 
