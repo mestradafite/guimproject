@@ -69,6 +69,11 @@ float: right;
     padding-left: unset;
 }
 
+.margin-out{
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
 .shadow{
     height: 60%;
 }
@@ -111,7 +116,8 @@ float: right;
     background-color: #5e72e4;
     border-color: #5e72e4;
     color: white !important;
-    padding: 6px;
+    padding: 3px;
+    height: min-content;
     font-size: 15px;
 }
 
@@ -146,8 +152,9 @@ float: right;
 }
 
 .progress-label span{
-    font-size: 8px !important;
+    font-size: 9px !important;
     color: #5e72e4;
+    background-color: white;
 }
 
 .fontmin{
@@ -185,15 +192,31 @@ float: right;
 .image-resize-mini{
     display: block;
     margin: 0 auto;
-    height: 40px;
+    height: 30px;
+    width: 30px;
     object-fit: cover;
     object-position: center center;
+}
+
+.heading{
+    color: black;
+    font-size: 1.2em;
 }
 
 .centered{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#navbarDropdownMenuLink2{
+    text-transform: capitalize;
+}
+
+#namesearch{
+    margin-top: -5px;
+    border: 1px solid #172b4d;
+    color: #172b4d;
 }
 
 @media only screen and (max-width: 767px) {

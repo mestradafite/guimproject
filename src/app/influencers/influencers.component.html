@@ -9,17 +9,17 @@
     </ngx-spinner>
     <section class="section section-lg">
         <div class="container">
-            <div class="row mt-5">
+            <div class="row">
                 <div class="col-md-2 shadow">
-                    <h3 class="pink mt-4">Filtrar <i class="fa fa-sliders" aria-hidden="true"></i></h3>
+                    <h4 class="pink mt-4">Filtrar <i class="fa fa-sliders" aria-hidden="true"></i></h4>
                     <hr>
                     <div class="container">
                         <div class="row">
-                            <h3 class="dropdown" (click)="setVisible(0)" >Demografía <i *ngIf="!demografyVisible" class="fa fa-caret-down" aria-hidden="true"></i> <i *ngIf="demografyVisible" class="fa fa-caret-up" aria-hidden="true"></i></h3>
+                            <h4 class="dropdown" (click)="setVisible(0)" >Demografía <i *ngIf="!demografyVisible" class="fa fa-caret-down" aria-hidden="true"></i> <i *ngIf="demografyVisible" class="fa fa-caret-up" aria-hidden="true"></i></h4>
                         </div>
                         <div id="demografy" *ngIf="demografyVisible">
                             <div class="row">
-                                <h5>Edad</h5>
+                                <h4>Edad</h4>
                             </div>
                             <div class="row mt-4">
                                 <!-- Range slider container -->
@@ -74,7 +74,7 @@
                         </div>
                         <hr class="nomargin15">
                         <div class="row">
-                            <h3 class="dropdown" (click)="setVisible(1)" >Plataformas <i *ngIf="!platformVisible" class="fa fa-caret-down" aria-hidden="true"></i> <i *ngIf="platformVisible" class="fa fa-caret-up" aria-hidden="true"></i></h3>
+                            <h4 class="dropdown" (click)="setVisible(1)" >Plataformas <i *ngIf="!platformVisible" class="fa fa-caret-down" aria-hidden="true"></i> <i *ngIf="platformVisible" class="fa fa-caret-up" aria-hidden="true"></i></h4>
                         </div>
                         <div id="platform" *ngIf="platformVisible">
                             <div class="row" *ngFor="let social of socials">
@@ -95,7 +95,7 @@
                         </div>
                         <hr class="nomargin15">
                         <div class="row">
-                            <h3 class="dropdown" (click)="setVisible(2)" >Precio <i *ngIf="!priceVisible" class="fa fa-caret-down" aria-hidden="true"></i> <i *ngIf="priceVisible" class="fa fa-caret-up" aria-hidden="true"></i></h3>
+                            <h4 class="dropdown" (click)="setVisible(2)" >Precio <i *ngIf="!priceVisible" class="fa fa-caret-down" aria-hidden="true"></i> <i *ngIf="priceVisible" class="fa fa-caret-up" aria-hidden="true"></i></h4>
                         </div>
                         <div id="price" *ngIf="priceVisible">
                             <div class="row" class="mt-5">
@@ -104,7 +104,7 @@
                         </div>
                         <hr class="nomargin15">
                         <div class="row">
-                            <h3 class="dropdown" (click)="setVisible(3)" >Etiquetas <i *ngIf="!tagsVisible" class="fa fa-caret-down" aria-hidden="true"></i> <i *ngIf="tagsVisible" class="fa fa-caret-up" aria-hidden="true"></i></h3>
+                            <h4 class="dropdown" (click)="setVisible(3)" >Etiquetas <i *ngIf="!tagsVisible" class="fa fa-caret-down" aria-hidden="true"></i> <i *ngIf="tagsVisible" class="fa fa-caret-up" aria-hidden="true"></i></h4>
                         </div>
                         <div id="tags" *ngIf="tagsVisible">
                             <div class="row">
@@ -124,32 +124,32 @@
                     
                 </div>
                 <div class="col-md-10">
-                    <div class="mt-3">
-                        <h3>Selecciona uno o más influencers para tu campaña</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1">
-                            <h5>Ordenar</h5>
-                        </div>
-                        <div class="col-md-3 ml-2">
-                            <div class="dropdown" ngbDropdown>
-                                <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
-                                    {{selectedFilter}}
-                                </a>
-                                <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
-                                    <li *ngFor="let filter of filters;  let i = index"> 
-                                        <a class="dropdown-item" (click)="changeFilter(filter)">
-                                            {{filter}}
-                                        </a>
-                                    </li>
-                                </ul>
+                    <div class="container">
+                        <h2>Selecciona uno o más influencers para tu campaña</h2>
+                        <div class="row mt-5">
+                            <div class="col-md-1">
+                                <h5>Ordenar</h5>
                             </div>
-                        </div>
-                        <div class="col-md-3 ml-2">
-                            <h5>Buscar por nombre</h5>
-                        </div>
-                        <div class="col-md-3">
-                            <input (keyup)="search()" id="namesearch" type="text" placeholder="Nombre y Apellidos" class="form-control form-control-alternative" />
+                            <div class="col-md-3 ml-2">
+                                <div class="dropdown" ngbDropdown>
+                                    <a class="btn btn-default dropdown-toggle" id="navbarDropdownMenuLink2" ngbDropdownToggle>
+                                        {{selectedFilter}}
+                                    </a>
+                                    <ul class="" aria-labelledby="navbarDropdownMenuLink2" ngbDropdownMenu>
+                                        <li *ngFor="let filter of filters;  let i = index"> 
+                                            <a class="dropdown-item" (click)="changeFilter(filter)">
+                                                {{filter}}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-1 mr-3">
+                                <h5>Nombre</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <input (keyup)="search()" id="namesearch" type="text" placeholder="Nombre y Apellidos" class="form-control form-control-alternative" />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -157,26 +157,26 @@
                             <div class="container mt-5 nomargin" *ngFor="let user of users; let i = index">
                                 <div class="shadow">
                                     <div class="row">
-                                        <div class="col-md-3 d-flex justify-content-center p-4">
+                                        <div class="col-md-3 d-flex justify-content-center p-4 mt-4">
                                             <img *ngIf="!user.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg image-resize">
                                             <img *ngIf="user.imageUrl" [src]="user.imageUrl" class="img-fluid rounded-circle shadow-lg image-resize">
                                         </div>
                                         <div class="col-md-9 padding-mobile">
-                                            <div class="row mt-3">
-                                                <h5 class="mr-2 pink mr-3">{{user.username}}</h5>
+                                            <div class="row mt-3" style="margin-bottom: -15px;">
+                                                <h4 class="mr-2 mr-3">{{user.username}}</h4>
                                                 <a class="btn btn-1 btn-primary" >
                                                     <span class="nav-link-inner--text">15 <i class="fa fa-diamond" aria-hidden="true"></i>
                                                     </span>
                                                 </a>
-                                                <a class="btn btn-1 btn-check ml-auto mr-5 mt-1" (click)="addCampaign(user.id, i)" >
+                                                <a class="btn btn-1 btn-check ml-auto mr-5 mt-1" (click)="addCampaign(user.id, i)" *ngIf="selectedProductId" >
                                                     <i class="fa fa-plus" aria-hidden="true" style="font-size: 25px !important;"></i>
                                                 </a>
                                             </div>
                                             <div class="row">
                                                 <span style="margin-right: 2px;" *ngIf="usersAge[i]">{{usersAge[i]}},</span><span>{{user.country}}</span>
                                             </div>
-                                            <div class="row">
-                                                <div class="mr-4" style="margin-left: 10px;">
+                                            <div class="row mt-2">
+                                                <div class="mr-5" style="margin-left: 10px;">
                                                     <div class="row d-flex justify-content-center">
                                                         <span class="heading"><i class="fa fa-instagram" aria-hidden="true"></i></span>
                                                     </div>
@@ -184,7 +184,7 @@
                                                         <span class="description">33K</span>
                                                     </div>
                                                 </div>
-                                                <div class="mr-4">
+                                                <div class="mr-5">
                                                     <div class="row d-flex justify-content-center">
                                                         <span class="heading"><i class="fa fa-youtube-play" aria-hidden="true"></i></span>
                                                     </div>
@@ -192,7 +192,7 @@
                                                         <span class="description">5K</span>
                                                     </div>
                                                 </div>
-                                                <div class="mr-4">
+                                                <div class="mr-5">
                                                     <div class="row d-flex justify-content-center">
                                                         <span class="heading"><i class="fa fa-twitter" aria-hidden="true"></i></span>
                                                     </div>
@@ -201,10 +201,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row mt-3">
+                                            <div class="row mt-2">
                                                 <div class="col-md-4">
                                                     <div class="row">
-                                                        <h5 class="pink">Puntuación</h5>
+                                                        <h5>Puntuación</h5>
                                                         <div class="container nopadding">
                                                             <div class="row">
                                                                 <div class="col-md-6" style="margin-right: inherit;">
@@ -267,7 +267,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="row">
-                                                        <h5 class="pink">Estadísticas</h5>
+                                                        <h5>Estadísticas</h5>
                                                         <div class="container nopadding fontmin">
                                                             <div class="row mt-2">
                                                                 <div class="col-md-7" >
@@ -307,7 +307,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="row">
-                                                        <h5 class="pink">Valoración</h5>
+                                                        <h5>Valoración</h5>
                                                         <div class="container nopadding">
                                                             <div class="row mt-2 nomargin">
                                                                 <fieldset class="rating">
@@ -336,27 +336,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 mt-5">
+                        <div class="col-md-3 mt-5 nopadding">
                                 <div class="shadow">
                                     <div class="row d-flex justify-content-center pinkdiv nomargin">
-                                        <h4 class="mt-2" style="color: white;">Mis Campañas</h4>
+                                        <h5 class="mt-2" style="color: white;">Mis Campañas</h5>
                                     </div>
                                     <div class="row nomargin mt-3" *ngIf="selectedUsers.length==0">
                                         <div class="col-md-12">
-                                            <span class="centered" style="font-size: 15px;">Nada seleccionado</span>
+                                            <span class="centered mt-3">Nada seleccionado</span>
                                         </div>
                                     </div>
-                                    <div class="row nomargin mt-3" *ngFor="let user of selectedUsers">
-                                        <div class="col-md-1 nopadding">
-                                            <i class="fa fa-times" style="cursor: pointer;" aria-hidden="true"></i>
+                                    <div class="row nomargin mt-3" *ngFor="let user of selectedUsers; let i = index;">
+                                        <div class="col-md-1" (click)="removeSelected(i);" >
+                                            <i class="fa fa-times mt-1" style="cursor: pointer;" aria-hidden="true"></i>
                                         </div>
-                                        <div class="col-md-2 nopadding">
+                                        <div class="col-md-3 nopadding margin-out">
                                             <img  [src]="user.imageUrl" class="img-fluid rounded-circle shadow-lg image-resize-mini" >
                                         </div>
                                         <div class="col-md-7 nopadding">
-                                            <span style="font-size: 15px;">{{user.username}}</span>
-                                        </div>
-                                        <div class="col-md-2 nopadding">
+                                            <span class="mr-1" style="font-size: 15px; color: #32325d;">{{user.username}}</span>
                                             <span style="font-size: 15px; color: #5e72e4;">5 <i class="fa fa-diamond" aria-hidden="true"></i></span>
                                         </div>
                                     </div>
@@ -373,8 +371,8 @@
                                     </div>
                                     <div class="row ml-auto">
                                         <div class="col-md-12 mb-3 ml-auto">
-                                            <button class="btn btn-icon btn-3 btn-primary" type="button">
-                                                <span class="btn-inner--text">Enviar</span>
+                                            <button class="btn btn-icon btn-3 btn-primary" type="button" (click)="insertCampaign();">
+                                                <span class="btn-inner--text" style="text-transform: none;">Enviar</span>
                                             </button>
                                         </div>
                                     </div>

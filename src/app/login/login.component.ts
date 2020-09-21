@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   public alerts: Array<IAlert> = [];
   private backup: Array<IAlert>;
   private alertVisible: boolean;
+  private alertValidVisible: boolean;
   private loginSucceed: boolean;
 
   focus;
@@ -42,9 +43,9 @@ export class LoginComponent implements OnInit {
         icon: 'ni ni-bell-55'
     }, {
         id: 3,
-        type: 'warning',
-        strong: 'Warning!',
-        message: 'This is a warning alert—check it out!',
+        type: 'danger',
+        strong: 'Error!',
+        message: 'Usuario no validado, vuelvo a intentarlo en unos instantes o ponte en contacto con nosotros',
         icon: 'ni ni-bell-55'
     }, {
         id: 4,
@@ -84,6 +85,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.alertVisible = false;
     this.loginSucceed = false;
+    this.alertValidVisible = false;
     if (this.authService.getCurrentUser()) {
       if(this.authService.getCurrentUser().influencer) this.router.navigateByUrl('/user-profile');
       else if(this.authService.getCurrentUser().brand) this.router.navigateByUrl('/brand-profile');
@@ -102,23 +104,30 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         console.log("Login Ok! ");
         console.log(data);
-        this.loginSucceed = true;
-        this.user = data;
-        this.authService.setUser(this.user);
-        if(this.user.influencer) this.router.navigateByUrl('/user-profile');
-        else if(this.user.brand) this.router.navigateByUrl('/brand-profile');
+        if(data == "User not validated"){
+          this.loginSucceed = false;
+          this.alertValidVisible = true;
+          this.spinner.hide();
+        }else{
+          this.loginSucceed = true;
+          this.user = data;
+          this.authService.setUser(this.user);
+          if(this.user.influencer) this.router.navigateByUrl('/user-profile');
+          else if(this.user.brand) this.router.navigateByUrl('/brand-profile');
+
+          this.authService.getUserSettings(this.user.id)
+          .subscribe(data => {
+              this.spinner.hide();
+              this.userSettings = data[0];
+              this.authService.setUserSettings(this.userSettings);
+            },
+            error => {
+              this.spinner.hide();
+              console.log(error);
+              this.alertVisible = true;
+            });
+        }
         
-        this.authService.getUserSettings(this.user.id)
-        .subscribe(data => {
-            this.spinner.hide();
-            this.userSettings = data[0];
-            this.authService.setUserSettings(this.userSettings);
-          },
-          error => {
-            this.spinner.hide();
-            console.log(error);
-            this.alertVisible = true;
-          });
       },
       error => {
         this.spinner.hide();

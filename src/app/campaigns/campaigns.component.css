@@ -76,3 +76,12 @@
         object-fit: cover;
         object-position: center center;
     }
+
+    .image-resize-mini{
+        display: block;
+        margin: 0 auto;
+        height: 35px;
+        width: 130px;
+        object-fit: cover;
+        object-position: center center;
+    }

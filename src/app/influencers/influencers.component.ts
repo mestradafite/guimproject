@@ -37,7 +37,7 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
   private idioms: string[] = ["Español", "Inglés", "Catalán", "Sueco", "Alemán", "Francés"];
   private socials: string[] = ["Instagram", "Youtube", "Blogs", "Tik Tok", "Twitter", "Facebook"];
   private tags: string[] = [];
-  private filters: string[] = ["Calidad: Más a menos", "Calidad: Menos a más"];
+  private filters: string[] = ["Calidad: Más A menos", "Calidad: Menos A más", "Influencia: Más A menos", "Influencia: Menos A más", "Engagement: Más A menos", "Engagement: Menos A más", "Afinidad: Más A menos", "Afinidad: Menos A más",];
   private selectedFilter: string = this.filters[0];
   private selectedProductId: string = "";
 
@@ -91,26 +91,47 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
     if(this.authService.getCurrentUser() && this.selectedProductId){
       this.selectedUsers.push(this.users[index]);
       this.users.splice(index,1);
-      /*this.spinner.show();
-      this.getProductAndInfluencer(influencerId);*/
     }    
   }
 
-  getProductAndInfluencer(influencerId: string){
+  removeSelected(index: number){
+    this.users.push(this.selectedUsers[index]);
+    this.selectedUsers.splice(index, 1);
+  }
+
+  insertCampaign(){
+    this.spinner.show();
+    this.getProductAndInfluencer();
+  }
+
+  getProductAndInfluencer(){
     var product;
     var influencer;
       this.productService.getProductById(this.selectedProductId)
       .subscribe(data => {
         product = data[0]; 
         if(product){
-          this.authService.getUserById(influencerId)
-          .subscribe(data => {
-            influencer = data[0];
-            this.addNewCampaign(product, influencer);
-          },
-          error => {
-            console.log(error);
-          });     
+          for (let i = 0; i < this.selectedUsers.length; i++) {
+            this.authService.getUserById(this.selectedUsers[i].id)
+            .subscribe(data => {
+              influencer = data[0];
+                if(i == this.selectedUsers.length){
+                  this.addNewCampaign(product, influencer);
+                }else{
+                  this.authService.addCampaign(this.authService.getCurrentUser().id, product, influencer, "0", "0", false, "")
+                  .subscribe(data => {
+                    this.spinner.hide();
+                    this.router.navigateByUrl('/campaigns');
+                  },
+                  error => {
+                    console.log(error);
+                  });
+                }
+            },
+            error => {
+              console.log(error);
+            });     
+          }
         }  
       },
       error => {
@@ -121,10 +142,8 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
   }
 
   addNewCampaign(product, influencer){
-    return this.authService.addCampaign(this.authService.getCurrentUser().id, product, influencer, "0", "0", false, "")
+    this.authService.addCampaign(this.authService.getCurrentUser().id, product, influencer, "0", "0", false, "")
       .subscribe(data => {
-        this.spinner.hide();
-        this.router.navigateByUrl('/campaigns');
       },
       error => {
         console.log(error);
