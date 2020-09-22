@@ -26,9 +26,7 @@ export class AuthGuard implements CanActivate {
     }
   }
 
-  checkInfoInfluencer(){
-    console.log(this.authService.getCurrentUser());
-    
+  checkInfoInfluencer(){    
     if(this.authService.getCurrentUser().birthDay != "" && this.authService.getCurrentUser().country!="" && this.authService.getCurrentUser().imageUrl !=""){
       this.userValid = true;
     }else{
@@ -36,7 +34,11 @@ export class AuthGuard implements CanActivate {
     }
   }
 
-  checkInfoBrand(){
-
+  checkInfoBrand(){    
+    if( this.authService.getCurrentUser().country!="" && this.authService.getCurrentUser().imageUrl !="" && this.authService.getCurrentUser().website && this.authService.getCurrentUser().description){
+      this.userValid = true;
+    }else{
+      this.router.navigate(['/edit-brand']);
+    }
   }
 }
