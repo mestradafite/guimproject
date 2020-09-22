@@ -27,15 +27,15 @@ export class AuthGuard implements CanActivate {
   }
 
   checkInfoInfluencer(){    
-    if(this.authService.getCurrentUser().birthDay != "" && this.authService.getCurrentUser().country!="" && this.authService.getCurrentUser().imageUrl !=""){
+    if(this.authService.getCurrentUser().username!="" && this.authService.getCurrentUser().birthDay != "" && this.authService.getCurrentUser().country!="" && this.authService.getCurrentUser().imageUrl !=""){
       this.userValid = true;
     }else{
       this.router.navigate(['/edit-profile']);
     }
   }
 
-  checkInfoBrand(){    
-    if( this.authService.getCurrentUser().country!="" && this.authService.getCurrentUser().imageUrl !="" && this.authService.getCurrentUser().website && this.authService.getCurrentUser().description){
+  checkInfoBrand(){
+    if(this.authService.getCurrentUser().username!="" && this.authService.getCurrentUser().country!="" && this.authService.getCurrentUser().imageUrl !="" && this.authService.getCurrentUser().website && this.authService.getCurrentUser().description){
       this.userValid = true;
     }else{
       this.router.navigate(['/edit-brand']);
