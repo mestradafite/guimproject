@@ -18,7 +18,7 @@
                 <span class="alert-inner--text">  <strong>{{alerts[3].strong}} </strong>{{ alerts[3].message }}</span>
             </ngb-alert>
         </div>
-        <div class="container">
+        <div class="container"> 
             <div class="row">
                 <div class="col-md-4">
                     <ng-template #noImage let-c="close" let-d="dismiss">
@@ -98,30 +98,46 @@
                     <h3>Añade una imágen principal</h3>
                 </div>
                 <div class="row d-flex justify-content-center mt-5">
-                    <input type="file" name="file" id="file" class="inputfile" (change)="onFileSelected($event)" >
+                    <input type="file" name="file" id="file" class="inputfile" (change)="onFileSelected($event, 0)" >
                     <label class="row d-flex justify-content-center" for="file">
-                        <img for="file" class="image-resize" src="../../../assets/img/icons/common/add.png" alt="" *ngIf="!imgURL">
-                        <img for="file" class="image-resize" [src]="imgURL" alt="" *ngIf="imgURL">
+                        <img for="file" class="image-resize" src="../../../assets/img/icons/common/add.png" alt="" *ngIf="!imgURL[0]">
+                        <img for="file" class="image-resize" [src]="imgURL[0]" alt="" *ngIf="imgURL[0]">
                     </label>
                 </div>
                 <div class="row d-flex justify-content-center mt-5">
                     <h4>Añade más imágenes del producto (recomendado)</h4>
                 </div>
-                <div class="row">
+                <div class="row mt-5 mb-5">
                     <div class="col-md-3">
-                        <img src="../../../assets/img/icons/common/white-image.png" width="100%"  alt="">
+                        <input type="file" name="file1" id="file1" class="inputfile" (change)="onFileSelected($event, 1)" >
+                        <label class="row d-flex justify-content-center" for="file1">
+                            <img for="file1" class="image-resize-mini" src="../../../assets/img/icons/common/white-image.png" alt="" *ngIf="!imgURL[1]">
+                            <img for="file1" class="image-resize-mini" [src]="imgURL[1]" alt="" *ngIf="imgURL[1]">
+                        </label>
                     </div>
-                    <div class="col-md-3">
-                        <img src="../../../assets/img/icons/common/white-image.png" width="100%"  alt="">
+                    <div class="col-md-3" *ngIf="imgURL[1]">
+                        <input type="file" name="file2" id="file2" class="inputfile" (change)="onFileSelected($event, 2)" >
+                        <label class="row d-flex justify-content-center" for="file2">
+                            <img for="file2" class="image-resize-mini" src="../../../assets/img/icons/common/white-image.png" alt="" *ngIf="!imgURL[2]">
+                            <img for="file2" class="image-resize-mini" [src]="imgURL[2]" alt="" *ngIf="imgURL[2]">
+                        </label>
                     </div>
-                    <div class="col-md-3">
-                        <img src="../../../assets/img/icons/common/white-image.png" width="100%"  alt="">
+                    <div class="col-md-3" *ngIf="imgURL[2]">
+                        <input type="file" name="file3" id="file3" class="inputfile" (change)="onFileSelected($event, 3)" >
+                        <label class="row d-flex justify-content-center" for="file3">
+                            <img for="file3" class="image-resize-mini" src="../../../assets/img/icons/common/white-image.png" alt="" *ngIf="!imgURL[3]">
+                            <img for="file3" class="image-resize-mini" [src]="imgURL[3]" alt="" *ngIf="imgURL[3]">
+                        </label>
                     </div>
-                    <div class="col-md-3">
-                        <img src="../../../assets/img/icons/common/white-image.png" width="100%"  alt="">
+                    <div class="col-md-3" *ngIf="imgURL[3]">
+                        <input type="file" name="file4" id="file4" class="inputfile" (change)="onFileSelected($event, 4)" >
+                        <label class="row d-flex justify-content-center" for="file4">
+                            <img for="file4" class="image-resize-mini" src="../../../assets/img/icons/common/white-image.png" alt="" *ngIf="!imgURL[4]">
+                            <img for="file4" class="image-resize-mini" [src]="imgURL[4]" alt="" *ngIf="imgURL[4]">
+                        </label>
                     </div>
                 </div>
-                <div class="row float-right">
+                <div class="row mt-4 float-right">
                     <button class="btn btn-icon btn-3 btn-primary ml-4 float-right" (click)="nextStep(2)" type="button">
                         <span class="btn-inner--text">Siguiente</span>
                     </button>
@@ -301,7 +317,11 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img for="file" class="image-resize" [src]="imgURL" alt="" width="50%" *ngIf="imgURL">
+                        <carousel>
+                            <div class="carousel-cell" *ngFor="let image of imgURL">
+                                <img [src]="image">
+                            </div>
+                        </carousel>
                     </div>
                 </div>
                 <div class="row float-left mt-5" >

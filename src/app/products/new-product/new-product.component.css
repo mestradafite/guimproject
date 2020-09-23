@@ -108,8 +108,15 @@
     color: white !important;
 }
 
-.image-resize{
+.image-resize{ 
     height: 300px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.image-resize-mini{ 
+    height: 250px;
+    width: 250px;
     object-fit: cover;
     object-position: center center;
 }

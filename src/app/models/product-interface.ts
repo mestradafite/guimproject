@@ -2,7 +2,7 @@
 export interface ProductInterface {
     id?: string,
     userid?: string,
-    urlimages?: string,
+    urlimages?: string[],
     name?: string,
     category?: string,
     tags?: string,

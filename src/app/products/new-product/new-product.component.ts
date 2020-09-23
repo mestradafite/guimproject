@@ -32,7 +32,8 @@ export class NewProductComponent implements OnInit {
   step2;
   step3;
   actualStep;
-  public imgURL: any;
+  public imgURL: any[] = [];
+  public imagesCarousel: any
   private state = 0;
 
   constructor(private spinner: NgxSpinnerService, private modalService: NgbModal, private authService: AuthService, private productsService: ProductsService, private http: HttpClient, private router: Router) { 
@@ -81,7 +82,7 @@ export class NewProductComponent implements OnInit {
   private product: ProductInterface = {
     id: "",
     userid: "",
-    urlimages: "",
+    urlimages: [],
     name: "",
     category: "",
     tags: "",
@@ -134,16 +135,18 @@ export class NewProductComponent implements OnInit {
       return response.json();
     })
     .then(function(json){
-      imageURL = json.imageURL;
-      return fetch(json.uploadURL, {
-        method: "PUT",
-        body: file
-      })
+      for (let i = 0; i < self.imgURL.length; i++) {
+        self.imgURL[i] = json.imageURL;
+        fetch(json.uploadURL, {
+          method: "PUT",
+          body: file
+        })
+      }
     })
     .then(function(){
-      self.product.urlimages = imageURL;
-      console.log(self.product.urlimages);
-      
+      for (let i = 0; i < self.imgURL.length; i++) {
+        self.product.urlimages.push(self.imgURL[i]);
+      }      
       self.uploadProduct();
     });
   }
@@ -275,7 +278,7 @@ export class NewProductComponent implements OnInit {
     this.getProductSizes();
     if (this.authService.getCurrentUser().id === "" ||
         this.product.name === ""        || 
-        this.product.category === ""    ||
+        this.product.category === ""    || 
         this.product.tags === ""        ||
         this.product.url === ""         ||
         this.product.description === ""){
@@ -290,7 +293,7 @@ export class NewProductComponent implements OnInit {
     this.product.category = this.selectedSortOrder;
   }
 
-  onFileSelected(event){
+  onFileSelected(event, position){
     this.selectedFile = <File>event.target.files[0];
 
     var mimeType = this.selectedFile.type;
@@ -302,9 +305,9 @@ export class NewProductComponent implements OnInit {
     var reader = new FileReader();
       reader.readAsDataURL(this.selectedFile); 
       reader.onload = (_event) => { 
-      this.imgURL = reader.result; 
+      this.imgURL[position] = reader.result;
+      //this.formatCarousel();
     }
-    
   }
 
   addTag(selectedTag: string){

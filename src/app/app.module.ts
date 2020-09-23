@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { HttpClientModule} from '@angular/common/http';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -68,7 +69,8 @@ import { RequestsComponent } from './requests/requests.component';
     RouterModule,
     AppRoutingModule,
     HomeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    IvyCarouselModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
