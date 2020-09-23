@@ -18,8 +18,8 @@
             <span></span>
         </div>  
         <section class="section mt-5">
-            <div *ngIf="alertErrorVisible">
-                <ngb-alert [type]="alerts[3].type"  [dismissible]="true"  (close)="alertErrorVisible = false" >
+            <div *ngIf="alertVisible">
+                <ngb-alert [type]="alerts[3].type"  [dismissible]="false"  (close)="alertVisible = false" >
                     <ng-container *ngIf="alerts[3].icon">
                     <div class="alert-inner--icon">
                         <i class="{{alerts[3].icon}}"></i>

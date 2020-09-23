@@ -20,6 +20,7 @@ export interface IAlert {
 export class EditBrandComponent implements OnInit {
   @Input()
   public alerts: Array<IAlert> = [];
+  private alertVisible: boolean;
   private countries: string[] = ["España", "UK", "USA"];
   private selectedCountry: string = "Escoge una opción...";
   public imgURL: any;
@@ -62,8 +63,8 @@ export class EditBrandComponent implements OnInit {
   }, {
       id: 4,
       type: 'danger',
-      strong: 'Error!',
-      message: 'Ha habido un problema durante la creación del producto, lamentamos las molestias...',
+      strong: 'Atención!',
+      message: 'Para continuar debes rellenar toda la información...',
       icon: 'ni ni-support-16'
   });
    }
@@ -72,6 +73,11 @@ export class EditBrandComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
+    console.log(this.user);
+    
+    if(this.user.username=="" || this.user.country=="" || this.user.imageUrl =="" || this.user.website=="" || this.user.description==""){
+      this.alertVisible = true;
+    }
     this.formatUserName();
     if(this.user.country){
       this.selectedCountry = this.user.country;

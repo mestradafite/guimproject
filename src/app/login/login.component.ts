@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   @Input()
   public alerts: Array<IAlert> = [];
   private backup: Array<IAlert>;
-  private alertVisible: boolean;
+  private alertVisible: boolean; 
   private alertValidVisible: boolean;
   private loginSucceed: boolean;
 

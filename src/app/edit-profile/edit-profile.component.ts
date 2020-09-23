@@ -20,6 +20,7 @@ export interface IAlert {
 export class EditProfileComponent implements OnInit {
   @Input()
   public alerts: Array<IAlert> = [];
+  private alertVisible: boolean; 
   private countries: string[] = ["España", "UK", "USA"];
   private selectedCountry: string = "Escoge una opción...";
   public imgURL: any;
@@ -63,8 +64,8 @@ export class EditProfileComponent implements OnInit {
   }, {
       id: 4,
       type: 'danger',
-      strong: 'Error!',
-      message: 'Ha habido un problema durante la creación del producto, lamentamos las molestias...',
+      strong: 'Atención!',
+      message: 'Para continuar debes rellenar toda la información...',
       icon: 'ni ni-support-16'
   });
    }
@@ -73,6 +74,9 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.getCurrentUser();
+    if(this.user.username =="" || this.user.birthDay == "" || this.user.country=="" || this.user.imageUrl ==""){
+      this.alertVisible = true;
+    }
     this.formatUserName();
     if(this.user.country){
       this.selectedCountry = this.user.country;
