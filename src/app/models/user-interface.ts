@@ -16,5 +16,6 @@ export interface UserInterface {
     imageUrl?: string,
     description?: string,
     birthDay?: string,
+    instagramUserName?: string,
     userToken: string;
   }

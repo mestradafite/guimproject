@@ -34,9 +34,9 @@
             </div>
             <div class="col-lg-4 order-lg-1">
               <div class="card-profile-stats d-flex justify-content-center">
-                  <div>
+                  <div *ngIf="followers">
                       <span class="heading"><i class="fa fa-instagram" aria-hidden="true"></i></span>
-                      <span class="description">33K</span>
+                      <span class="description">{{followers}}K</span>
                   </div>
                   <div>
                       <span class="heading"><i class="fa fa-youtube-play" aria-hidden="true"></i></span>

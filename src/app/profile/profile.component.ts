@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { InstagramService } from '../services/instagram.service';
 import { UserInterface } from '../models/user-interface';
 import { AgeFromDateString, AgeFromDate } from 'age-calculator'
 
@@ -30,7 +31,9 @@ export class ProfileComponent implements OnInit {
         day: ""
     }
 
-    constructor(private authService: AuthService) { }
+    private followers;
+
+    constructor(private authService: AuthService, private instagramService: InstagramService) { }
 
     socialNetworks: string[] = ["Instagram", "Youtube", "Twitter"];
     sortOrdersIcons: string[] = ["fa fa-instagram", "fa fa-youtube", "fa fa-twitter"];

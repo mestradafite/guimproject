@@ -136,7 +136,7 @@ export class EditBrandComponent implements OnInit {
 
   updateUserInfo(){
     this.authService.updateUser(this.authService.getCurrentUser().id, this.user.username, this.user.imageUrl, this.user.country, 
-                                              this.user.birthDay, this.user.userLocation, this.user.description, this.user.website)
+                                              this.user.birthDay, this.user.userLocation, this.user.description, this.user.website, "")
     .subscribe(data => {
       console.log("User Submited!");
       this.authService.setUser(this.user);

@@ -99,12 +99,12 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  updateUser(userid: string, username: string, imageUrl: string, country: string, birthDay: string, userLocation: string, description: string, website: string): Observable<any> {
+  updateUser(userid: string, username: string, imageUrl: string, country: string, birthDay: string, userLocation: string, description: string, website: string, instagramUserName: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/updateuser";
     return this.htttp
       .put<UserSettingsInterface>(
         url_api,
-        { userid, username, imageUrl, country, birthDay, userLocation, description, website },
+        { userid, username, imageUrl, country, birthDay, userLocation, description, website, instagramUserName },
         { headers: this.headers }
       )
       .pipe(map(data => data));

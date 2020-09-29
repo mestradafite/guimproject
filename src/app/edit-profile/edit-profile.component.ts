@@ -39,7 +39,8 @@ export class EditProfileComponent implements OnInit {
     imageUrl: "",
     description: "",
     birthDay: "",
-    userToken: ""  
+    userToken: "",
+    instagramUserName: "" 
 }
 
   constructor(private authService: AuthService, private modalService: NgbModal, private spinner: NgxSpinnerService) {
@@ -134,8 +135,10 @@ export class EditProfileComponent implements OnInit {
   }
 
   updateUserInfo(){
+    console.log(this.user.instagramUserName);
+    
     this.authService.updateUser(this.authService.getCurrentUser().id, this.user.username.toLocaleLowerCase(), this.user.imageUrl, this.user.country, 
-                                              this.user.birthDay, this.user.userLocation, this.user.description, this.user.website)
+                                              this.user.birthDay, this.user.userLocation, this.user.description, this.user.website, this.user.instagramUserName)
     .subscribe(data => {
       console.log("User Submited!");
       this.authService.setUser(this.user);

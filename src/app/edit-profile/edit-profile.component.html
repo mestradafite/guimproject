@@ -125,13 +125,13 @@
                                 <span>Añade los links de tus redes para que las marcas puedan ver tus perfiles online. Proporcionar esta información aumenta la posibilidad de que las marcas escojan tu perfil.</span>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <button class="btn btn-icon btn-3 btn-primary instagram" type="button">
-                                        <i class="fa fa-instagram" aria-hidden="true"></i><span class="btn-inner--text">Instagram</span>
-                                    </button>
-                                </div>
-                                <div class="col-md-6">
-
+                                <div class="form-group" [ngClass]="{'focused':focus4===true}">
+                                    <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-instagram" aria-hidden="true"></i></span>
+                                    </div>
+                                    <input class="form-control" placeholder="Nombre de usuario" name="instagramUserName" [(ngModel)]="this.user.instagramUserName" (focus)="focus4=true" (blur)="focus4=false" type="text"/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row float-right mt-5 mb-5">
