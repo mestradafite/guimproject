@@ -39,7 +39,7 @@ const routes: Routes =[
     { path: 'settings',          component: SettingsComponent, canActivate: [AuthGuard] },
     { path: 'edit-profile',          component: EditProfileComponent },
     { path: 'edit-brand',          component: EditBrandComponent },
-    { path: 'influencer-profile',          component: InfluencerProfileComponent, canActivate: [AuthGuard] },
+    { path: 'influencer-profile/:id',          component: InfluencerProfileComponent, canActivate: [AuthGuard] },
     { path: 'influencers',          component: InfluencersComponent, canActivate: [AuthGuard] },
     { path: 'influencers/:id',          component: InfluencersComponent, canActivate: [AuthGuard] },
     { path: 'requests',          component: RequestsComponent, canActivate: [AuthGuard] },

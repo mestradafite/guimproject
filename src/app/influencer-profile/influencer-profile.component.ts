@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { UserInterface } from '../models/user-interface';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AgeFromDateString, AgeFromDate } from 'age-calculator'
 
 @Component({
@@ -27,7 +28,7 @@ export class InfluencerProfileComponent implements OnInit {
         day: ""
     }
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService, private _Activatedroute: ActivatedRoute) { }
 
     socialNetworks: string[] = ["Instagram", "Youtube", "Twitter"];
     sortOrdersIcons: string[] = ["fa fa-instagram", "fa fa-youtube", "fa fa-twitter"];
@@ -36,10 +37,17 @@ export class InfluencerProfileComponent implements OnInit {
     currDiv: string = this.socialNetworks[0];
 
     ngOnInit() {
-        this.user = this.authService.getCurrentUser();
-        console.log(this.user);
         
-        this.getUserAge();
+        this._Activatedroute.paramMap.subscribe(params => { 
+            this.authService.getUserById(params.get('id'))
+            .subscribe(data => {
+                this.user = data[0];
+            },
+            error => {
+              console.log(error);
+            });
+            this.getUserAge();
+        });
     } 
 
     getUserAge(){

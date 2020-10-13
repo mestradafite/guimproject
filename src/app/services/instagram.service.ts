@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/operators";
+import { UserSettingsInterface } from "../models/user-settings-interface";
 
 @Injectable({
   providedIn: "root"
@@ -16,14 +17,12 @@ export class InstagramService {
     "Content-Type": "application/json"
   });
 
-  getUserById(instagramUserName: string): Observable<any> {
-    const url_api = this.LOGIN_PROD + "/getfollowers";
+
+  getInstagramInfoByUsername(username: string): Observable<any> {
+    //const url_api = this.LOGIN_PROD + "/getfollowers";
+    const url_api = "https://www.instagram.com/" + username + "/?__a=1";
     return this.htttp
-      .post(
-        url_api,
-        { instagramUserName },
-        { headers: this.headers }
-      )
+      .get(url_api)
       .pipe(map(data => data));
   }
 }

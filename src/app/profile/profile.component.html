@@ -36,7 +36,7 @@
               <div class="card-profile-stats d-flex justify-content-center">
                   <div *ngIf="followers">
                       <span class="heading"><i class="fa fa-instagram" aria-hidden="true"></i></span>
-                      <span class="description">{{followers}}K</span>
+                      <span class="description">{{followers}}</span>
                   </div>
                   <div>
                       <span class="heading"><i class="fa fa-youtube-play" aria-hidden="true"></i></span>
@@ -77,20 +77,20 @@
                               <h4>Puntuación</h4>
                               <div class="container">
                                 <div class="row mt-4 mb-5">
-                                  <div class="col-lg-3">
+                                  <div class="col-lg-4">
                                     <div class="progress-wrapper">
                                       <div class="progress-info">
                                         <div class="progress-label">
                                           <span>Calidad</span>
                                         </div>
                                         <div class="progress-percentage">
-                                          <span>4/5</span>
+                                          <span>0 %</span>
                                         </div>
                                       </div>
-                                      <ngb-progressbar type="default" [value]="70"></ngb-progressbar>
+                                      <ngb-progressbar type="default" [value]="0"></ngb-progressbar>
                                     </div>
                                   </div>
-                                  <div class="col-lg-3">
+                                  <!--<div class="col-lg-3">
                                     <div class="progress-wrapper">
                                       <div class="progress-info">
                                         <div class="progress-label">
@@ -102,31 +102,31 @@
                                       </div>
                                       <ngb-progressbar type="default" [value]="75"></ngb-progressbar>
                                     </div>
-                                  </div>
-                                  <div class="col-lg-3">
+                                  </div>-->
+                                  <div class="col-lg-4">
                                     <div class="progress-wrapper">
                                       <div class="progress-info">
                                         <div class="progress-label">
                                           <span>Engagement</span>
                                         </div>
                                         <div class="progress-percentage">
-                                          <span>3/5</span>
+                                          <span>{{instagramEngagement}} %</span>
                                         </div>
                                       </div>
-                                      <ngb-progressbar type="default" [value]="60"></ngb-progressbar>
+                                      <ngb-progressbar type="default" [value]="instagramEngagement"></ngb-progressbar>
                                     </div>
                                   </div>
-                                  <div class="col-lg-3">
+                                  <div class="col-lg-4">
                                     <div class="progress-wrapper">
                                       <div class="progress-info">
                                         <div class="progress-label">
                                           <span>Afinidad</span>
                                         </div>
                                         <div class="progress-percentage">
-                                          <span>3.5/5</span>
+                                          <span>0 %</span>
                                         </div>
                                       </div>
-                                      <ngb-progressbar type="default" [value]="65"></ngb-progressbar>
+                                      <ngb-progressbar type="default" [value]="0"></ngb-progressbar>
                                     </div>
                                   </div>
                                 </div>
@@ -138,25 +138,25 @@
                                 <div class="row mt-5 mb-5 justify-content-center">
                                   <div class="mt-4 col-lg-3 block justify-content-center" style="width: unset !important;">
                                     <div class="circle">
-                                      <h5>190</h5>
+                                      <h5>0</h5>
                                       <p>Solicitudes</p>
                                     </div>
                                   </div>
                                   <div class="mt-4 col-lg-3 block justify-content-center" style="width: unset !important;">
                                     <div class="circle">
-                                      <h5>96%</h5>
+                                      <h5>0 %</h5>
                                       <p>Respondidas</p>
                                     </div>
                                   </div>
                                   <div class="mt-4 col-lg-3 block justify-content-center" style="width: unset !important;">
                                     <div class="circle">
-                                      <h5>12%</h5>
+                                      <h5>0 %</h5>
                                       <p>Aprobadas</p>
                                     </div>
                                   </div>
                                   <div class="mt-4 col-lg-3 block justify-content-center" style="width: unset !important;">
                                     <div class="circle">
-                                      <h5>2 Días</h5>
+                                      <h5>0 Días</h5>
                                       <p>Comparte en</p>
                                     </div>
                                   </div>
@@ -360,27 +360,27 @@
                                 <div class="container">
                                   <div class="row justify-content-between">
                                     <h7><i class="fa fa-users" aria-hidden="true"></i> Seguidores: </h7>
-                                    <h7> 34.350</h7>
+                                    <h7> {{followers}}</h7>
                                   </div>
                                   <hr style="margin: 0;">
                                   <div class="row justify-content-between">
                                     <h7><i class="fa fa-eye" aria-hidden="true"></i> Views per story: </h7>
-                                    <h7 > 850</h7>
+                                    <h7 > Sin Información</h7>
                                   </div>
                                   <hr style="margin: 0;">
                                   <div class="row justify-content-between">
                                     <h7><i class="fa fa-heart" aria-hidden="true"></i> Likes per post: </h7>
-                                    <h7 > 2.500</h7>
+                                    <h7 > {{averageLikes}}</h7>
                                   </div>
                                   <hr style="margin: 0;">
                                   <div class="row justify-content-between">
                                     <h7><i class="fa fa-comment" aria-hidden="true"></i> Comentarios per post: </h7>
-                                    <h7 > 300</h7>
+                                    <h7 > {{averageComments}}</h7>
                                   </div>
                                   <hr style="margin: 0;">
                                   <div class="row justify-content-between">
-                                    <h7><i class="fa fa-link" aria-hidden="true"></i> Engagement per post: </h7>
-                                    <h7 > 14%</h7>
+                                    <h7><i class="fa fa-link" aria-hidden="true"></i> Engagement: </h7>
+                                    <h7 > {{instagramEngagement}}%</h7>
                                   </div>
                                 </div>
                               </div>
@@ -392,8 +392,8 @@
                                 <h5>Perfil</h5>
                               </div>
                               <div class="row d-flex mt-4">
-                                <a href="https://www.instagram.com/?hl=es" target="_blank" style="text-decoration: underline;">
-                                    <img src="../../assets/img/icons/common/instagram-color.png" width="40px">@martaromero
+                                <a href="https://www.instagram.com/{{this.user.instagramUserName}}" target="_blank" style="text-decoration: underline;">
+                                    <img src="../../assets/img/icons/common/instagram-color.png" width="40px">@{{this.user.instagramUserName}}
                                 </a>
                               </div>
                               <div class="row mt-5 d-flex ">

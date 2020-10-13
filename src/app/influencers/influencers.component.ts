@@ -350,7 +350,9 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
       });
     }
   }
-    
 
+  goToLink(url: string, username: string){
+    window.open(url + username, "_blank");
+  }
 }
 

@@ -156,7 +156,7 @@
                         <div class="col-md-9">
                             <div class="container mt-5 nomargin" *ngFor="let user of users; let i = index">
                                 <div class="shadow">
-                                    <div class="row">
+                                    <div class="row" (click)="goToLink('/#/influencer-profile/', user.id)">
                                         <div class="col-md-3 d-flex justify-content-center p-4 mt-4">
                                             <img *ngIf="!user.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg image-resize">
                                             <img *ngIf="user.imageUrl" [src]="user.imageUrl" class="img-fluid rounded-circle shadow-lg image-resize">
