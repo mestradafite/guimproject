@@ -175,7 +175,7 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  updateCampaign(campaignId: string, cState: string, canceled?: boolean, message?: string): Observable<any> {
+  updateCampaign(campaignId: string, cState: string, canceled: boolean, message: string): Observable<any> {
     const url_api = this.LOGIN_PROD + "/updatecampaign";
     return this.htttp
       .put<UserSettingsInterface>(

@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
     private yScrollStack: number[] = [];
     private showCredit: boolean;
     private userCredit: number;
+    private requestsCount: number = 0;
 
     constructor(public location: Location, private router: Router, private authService: AuthService, private modalService: NgbModal) {
     }
@@ -38,8 +39,24 @@ export class NavbarComponent implements OnInit {
          this.lastPoppedUrl = ev.url;
      });
      
-     if(this.isUserLogged()) this.getUserCredits();
+     if(this.isUserLogged()) {
+         this.getUserCredits();
+         this.getUserPendingRequests();
+     }
     }
+
+    getUserPendingRequests(){
+        if(this.authService.getCurrentUser()){
+          return this.authService.getRequests(this.authService.getCurrentUser().id, "0")
+          .subscribe(data => {
+            console.log("Getting user requests...");
+            this.requestsCount = data.length;
+          },
+          error => {
+            console.log(error);
+          });
+        }
+      }
 
     open() {
         const modalRef = this.modalService.open(NgbdModalContent);
@@ -73,6 +90,8 @@ export class NavbarComponent implements OnInit {
 
     getUserCredits(){
         this.userCredit = Number(this.authService.getCurrentUser().credits); // getuser credit
+        console.log("Credits" + this.userCredit);
+        
         if(this.userCredit>0) this.showCredit = true;
         else this.showCredit = false;
     }

@@ -13,6 +13,7 @@ export class RequestsComponent implements OnInit {
   private user: UserInterface;
   private pendingCampaigns: CampaignInterface[] = [];
   private inProgressCampaigns: CampaignInterface[] = [];
+  private completedCampaigns: CampaignInterface[] = [];
   private response: string;
 
 
@@ -21,6 +22,7 @@ export class RequestsComponent implements OnInit {
   ngOnInit(): void {
     this.getUserPendingRequests();
     this.getUserInProgressCampaigns();
+    this.getUserCompletedCampaigns();
   }
 
   getUserPendingRequests(){
@@ -53,6 +55,21 @@ export class RequestsComponent implements OnInit {
     }
   }
 
+  getUserCompletedCampaigns(){
+    if(this.authService.getCurrentUser()){
+      this.spinner.show();
+      return this.authService.getRequests(this.authService.getCurrentUser().id, "2")
+      .subscribe(data => {
+        console.log("Getting user requests...");
+        this.completedCampaigns = data;
+        this.spinner.hide();
+      },
+      error => {
+        console.log(error);
+      });
+    }
+  }
+
   getCampaignStartDate(timestamp){
     var a = new Date(timestamp);
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -67,7 +84,7 @@ export class RequestsComponent implements OnInit {
 
   acceptRequest(campaignId: string){
     this.spinner.show();
-      return this.authService.updateCampaign(campaignId, "1")
+      return this.authService.updateCampaign(campaignId, "1", false, "") 
       .subscribe(data => {
         console.log("Aceptando solicitud");
         this.spinner.hide();
@@ -89,8 +106,20 @@ export class RequestsComponent implements OnInit {
     document.getElementById("cancel"+divId).hidden = !document.getElementById("cancel" + divId).hidden;
   }
 
+  finalizeRequest(campaignId){
+    this.spinner.show();
+    return this.authService.updateCampaign(campaignId, "2", false, "") // "2" estado finalizado
+    .subscribe(data => {
+      console.log("Finalizando solicitud");
+      this.spinner.hide();
+      window.location.reload();
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
   declineRequest(campaignId){
-    console.log(this.response);
     this.spinner.show();
       return this.authService.updateCampaign(campaignId, "0", true, this.response)
       .subscribe(data => {
@@ -101,6 +130,5 @@ export class RequestsComponent implements OnInit {
       error => {
         console.log(error);
       });
-    
   }
 }

@@ -10,7 +10,7 @@ import { ProductInterface } from '../models/product-interface';
 @Component({
   selector: 'app-campaigns',
   templateUrl: './campaigns.component.html',
-  styleUrls: ['./campaigns.component.css']
+  styleUrls: ['./campaigns.component.css'] 
 })
 export class CampaignsComponent implements OnInit {
 

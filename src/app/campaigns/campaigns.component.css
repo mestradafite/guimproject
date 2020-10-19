@@ -77,6 +77,15 @@
         object-position: center center;
     }
 
+    .image-resize-inprogress{
+        display: block;
+        margin: 0 auto;
+        height: 200px;
+        width: 200px;
+        object-fit: cover;
+        object-position: center center;
+    }
+
     .image-resize-mini{
         display: block;
         margin: 0 auto;

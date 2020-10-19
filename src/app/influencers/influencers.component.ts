@@ -142,7 +142,7 @@ export class InfluencersComponent implements OnInit, AfterViewInit {
   }
 
   addNewCampaign(product, influencer){
-    this.authService.addCampaign(this.authService.getCurrentUser().id, product, influencer, "0", "0", false, "")
+    this.authService.addCampaign(this.authService.getCurrentUser().id, product, influencer, "0", "0", false, "") 
       .subscribe(data => {
       },
       error => {

@@ -33,8 +33,8 @@
                                 <div class="shadow">
                                     <div class="row">
                                         <div class="col-md-2 d-flex justify-content-center p-4">
-                                            <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle image-resize" style="width: 150px; height: max-content;">
-                                            <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid image-resize" style="width: 150px; height: 150px;">
+                                            <img *ngIf="!campaign.product.urlimages[0]" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle image-resize" style="width: 150px; height: max-content;">
+                                            <img *ngIf="campaign.product.urlimages[0]" [src]="campaign.product.urlimages[0]" class="img-fluid image-resize" style="width: 150px; height: 150px;">
                                         </div>
 
                                         <div class="col-md-5 p-4">
@@ -244,7 +244,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="row">
-                                                <button class="btn btn-icon btn-3 btn-secondary ml-4 float-right" (onclick)="acceptRequest(campaign.campaignId)" type="submit">
+                                                <button class="btn btn-icon btn-3 btn-secondary ml-4 float-right" (click)="acceptRequest(campaign.campaignId)" type="submit">
                                                     <span class="btn-inner--text">Guardar</span>
                                                 </button>
                                             </div>
@@ -265,8 +265,8 @@
                                 <div class="shadow">
                                     <div class="row">
                                         <div class="col-md-2 d-flex justify-content-center p-4">
-                                            <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                            <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                            <img *ngIf="!campaign.product.urlimages[0]" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle image-resize" style="width: 150px; height: max-content;">
+                                            <img *ngIf="campaign.product.urlimages[0]" [src]="campaign.product.urlimages[0]" class="img-fluid image-resize" style="width: 150px; height: 150px;">
                                         </div>
 
                                         <div class="col-md-5 p-4">
@@ -299,6 +299,9 @@
                                                     <a class="btn btn-1 btn-primary" >
                                                         <i class="fa fa-comments" aria-hidden="true" style="font-size: 25px !important;"></i>
                                                     </a>
+                                                    <a class="btn btn-1 btn-thumpsup ml-5" (click)="finalizeRequest(campaign.campaignId);">
+                                                        <span>Finalizar</span>
+                                                    </a>
                                                 </div>
                                                 <div class="row mt-5">
                                                     <p>{{campaign.product.description}}</p>
@@ -310,12 +313,62 @@
                             </div>
                         </ng-template>
                       </ngb-tab>
-                      <ngb-tab title="Finalizadas">
+                      <ngb-tab title="Finalizadas ({{completedCampaigns.length}})">
                         <ng-template ngbTabContent>
                           <div class="container" >
-                            <!--<div class="row mt-5 d-flex justify-content-center" *ngIf="campaigns.length===0">
+                            <div class="row mt-5 d-flex justify-content-center" *ngIf="completedCampaigns.length===0">
                                 <h1 class="mt-5 ">No hay Campañas</h1>
-                            </div>-->
+                            </div>
+                            <div class="container mt-5" *ngFor="let campaign of completedCampaigns; let e = index" >
+                                <div class="shadow">
+                                    <div class="row">
+                                        <div class="col-md-2 d-flex justify-content-center p-4">
+                                            <img *ngIf="!campaign.product.urlimages[0]" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle image-resize" style="width: 150px; height: max-content;">
+                                            <img *ngIf="campaign.product.urlimages[0]" [src]="campaign.product.urlimages[0]" class="img-fluid image-resize" style="width: 150px; height: 150px;">
+                                        </div>
+
+                                        <div class="col-md-5 p-4">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <h5 style="text-decoration: underline;">Nombre marca</h5>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.name}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.sizes}}</h6>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <h6>{{campaign.product.tags}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <h6>{{campaign.product.category}}</h6>
+                                                </div>
+                                                <div class="row">
+                                                    <a href="{{campaign.product.url}}" target="_blank" >
+                                                        <h6 style="font-size: 15px; text-decoration: underline;">{{campaign.product.url}}</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 p-4">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <a class="btn btn-1 btn-primary" >
+                                                        <i class="fa fa-comments" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                    </a>
+                                                    <a class="btn btn-1 btn-thumpsup ml-5" >
+                                                        <span>Valorar</span>
+                                                    </a>
+                                                </div>
+                                                <div class="row mt-5">
+                                                    <p>{{campaign.product.description}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
                         </ng-template>
                       </ngb-tab>

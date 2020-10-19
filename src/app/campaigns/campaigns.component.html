@@ -32,8 +32,8 @@
                                         <div class="col-md-3">
                                             <div class="container">
                                                 <div class="row">
-                                                    <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="image-resize" >
-                                                    <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="image-resize" >
+                                                    <img *ngIf="!campaign.product.urlimages[0]" src="../../assets/img/brand/user.svg" class="image-resize" >
+                                                    <img *ngIf="campaign.product.urlimages[0]" [src]="campaign.product.urlimages[0]" class="image-resize" >
                                                 </div>
                                             </div>
                                         </div>
@@ -137,8 +137,8 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 d-flex justify-content-center p-4">
-                                                                <img *ngIf="!campaign.influencer.imageUrl" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                                                <img *ngIf="campaign.influencer.imageUrl" [src]="campaign.influencer.imageUrl" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                                                <img *ngIf="!campaign.influencer.imageUrl" src="../../assets/img/brand/user.svg" class="rounded-circle image-resize-inprogress">
+                                                                <img *ngIf="campaign.influencer.imageUrl" [src]="campaign.influencer.imageUrl" class="rounded-circle image-resize-inprogress">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,8 +150,10 @@
                                                     <div class="container">
                                                         <div class="row">
                                                             <div class="col-md-6 d-flex justify-content-center p-4" >
-                                                                <img *ngIf="!campaign.product.urlimages" src="../../assets/img/brand/user.svg" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
-                                                                <img *ngIf="campaign.product.urlimages" [src]="campaign.product.urlimages" class="img-fluid rounded-circle shadow-lg" style="width: 150px; height: max-content;">
+                                                                <div class="row">
+                                                                    <img *ngIf="!campaign.product.urlimages[0]" src="../../assets/img/brand/user.svg" class="image-resize" >
+                                                                    <img *ngIf="campaign.product.urlimages[0]" [src]="campaign.product.urlimages[0]" class="image-resize" >
+                                                                </div>
                                                             </div>
                                                             <div class="col-md-6 p-4" >
                                                                 <div class="row userinfoFL">
