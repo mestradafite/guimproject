@@ -175,12 +175,12 @@ export class AuthService {
       .pipe(map(data => data));
   }
 
-  updateCampaign(campaignId: string, cState: string, canceled: boolean, message: string): Observable<any> {
+  updateCampaign(campaignId: string, cState: string, canceled: boolean, message: string, options: any): Observable<any> {
     const url_api = this.LOGIN_PROD + "/updatecampaign";
     return this.htttp
       .put<UserSettingsInterface>(
         url_api,
-        { campaignId, cState, canceled, message },
+        { campaignId, cState, canceled, message, options },
         { headers: this.headers }
       )
       .pipe(map(data => data));

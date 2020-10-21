@@ -168,6 +168,76 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="container mt-4">
+                                            <div class="row ml-2">
+                                                <div class="col-md-11">
+                                                    <h3>Proceso</h3>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <i (click)="setProgressDivVisible(i)" *ngIf="!progressVisible[i]" style="font-size: 40px; cursor: pointer; color: #e83a80;" class="fa fa-caret-down" aria-hidden="true"></i> 
+                                                    <i (click)="setProgressDivVisible(i)" *ngIf="progressVisible[i]" style="font-size: 40px; cursor: pointer; color: #e83a80;" class="fa fa-caret-up" aria-hidden="true"></i> 
+                                                </div>
+                                            </div>
+                                            <div class="container ml-4" *ngIf="progressVisible[i]">
+                                                <div class="row" *ngIf="campaign.options.productSend.visible">
+                                                    <span class="clickable" (click)="validate(campaign.campaignId, i, 'productSend')" *ngIf="!campaign.options.productSend.validated">
+                                                        * La marca ha enviado el producto i los datos necesarios
+                                                        <i class="fa fa-check" aria-hidden="true" style="font-size: 25px !important;"></i>
+                                                    </span>
+                                                    <span *ngIf="campaign.options.productSend.validated" style="color: #e83a80;">
+                                                        * La marca ha enviado el producto i los datos necesarios
+                                                        <i class="fa fa-check" aria-hidden="true" style="color: #e83a80; font-size: 25px !important;"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="row" *ngIf="campaign.options.productRecieve.visible">
+                                                    <span *ngIf="!campaign.options.productRecieve.validated">* He recibido el producto</span>
+                                                    <span *ngIf="campaign.options.productRecieve.validated" style="color: #e83a80;">* He recibido el producto</span>
+                                                </div>
+                                                <div class="row" *ngIf="campaign.options.cupon.visible">
+                                                    <span *ngIf="!campaign.options.cupon.validated">* Tu cupón de descuento: </span>
+                                                    <span *ngIf="campaign.options.cupon.validated">* Tu cupón de descuento: {{campaign.options.cupon.cuponId}}</span>
+                                                </div>
+                                                <div class="row">
+                                                    <span>* He compartido el producto en los lugares marcados</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.instStry.visible">
+                                                    <span *ngIf="!campaign.options.instStry.validated">- Una Instagram Story</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.instPost.visible">
+                                                    <span *ngIf="!campaign.options.instPost.validated">- Un post de Instagram</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.blogProd.visible">
+                                                    <span *ngIf="!campaign.options.blogProd.validated">- Un blog acerca del producto</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.blogBrand.visible">
+                                                    <span *ngIf="!campaign.options.blogBrand.validated">- Un blog acerca de la marca</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.ytbInit.visible">
+                                                    <span *ngIf="!campaign.options.ytbInit.validated">- El principio o final de un video de Youtube</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.ytbDuring.visible">
+                                                    <span *ngIf="!campaign.options.ytbDuring.validated">- Durante un video de Youtube</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.ytbAll.visible">
+                                                    <span *ngIf="!campaign.options.ytbAll.validated">- Todo un video de Youtube</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.twtOne.visible">
+                                                    <span *ngIf="!campaign.options.twtOne.validated">- Un Tweet</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.fcbkPost.visible">
+                                                    <span *ngIf="!campaign.options.fcbkPost.validated">- Un post en mi página de Facebook</span>
+                                                </div>
+                                                <div class="row ml-3" *ngIf="campaign.options.tikOnePost.visible">
+                                                    <span *ngIf="!campaign.options.tikOnePost.validated">- Un post en Tik Tok</span>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <a class="btn btn-1 btn-thumpsup ml-5" (click)="finalizeRequest(campaign.campaignId);">
+                                                        <span>Finalizar</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <hr style="margin-top: 0px; border-top: 1px solid #e83a80;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

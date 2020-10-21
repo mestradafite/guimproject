@@ -40,7 +40,7 @@
                                         <div class="col-md-5 p-4">
                                             <div class="container">
                                                 <div class="row">
-                                                    <h5 style="text-decoration: underline;">Nombre marca</h5>
+                                                    <h5 style="text-decoration: underline; font-size: 25px;">{{brandNames[e]}}</h5>
                                                 </div>
                                                 <div class="row">
                                                     <h6>{{campaign.product.name}}</h6>
@@ -56,14 +56,14 @@
                                                 </div>
                                                 <div class="row">
                                                     <a href="{{campaign.product.url}}" target="_blank" >
-                                                        <h6 style="font-size: 15px; text-decoration: underline;">{{campaign.product.url}}</h6>
+                                                        <h6 style="font-size: 15px; text-decoration: underline; text-align: justify;">{{campaign.product.url.substring(0,40)}}...</h6>
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-5 p-4">
-                                            <div class="container">
-                                                <div class="row">
+                                        <div class="col-md-5 p-4 pr-5 float-right">
+                                            <div class="container float-right">
+                                                <div class="row float-right">
                                                     <h6 class="pink"><i class="fa fa-clock-o" aria-hidden="true"></i> {{getCampaignStartDate(campaign.createdAt)}}</h6>
                                                     <a class="btn btn-1 btn-thumpsup ml-5" (click)="showAcceptOptions(campaign.campaignId);">
                                                         <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 25px !important;"></i>
@@ -72,8 +72,8 @@
                                                         <i class="fa fa-thumbs-down" aria-hidden="true" style="font-size: 25px !important;"></i>
                                                     </a>
                                                 </div>
-                                                <div class="row mt-5">
-                                                    <p>{{campaign.product.description}}</p>
+                                                <div class="row mt-5" style="overflow-y: scroll; height: 150px;">
+                                                    <p style="text-align:justify">{{campaign.product.description}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,6 +106,8 @@
                                     <div class="row">
                                         <h6>(Elige aquellos medios en los que compartirás el producto con tu audiencia)</h6>
                                     </div>
+                                    <form role="form"  [ngClass]="{'focused':focus===true}">                    
+
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="row">
@@ -113,16 +115,16 @@
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="instStry{{campaign.campaignId}}" name="instStry[e]" [(ngModel)]="instStry[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="instStry{{campaign.campaignId}}">
                                                         <span>Una Instagram story</span>
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="instPost{{campaign.campaignId}}" name="instPost[e]" [(ngModel)]="instPost[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="instPost{{campaign.campaignId}}">
                                                         <span>Un post de Instagram</span>
                                                     </label>
                                                 </div>
@@ -134,16 +136,16 @@
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="blogProd{{campaign.campaignId}}" name="blogProd[e]" [(ngModel)]="blogProd[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="blogProd{{campaign.campaignId}}">
                                                         <span>Un blog acerca del producto</span>
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="blogBrand{{campaign.campaignId}}" name="blogBrand[e]" [(ngModel)]="blogBrand[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="blogBrand{{campaign.campaignId}}">
                                                         <span>Un blog acerca de la marca</span>
                                                     </label>
                                                 </div>
@@ -155,8 +157,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="cupon{{campaign.campaignId}}" name="cupon[e]" [(ngModel)]="cupon[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="cupon{{campaign.campaignId}}">
                                                         <span>Pide a la marca un cupón de descuento para compartir con tus seguidores (Ej: CUPON12)</span>
                                                     </label>
                                                 </div>
@@ -170,24 +172,24 @@
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="ytbInit{{campaign.campaignId}}" name="ytbInit[e]" [(ngModel)]="ytbInit[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="ytbInit{{campaign.campaignId}}">
                                                         <span>El principio o final de un video</span>
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="ytbDuring{{campaign.campaignId}}" name="ytbDuring[e]" [(ngModel)]="ytbDuring[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="ytbDuring{{campaign.campaignId}}">
                                                         <span>Durante un video</span>
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="ytbAll{{campaign.campaignId}}" name="ytbAll[e]" [(ngModel)]="ytbAll[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="ytbAll{{campaign.campaignId}}">
                                                         <span>Dedicaré todo un video al producto o empresa</span>
                                                     </label>
                                                 </div>
@@ -199,8 +201,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="twtOne{{campaign.campaignId}}" name="twtOne[e]" [(ngModel)]="twtOne[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="twtOne{{campaign.campaignId}}">
                                                         <span>Un Tweet</span>
                                                     </label>
                                                 </div>
@@ -210,8 +212,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="tikOnePost{{campaign.campaignId}}" name="tikOnePost[e]" [(ngModel)]="tikOnePost[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="tikOnePost{{campaign.campaignId}}">
                                                         <span>Un post</span>
                                                     </label>
                                                 </div>
@@ -223,8 +225,8 @@
                                             </div>
                                             <div class="row">
                                                 <div class="custom-control custom-checkbox mb-3 mr-3">
-                                                    <input class="custom-control-input" id="customCheck1" type="checkbox">
-                                                    <label class="custom-control-label" for="customCheck1">
+                                                    <input class="custom-control-input" id="fcbkPost{{campaign.campaignId}}" name="fcbkPost[e]" [(ngModel)]="fcbkPost[e]" type="checkbox">
+                                                    <label class="custom-control-label" for="fcbkPost{{campaign.campaignId}}">
                                                         <span>Un post en mi página de Facebook</span>
                                                     </label>
                                                 </div>
@@ -244,12 +246,13 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="row">
-                                                <button class="btn btn-icon btn-3 btn-secondary ml-4 float-right" (click)="acceptRequest(campaign.campaignId)" type="submit">
+                                                <button class="btn btn-icon btn-3 btn-secondary ml-4 float-right" (click)="acceptRequest(campaign.campaignId, e)" type="submit">
                                                     <span class="btn-inner--text">Guardar</span>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </ng-template>
@@ -272,7 +275,7 @@
                                         <div class="col-md-5 p-4">
                                             <div class="container">
                                                 <div class="row">
-                                                    <h5 style="text-decoration: underline;">Nombre marca</h5>
+                                                    <h5 style="text-decoration: underline; font-size: 25px;">{{brandNames[e]}}</h5>
                                                 </div>
                                                 <div class="row">
                                                     <h6>{{campaign.product.name}}</h6>
@@ -288,7 +291,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <a href="{{campaign.product.url}}" target="_blank" >
-                                                        <h6 style="font-size: 15px; text-decoration: underline;">{{campaign.product.url}}</h6>
+                                                        <h6 style="font-size: 15px; text-decoration: underline; text-align: justify;">{{campaign.product.url.substring(0,40)}}...</h6>
                                                     </a>
                                                 </div>
                                             </div>
@@ -299,16 +302,77 @@
                                                     <a class="btn btn-1 btn-primary" >
                                                         <i class="fa fa-comments" aria-hidden="true" style="font-size: 25px !important;"></i>
                                                     </a>
-                                                    <a class="btn btn-1 btn-thumpsup ml-5" (click)="finalizeRequest(campaign.campaignId);">
-                                                        <span>Finalizar</span>
-                                                    </a>
                                                 </div>
-                                                <div class="row mt-5">
-                                                    <p>{{campaign.product.description}}</p>
+                                                <div class="row mt-5" style="overflow-y: scroll; height: 150px;">
+                                                    <p style="text-align:justify">{{campaign.product.description}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="container mt-4">
+                                    <div class="row ml-2">
+                                        <div class="col-md-11">
+                                            <h3>Proceso</h3>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <i (click)="setProgressDivVisible(e)" *ngIf="!progressVisible[e]" style="font-size: 40px; cursor: pointer; color: #e83a80;" class="fa fa-caret-down" aria-hidden="true"></i> 
+                                            <i (click)="setProgressDivVisible(e)" *ngIf="progressVisible[e]" style="font-size: 40px; cursor: pointer; color: #e83a80;" class="fa fa-caret-up" aria-hidden="true"></i> 
+                                        </div>
+                                    </div>
+                                    <div class="container ml-4" *ngIf="progressVisible[e]">
+                                        <div class="row" *ngIf="campaign.options.productSend.visible">
+                                            <span *ngIf="!campaign.options.productSend.validated">* La marca ha enviado el producto i los datos necesarios</span>
+                                            <span *ngIf="campaign.options.productSend.validated" style="color: #e83a80;">* La marca ha enviado el producto i los datos necesarios</span>
+                                        </div>
+                                        <div class="row" *ngIf="campaign.options.productRecieve.visible">
+                                            <span *ngIf="!campaign.options.productRecieve.validated">* He recibido el producto</span>
+                                            <span *ngIf="campaign.options.productRecieve.validated" style="color: #e83a80;">* He recibido el producto</span>
+                                        </div>
+                                        <div class="row" *ngIf="campaign.options.cupon.visible">
+                                            <span *ngIf="!campaign.options.cupon.validated">* Tu cupón de descuento: </span>
+                                            <span *ngIf="campaign.options.cupon.validated">* Tu cupón de descuento: {{campaign.options.cupon.cuponId}}</span>
+                                        </div>
+                                        <div class="row">
+                                            <span>* He compartido el producto en los lugares marcados</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.instStry.visible">
+                                            <span *ngIf="!campaign.options.instStry.validated">- Una Instagram Story</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.instPost.visible">
+                                            <span *ngIf="!campaign.options.instPost.validated">- Un post de Instagram</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.blogProd.visible">
+                                            <span *ngIf="!campaign.options.blogProd.validated">- Un blog acerca del producto</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.blogBrand.visible">
+                                            <span *ngIf="!campaign.options.blogBrand.validated">- Un blog acerca de la marca</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.ytbInit.visible">
+                                            <span *ngIf="!campaign.options.ytbInit.validated">- El principio o final de un video de Youtube</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.ytbDuring.visible">
+                                            <span *ngIf="!campaign.options.ytbDuring.validated">- Durante un video de Youtube</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.ytbAll.visible">
+                                            <span *ngIf="!campaign.options.ytbAll.validated">- Todo un video de Youtube</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.twtOne.visible">
+                                            <span *ngIf="!campaign.options.twtOne.validated">- Un Tweet</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.fcbkPost.visible">
+                                            <span *ngIf="!campaign.options.fcbkPost.validated">- Un post en mi página de Facebook</span>
+                                        </div>
+                                        <div class="row ml-3" *ngIf="campaign.options.tikOnePost.visible">
+                                            <span *ngIf="!campaign.options.tikOnePost.validated">- Un post en Tik Tok</span>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <a class="btn btn-1 btn-thumpsup ml-5" (click)="finalizeRequest(campaign.campaignId);">
+                                                <span>Finalizar</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 0px; border-top: 1px solid #e83a80;">
                                 </div>
                             </div>
                         </ng-template>

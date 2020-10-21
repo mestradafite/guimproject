@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { CampaignInterface } from "../models/campaign-interface";
 import { NgxSpinnerService } from "ngx-spinner";
 import { UserInterface } from '../models/user-interface';
+import { CampaignOptions } from '../models/campaignOptions-interface';
 import { AgeFromDateString } from 'age-calculator';
 import { ProductInterface } from '../models/product-interface';
 
@@ -19,6 +20,9 @@ export class CampaignsComponent implements OnInit {
   private user: UserInterface;
   private influencerages: string[] = [];
   private campaignStartDate: string[] = [];
+  private progressVisible: boolean[] = [];
+  private options: CampaignOptions[] = [];
+
 
   constructor(private authService: AuthService, private productService: ProductsService, private spinner: NgxSpinnerService) { }
 
@@ -50,6 +54,7 @@ export class CampaignsComponent implements OnInit {
       return this.authService.getCampaigns(this.authService.getCurrentUser().id, "1")
       .subscribe(data => {
         console.log("Getting user campaigns...");
+        this.setProgressVisible();
         this.inProgreessCampaigns = data;
       },
       error => {
@@ -93,5 +98,31 @@ export class CampaignsComponent implements OnInit {
       let ageFromString = new AgeFromDateString(birthday.year + "-" + birthday.month + "-" + birthday.day).age;
       return String(ageFromString);
     }
+  }
+
+  setProgressVisible(){
+    for (let i = 0; i < this.inProgreessCampaigns.length; i++) {
+      this.progressVisible[i] = false;
+    }
+  }
+
+  validate(campaignId: string, index: number, option: string){
+    this.spinner.show();
+
+    if(option === "productSend") { this.inProgreessCampaigns[index].options.productSend.validated = true; }
+    
+    return this.authService.updateCampaign(campaignId, "1", false, "", this.inProgreessCampaigns[index].options) 
+    .subscribe(data => {
+      console.log("Aceptando solicitud");
+      this.spinner.hide();
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  setProgressDivVisible(index: number){
+    if(this.progressVisible[index]) this.progressVisible[index] = false;
+    else this.progressVisible[index] = true;
   }
 }

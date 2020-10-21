@@ -94,3 +94,12 @@
         object-fit: cover;
         object-position: center center;
     }
+
+    .clickable{
+        cursor: pointer;
+    }
+
+    .clickable:hover{
+        cursor: pointer;
+        color: #e83a80;
+    }

@@ -5,5 +5,6 @@ export interface CampaignInterface {
     influencer?: any,
     product?: any,
     valoration?: string,
-    createdAt?: number
+    createdAt?: number,
+    options?: any
   }
