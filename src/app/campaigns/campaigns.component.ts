@@ -106,10 +106,9 @@ export class CampaignsComponent implements OnInit {
     }
   }
 
-  validate(campaignId: string, index: number, option: string){
+  validate(campaignId: string, index: number, option: any){
     this.spinner.show();
-
-    if(option === "productSend") { this.inProgreessCampaigns[index].options.productSend.validated = true; }
+    option.validated = true;
     
     return this.authService.updateCampaign(campaignId, "1", false, "", this.inProgreessCampaigns[index].options) 
     .subscribe(data => {

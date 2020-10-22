@@ -34,6 +34,8 @@ export class RequestsComponent implements OnInit {
   private fcbkPost: boolean[] = [];
 
   private OPTIONS: number = 11;
+  private allOptionsChecked: boolean[] = [];
+  private visibleOptions: number = 0;
 
 
   constructor(private authService: AuthService, private spinner: NgxSpinnerService) { }
@@ -170,6 +172,8 @@ export class RequestsComponent implements OnInit {
   setProgressVisible(){
     for (let i = 0; i < this.inProgressCampaigns.length; i++) {
       this.progressVisible[i] = false;
+      this.allOptionsChecked[i] = false;
+      this.checkOptionsValidated(i);
     }
   }
 
@@ -213,5 +217,34 @@ export class RequestsComponent implements OnInit {
       error => {
         console.log(error);
       });
+  }
+
+  validate(campaignId: string, index: number, option: any){
+    this.spinner.show();
+    option.validated = true;
+
+    return this.authService.updateCampaign(campaignId, "1", false, "", this.inProgressCampaigns[index].options) 
+    .subscribe(data => {
+      console.log("Aceptando solicitud");
+      this.checkOptionsValidated(index);
+      this.spinner.hide();
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
+  checkOptionsValidated(index: number) {
+    var visibleOptionsChecked = 0;
+    for (let i = 0; i < this.pendingCampaigns.length; i++) {
+      console.log(this.pendingCampaigns[i]);
+      
+    }
+    /*if (option.validated) {
+      visibleOptionsChecked++
+    }*/
+      
+
+    //if(visibleOptionsChecked == this.visibleOptions) this.allOptionsChecked[index] = true;
   }
 }
