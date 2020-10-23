@@ -35,7 +35,7 @@
             <div class="shadow">
                 <div class="row ">
                     <div class="col-md-3 mt-4 mb-4 d-flex justify-content-center">
-                        <img class="imgsize" class="image-resize" [src]="product.urlimages[0]" alt="">
+                        <img class="imgsize" class="image-resize mt-2" [src]="product.urlimages[0]" alt="">
                     </div>
                     <div class="col-md-6">
                         <div class="container">
@@ -58,10 +58,10 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <a href="{{product.url}}" target="_blank">{{product.url}}</a>
+                                    <a href="{{product.url}}" target="_blank">{{product.url.substring(0,40)}}...</a>
                                 </div>
                             </div>
-                            <div class="row mt-4">
+                            <div class="row mt-4 mb-4" style="overflow-y: scroll; height: 90px;">
                                 <div class="col-md-12">
                                     <p><b>Descripción:</b> {{product.description}}</p>
                                 </div>

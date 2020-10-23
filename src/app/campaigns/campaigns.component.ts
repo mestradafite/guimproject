@@ -120,6 +120,19 @@ export class CampaignsComponent implements OnInit {
     });
   }
 
+  finalizeRequest(campaignId, index){
+    this.spinner.show();
+    return this.authService.updateCampaign(campaignId, "2", false, "", this.inProgreessCampaigns[index].options) // "2" estado finalizado
+    .subscribe(data => {
+      console.log("Finalizando solicitud");
+      this.spinner.hide();
+      window.location.reload();
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
   setProgressDivVisible(index: number){
     if(this.progressVisible[index]) this.progressVisible[index] = false;
     else this.progressVisible[index] = true;

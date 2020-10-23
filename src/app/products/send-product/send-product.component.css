@@ -39,7 +39,9 @@
 }
 
 .image-resize{
-    height: 240px;
+    height: 250px;
+    width: 250px;
+    border-radius: 25px;
     object-fit: cover;
     object-position: center center;
 }

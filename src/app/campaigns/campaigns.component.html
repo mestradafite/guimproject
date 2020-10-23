@@ -26,7 +26,7 @@
                             <div class="row mt-5 d-flex justify-content-center" *ngIf="pendingCampaigns.length===0">
                                 <h1 class="mt-5 ">No hay Campañas</h1>
                             </div>
-                            <div class="container mt-5" *ngFor="let campaign of pendingCampaigns; let e = index" >
+                            <div class="mt-5" *ngFor="let campaign of pendingCampaigns; let e = index" >
                                 <div class="shadow">
                                     <div class="row">
                                         <div class="col-md-3">
@@ -212,7 +212,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
-                                                    <a class="btn btn-1 btn-thumpsup ml-5" (click)="finalizeRequest(campaign.campaignId);">
+                                                    <a class="btn btn-1 btn-thumpsup ml-5" (click)="finalizeRequest(campaign.campaignId, i);">
                                                         <span>Finalizar</span>
                                                     </a>
                                                 </div>
